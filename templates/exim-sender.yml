@@ -1,0 +1,88 @@
+{{with datasource "deployment"}}apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: local-exim
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      de-app: local-exim
+  template:
+    metadata:
+      labels:
+        de-app: local-exim
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: de-app
+                operator: In
+                values:
+                - local-exim
+            topologyKey: kubernetes.io/hostname
+      restartPolicy: Always
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+        - name: timezone
+          configMap:
+            name: timezone
+            items:
+              - key: timezone
+                path: timezone
+      containers:
+      - name: local-exim
+        image: "{{if (index . "ImageDigest")}}{{.ImageDigest}}{{else}}discoenv/exim-sender{{end}}"
+        volumeMounts:
+          - name: localtime
+            mountPath: /etc/localtime
+            readOnly: true
+          - name: timezone
+            mountPath: /etc/timezone
+            subPath: timezone
+        resources:
+          requests:
+            cpu: "5m"
+            memory: "128Mi"
+          limits:
+            cpu: "100m"
+            memory: "256Mi"
+        env:
+          - name: DE_ENV
+            valueFrom:
+              secretKeyRef:
+                name: configs
+                key: DE_ENV
+          - name: PRIMARY_HOST
+            value: cyverse.org
+          - name: ALLOWED_HOSTS
+            value: "*"
+          - name: SERVICE_25_NAME
+            value: exim-sender
+          - name: SERVICE_25_TAGS
+            valueFrom:
+              secretKeyRef:
+                name: configs
+                key: DE_ENV
+          - name: SERVICE_25_CHECK_TCP
+            value: "true"
+          - name: SERVICE_25_CHECK_INTERVAL
+            value: 10s
+        ports:
+          - name: listen-port
+            containerPort: 25
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: local-exim
+spec:
+  selector:
+    de-app: local-exim
+  ports:
+    - protocol: TCP
+      port: 25
+      targetPort: listen-port{{end}}

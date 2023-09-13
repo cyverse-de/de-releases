@@ -1,0 +1,19 @@
+{{- with datasource "config" -}}
+amqp:
+  uri: amqp://{{.DE.AMQP.User}}:{{.DE.AMQP.Password | urlencode}}@{{.DE.AMQP.Host}}:{{.DE.AMQP.Port}}/{{.DE.AMQP.Vhost | urlencode}}
+  exchange:
+    name: de
+    type: topic
+
+iplant_groups:
+  base: "{{.BaseURLs.IplantGroups}}"
+  user: de_grouper
+  folder_name_prefix: "{{.Grouper.FolderNamePrefix}}"
+  public_group: "iplant:de:{{.Environment}}:users:de-users"
+
+data_info:
+  base: "{{.BaseURLs.DataInfo}}"
+
+irods:
+  user: "{{.IRODS.User}}"
+{{- end -}}

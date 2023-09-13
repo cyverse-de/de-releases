@@ -1,0 +1,16 @@
+{{with datasource "config"}}
+--name Ceph Stress Tests
+
+--variable Environment:{{.Environment}}
+
+## PASSWORDS_START
+--variable Password:{{.QA.Ceph.Password}}
+## PASSWORDS_END
+
+# customizable for local testing
+--variable LocalUser:{{.QA.Ceph.LocalUser}}
+--variable BaseDir:/Users/{{.QA.Ceph.LocalUser}}/trunk
+--variable UserName:{{.QA.Ceph.Username}}
+--variable FirstName:{{.QA.Ceph.FirstName}}
+--variable LastName:{{.QA.Ceph.LastName}}
+{{end}}

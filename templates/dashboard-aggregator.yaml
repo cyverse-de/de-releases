@@ -1,0 +1,43 @@
+{{with datasource "config" -}}
+listen_port: 3000
+
+db:
+  user: {{.DEDB.User}}
+  password: {{.DEDB.Password}}
+  host: {{.DEDB.Host}}
+  port: {{.DEDB.Port}}
+  database: {{.DEDB.Name}}
+
+iplant_groups:
+  uri: {{.BaseURLs.IplantGroups}}
+
+logging:
+  level: info
+  label: dashboard-aggregator
+
+permissions:
+  public_group: iplant:de:{{.Environment}}:users:de-users
+  uri: {{.BaseURLs.Permissions}}
+
+website:
+  url: {{ .DashboardAggregator.Website.URL }}
+  feeds:
+    news: /news/rss.xml
+    events: /events/rss.xml
+
+videos:
+  url: https://www.youtube.com/feeds/videos.xml?channel_id=UC-gvdjTz9rq6RovZ57LoDDA
+
+apps:
+  favorites_group_index: 1
+  url: {{.BaseURLs.Apps}}
+
+app-exposer:
+  url: {{.BaseURLs.AppExposer}}
+  user: dashboard-aggregator
+
+metadata:
+  url: {{.BaseURLs.Metadata}}
+  featured_apps_attr: cyverse-blessed
+  featured_apps_value: true
+{{end}}

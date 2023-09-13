@@ -1,0 +1,20 @@
+{{with datasource "config"}}
+--name DE
+--noncritical test
+--noncritical unstable
+-e skipped
+
+--variable Environment:{{.Environment}}
+## PASSWORDS_START
+--variable Password:{{.QA.DE.Password}}
+--variable AdminPass:{{.QA.DE.AdminPassword}}
+## PASSWORDS_END
+
+# customizable for local testing
+--variable jwtName:{{.QA.DE.JwtName}}
+--variable LocalUser:{{.QA.DE.LocalUser}}
+--variable BaseDir:/Users/{{.QA.DE.LocalUser}}/src
+--variable Username:{{.QA.DE.Username}}
+--variable FirstName:{{.QA.DE.FirstName}}
+--variable LastName:{{.QA.DE.LastName}}
+{{end}}

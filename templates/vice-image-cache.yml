@@ -1,0 +1,64 @@
+{{- with $config := datasource "config" -}}
+{{- range .VICE.ImageCache -}}
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: cache-{{ . | strings.Slug | strings.ReplaceAll "_" "-" | strings.Trunc 57 }}
+spec:
+  selector:
+    matchLabels:
+      name: cache-{{ . | strings.Slug | strings.ReplaceAll "_" "-" | strings.Trunc 57 }}
+  template:
+    metadata:
+      labels:
+        name: cache-{{ . | strings.Slug | strings.ReplaceAll "_" "-" | strings.Trunc 57 }}
+    spec:
+      tolerations:
+      - key: "vice"
+        operator: "Equal"
+        value: "only"
+        effect: "NoSchedule"
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: vice
+                operator: In
+                values:
+                - "true"
+{{- if $config.VICE.ImagePullSecret }}
+      imagePullSecrets:
+        - name: {{ $config.VICE.ImagePullSecret }}
+{{- end}}
+      initContainers:
+      - name: cache
+        image: harbor.cyverse.org/hub/library/docker
+        command: ["docker", "pull", "{{.}}"]
+        volumeMounts:
+        - name: docker
+          mountPath: /var/run
+{{- if $config.VICE.ImagePullSecret }}
+        - name: docker-config
+          mountPath: /root/.docker
+          readOnly: true
+{{- end}}
+      volumes:
+      - name: docker
+        hostPath:
+          path: /var/run
+{{- if $config.VICE.ImagePullSecret }}
+      - name: docker-config
+        secret:
+          secretName: {{ $config.VICE.ImagePullSecret }}
+          items:
+            - key: .dockerconfigjson
+              path: config.json
+              mode: 0600
+{{- end}}
+      containers:
+      - name: pause
+        image: gcr.io/google_containers/pause
+{{end}}
+{{- end}}

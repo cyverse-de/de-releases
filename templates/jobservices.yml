@@ -1,0 +1,109 @@
+{{- with datasource "config" -}}
+amqp:
+  uri: amqp://{{.DE.AMQP.User}}:{{.DE.AMQP.Password | urlencode}}@{{.DE.AMQP.Host}}:{{.DE.AMQP.Port}}/{{.DE.AMQP.Vhost | urlencode}}
+  exchange:
+    name: de
+    type: topic
+  prefetch:
+    stops: 32
+    launches: 32
+    events: 0
+
+apps:
+  base: "{{.BaseURLs.Apps}}"
+  callbacks_uri: "{{.BaseURLs.Apps}}/callbacks/de-job"
+
+condor:
+  condor_config: /etc/condor/condor_config
+  path_env_var: /opt/condor/bin/:/usr/bin/:/usr/local/bin/:/bin/
+  log_path: /tmp/
+  request_disk: 0
+  filter_files: .job.ad,.machine.ad,_condor_stderr,_condor_stdout,condor_exec.exe,.chirp_config,.chirp.config,logs/logs-stderr-output,logs/logs-stdout-output,config,job,iplant.cmd
+
+db:
+  uri: postgresql://{{.DEDB.User}}:{{.DEDB.Password | urlencode}}@{{.DEDB.Host}}:{{.DEDB.Port}}/{{.DEDB.Name}}?sslmode=disable
+
+email:
+  request: {{.Email.SupportDest}}
+
+external_irods:
+  host: "{{.IRODS.ExternalHost}}"
+  port: "1247"
+  user: "job"
+
+graphql:
+  uri: http://de-graphql
+
+interapps:
+  proxy:
+    tag: {{.Docker.Tag}}
+
+iplant_email:
+  base: "{{.BaseURLs.IplantEmail}}"
+
+iplant_groups:
+  base: "{{.BaseURLs.IplantGroups}}"
+  user: de_grouper
+
+irods:
+  user: "{{.IRODS.User}}"
+  pass: "{{.IRODS.Password}}"
+  host: "{{.IRODS.Host}}"
+  port: "1247"
+  base: "/{{.IRODS.Zone}}/home"
+  resc: ""
+  zone: "{{.IRODS.Zone}}"
+
+k8s:
+  frontend:
+    base: "{{.VICE.BaseURI}}"
+
+keycloak:
+  base: "{{.Keycloak.ServerURI}}"
+  realm: "{{.Keycloak.Realm}}"
+  client-id: "{{.Keycloak.VICE.ClientID}}"
+  client-secret: "{{.Keycloak.VICE.ClientSecret}}"
+
+metadata:
+  base: "{{.BaseURLs.Metadata}}"
+
+notification_agent:
+  base: "{{.BaseURLs.Notifications}}"
+
+notifications:
+  db:
+    uri: "postgresql://{{.NewNotificationsDB.User}}:{{.NewNotificationsDB.Password | urlencode}}@{{.NewNotificationsDB.Host}}:{{.NewNotificationsDB.Port}}/{{.NewNotificationsDB.Name}}?sslmode=disable"
+
+path_list:
+  file_identifier: "# application/vnd.de.multi-input-path-list+csv; version=1"
+
+porklock:
+  image: "{{.Jobs.DataTransferImage}}"
+  tag: "{{.Jobs.DataTransferTag}}"
+
+qms:
+  enabled: {{.QMS.Enabled}}
+  base: "{{.BaseURLs.QMS}}"
+  usage: "/v1/admin/usages"
+
+tickets_path_list:
+  file_identifier: "# application/vnd.de.tickets-path-list+csv; version=1"
+
+users:
+  domain: "{{.UIDDomain}}"
+
+vice:
+  db:
+    uri: "postgresql://{{.DEDB.User}}:{{.DEDB.Password | urlencode}}@{{.DEDB.Host}}:{{.DEDB.Port}}/{{.DEDB.Name}}?sslmode=disable"
+  file-transfers:
+    image: "{{.VICE.FileTransfers.Image}}"
+    tag: "{{.VICE.FileTransfers.Tag}}"
+  job-status:
+    base: "{{.BaseURLs.JobStatusListener}}"
+  image-pull-secret: {{ .VICE.ImagePullSecret }}
+  backend-namespace: {{.Namespace}}
+  use_csi_driver: {{.VICE.UseCSIDriver}}
+  default_backend:
+    loading_page_url: {{.VICE.DefaultBackend.LoadingPageTemplateString}}
+    base_url: {{.VICE.BaseURI}}
+{{- end -}}

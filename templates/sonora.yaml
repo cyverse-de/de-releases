@@ -1,0 +1,59 @@
+{{with datasource "config" -}}
+base_url: {{.DE.BaseURI}}
+terrain_url: {{.BaseURLs.Terrain}}/
+legacy_de_url: {{.DE.Legacy.BaseURI}}
+user_portal_url: {{.UserPortal.BaseURI}}
+support_email: {{.Email.SupportDest}}
+de_faq: {{.DE.Info.FAQ}}
+cyverse_url: {{.DE.Info.Description}}
+db:
+  host: {{.DEDB.Host}}
+  user: {{.DEDB.User}}
+  password: {{.DEDB.Password}}
+keycloak:
+  server_url: {{.Keycloak.ServerURI}}
+  realm: {{.Keycloak.Realm}}
+  client_id: {{.Keycloak.ClientID}}
+  client_secret: {{.Keycloak.ClientSecret}}
+intercom:
+  app_id: {{.Intercom.AppID}}
+  enabled: {{.Intercom.Enabled}}
+  company_id: {{.Intercom.CompanyID}}
+  company_name: {{.Intercom.CompanyName}}
+  user_profile_url: https://app.intercom.com/apps/{{.Intercom.AppID}}/users/show?user_id=
+irods:
+  home_path: /{{.IRODS.Zone}}/home
+  trash_path: /{{.IRODS.Zone}}/trash/home
+  community_path: /{{.IRODS.Zone}}/home/shared
+amqp:
+  amqp_uri: amqp://{{.DE.AMQP.User}}:{{.DE.AMQP.Password | urlencode}}@{{.DE.AMQP.Host}}:{{.DE.AMQP.Port}}/{{.DE.AMQP.Vhost | urlencode}}
+  exchange_name: de
+  exchange_durable: true
+  auto_delete: false
+admin:
+  group_attribute_name: {{.Admin.Attribute}}
+  groups: {{.Admin.Groups}}
+fileIdentifier:
+  htPathList: "# application/vnd.de.path-list+csv; version=1"
+  multiInputPathList: "# application/vnd.de.multi-input-path-list+csv; version=1"
+analytics:
+  enabled: {{.Analytics.Enabled}}
+  id: {{.Analytics.Id}}
+grouper:
+  allUsers: GrouperAll
+  admin: de_grouper
+tools:
+  admin:
+    max_cpu_limit: {{.DE.Tools.Admin.MaxCpuLimit}}
+    max_memory_limit: {{.DE.Tools.Admin.MaxMemoryLimit}}
+    max_disk_limit: {{.DE.Tools.Admin.MaxDiskLimit}}
+unleash:
+  api_url: {{.Unleash.BaseURL}}{{.Unleash.APIPath}}
+  client_secret: "{{.Unleash.APIToken}}"
+  maintenance_flag: {{.Unleash.MaintenanceFlag}}
+username:
+  suffix: {{.UIDDomain}}
+subscriptions:
+    checkout_url: {{.DE.Subscriptions.CheckoutURL}}
+    enforce: {{.DE.Subscriptions.Enforce}}
+{{end}}

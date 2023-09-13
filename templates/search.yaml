@@ -1,0 +1,8 @@
+{{with datasource "config"}}elasticsearch:
+  base: "{{.Elasticsearch.BaseURI}}"
+  user: "{{.Elasticsearch.Username}}"
+  password: "{{.Elasticsearch.Password}}"
+  index: "{{.Elasticsearch.Index}}"
+data_info:
+  base: "{{.BaseURLs.DataInfo}}"
+{{end}}

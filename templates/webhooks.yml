@@ -1,0 +1,13 @@
+{{with datasource "config"}}amqp:
+  uri: amqp://{{.DE.AMQP.User}}:{{.DE.AMQP.Password | urlencode}}@{{.DE.AMQP.Host}}:{{.DE.AMQP.Port}}/{{.DE.AMQP.Vhost | urlencode}}
+  exchange:
+    name: de
+    type: topic
+  routing: notification.*
+db:
+  uri: postgresql://{{.DEDB.User}}:{{.DEDB.Password | urlencode}}@{{.DEDB.Host}}:{{.DEDB.Port}}/{{.DEDB.Name}}?sslmode=disable
+de:
+  base: {{.DE.BaseURI}}
+user:
+  suffix: iplantcollaborative.org
+{{end}}
