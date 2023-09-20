@@ -1,0 +1,14 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: permissions
+deploy:
+  kubectl:
+    manifests:
+    - k8s/permissions.yml
+build:
+  tagPolicy:
+    gitCommit: {}
+  artifacts:
+  - image: harbor.cyverse.org/de/permissions
+  local: {}

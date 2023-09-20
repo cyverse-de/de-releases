@@ -1,0 +1,14 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: email-requests
+deploy:
+  kubectl:
+    manifests:
+      - k8s/email-requests.yml
+build:
+  tagPolicy:
+    gitCommit: {}
+  artifacts:
+    - image: harbor.cyverse.org/de/email-requests
+  local: {}

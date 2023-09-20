@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-recorder
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      de-app: event-recorder
+  template:
+    metadata:
+      labels:
+        de-app: event-recorder
+    spec:
+      restartPolicy: Always
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+        - name: timezone
+          configMap:
+            name: timezone
+            items:
+              - key: timezone
+                path: timezone
+        - name: service-configs
+          secret:
+            secretName: service-configs
+            items:
+              - key: jobservices.yml
+                path: jobservices.yml
+      containers:
+        - name: event-recorder
+          image: harbor.cyverse.org/de/event-recorder
+          resources:
+            requests:
+              cpu: "1m"
+              memory: "128Mi"
+            limits:
+              cpu: "100m"
+              memory: "256Mi"
+          args:
+            - --config
+            - /etc/iplant/de/jobservices.yml
+          env:
+            - name: OTEL_TRACES_EXPORTER
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: OTEL_TRACES_EXPORTER
+            - name: OTEL_EXPORTER_JAEGER_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
+          volumeMounts:
+            - name: localtime
+              mountPath: /etc/localtime
+              readOnly: true
+            - name: timezone
+              mountPath: /etc/timezone
+              subPath: timezone
+            - name: service-configs
+              mountPath: /etc/iplant/de
+              readOnly: true

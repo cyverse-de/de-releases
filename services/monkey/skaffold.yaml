@@ -1,0 +1,14 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: monkey
+deploy:
+  kubectl:
+    manifests:
+    - k8s/monkey.yml
+build:
+  tagPolicy:
+    gitCommit: {}
+  artifacts:
+  - image: harbor.cyverse.org/de/monkey
+  local: {}
