@@ -1,6 +1,5 @@
-{{- with datasource "config" -}}
 amqp:
-  uri: amqp://{{.DE.AMQP.User}}:{{.DE.AMQP.Password | urlencode}}@{{.DE.AMQP.Host}}:{{.DE.AMQP.Port}}/{{.DE.AMQP.Vhost | urlencode}}
+  uri: amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode }}
   exchange:
     name: de
     type: topic
@@ -10,8 +9,8 @@ amqp:
     events: 0
 
 apps:
-  base: "{{.BaseURLs.Apps}}"
-  callbacks_uri: "{{.BaseURLs.Apps}}/callbacks/de-job"
+  base: "{{ BaseURLs.Apps }}"
+  callbacks_uri: "{{ BaseURLs.Apps }}/callbacks/de-job"
 
 condor:
   condor_config: /etc/condor/condor_config
@@ -21,13 +20,13 @@ condor:
   filter_files: .job.ad,.machine.ad,_condor_stderr,_condor_stdout,condor_exec.exe,.chirp_config,.chirp.config,logs/logs-stderr-output,logs/logs-stdout-output,config,job,iplant.cmd
 
 db:
-  uri: postgresql://{{.DEDB.User}}:{{.DEDB.Password | urlencode}}@{{.DEDB.Host}}:{{.DEDB.Port}}/{{.DEDB.Name}}?sslmode=disable
+  uri: postgresql://{{ DEDB.User }}:{{ DEDB.Password | urlencode }}@{{ DEDB.Host }}:{{ DEDB.Port }}/{{ DEDB.Name }}?sslmode=disable
 
 email:
-  request: {{.Email.SupportDest}}
+  request: {{ Email.SupportDest }}
 
 external_irods:
-  host: "{{.IRODS.ExternalHost}}"
+  host: "{{ IRODS.ExternalHost }}"
   port: "1247"
   user: "job"
 
@@ -36,74 +35,73 @@ graphql:
 
 interapps:
   proxy:
-    tag: {{.Docker.Tag}}
+    tag: {{ Docker.Tag }}
 
 iplant_email:
-  base: "{{.BaseURLs.IplantEmail}}"
+  base: "{{ BaseURLs.IplantEmail }}"
 
 iplant_groups:
-  base: "{{.BaseURLs.IplantGroups}}"
+  base: "{{ BaseURLs.IplantGroups }}"
   user: de_grouper
 
 irods:
-  user: "{{.IRODS.User}}"
-  pass: "{{.IRODS.Password}}"
-  host: "{{.IRODS.Host}}"
+  user: "{{ IRODS.User }}"
+  pass: "{{ IRODS.Password }}"
+  host: "{{ IRODS.Host }}"
   port: "1247"
-  base: "/{{.IRODS.Zone}}/home"
+  base: "/{{ IRODS.Zone }}/home"
   resc: ""
-  zone: "{{.IRODS.Zone}}"
+  zone: "{{ IRODS.Zone }}"
 
 k8s:
   frontend:
-    base: "{{.VICE.BaseURI}}"
+    base: "{{ VICE.BaseURI }}"
 
 keycloak:
-  base: "{{.Keycloak.ServerURI}}"
-  realm: "{{.Keycloak.Realm}}"
-  client-id: "{{.Keycloak.VICE.ClientID}}"
-  client-secret: "{{.Keycloak.VICE.ClientSecret}}"
+  base: "{{ Keycloak.ServerURI }}"
+  realm: "{{ Keycloak.Realm }}"
+  client-id: "{{ Keycloak.VICE.ClientID }}"
+  client-secret: "{{ Keycloak.VICE.ClientSecret }}"
 
 metadata:
-  base: "{{.BaseURLs.Metadata}}"
+  base: "{{ BaseURLs.Metadata }}"
 
 notification_agent:
-  base: "{{.BaseURLs.Notifications}}"
+  base: "{{ BaseURLs.Notifications }}"
 
 notifications:
   db:
-    uri: "postgresql://{{.NewNotificationsDB.User}}:{{.NewNotificationsDB.Password | urlencode}}@{{.NewNotificationsDB.Host}}:{{.NewNotificationsDB.Port}}/{{.NewNotificationsDB.Name}}?sslmode=disable"
+    uri: "postgresql://{{ NewNotificationsDB.User }}:{{ NewNotificationsDB.Password | urlencode }}@{{ NewNotificationsDB.Host }}:{{ NewNotificationsDB.Port }}/{{ NewNotificationsDB.Name }}?sslmode=disable"
 
 path_list:
   file_identifier: "# application/vnd.de.multi-input-path-list+csv; version=1"
 
 porklock:
-  image: "{{.Jobs.DataTransferImage}}"
-  tag: "{{.Jobs.DataTransferTag}}"
+  image: "{{ Jobs.DataTransferImage }}"
+  tag: "{{ Jobs.DataTransferTag }}"
 
 qms:
-  enabled: {{.QMS.Enabled}}
-  base: "{{.BaseURLs.QMS}}"
+  enabled: {{ QMS.Enabled }}
+  base: "{{ BaseURLs.QMS }}"
   usage: "/v1/admin/usages"
 
 tickets_path_list:
   file_identifier: "# application/vnd.de.tickets-path-list+csv; version=1"
 
 users:
-  domain: "{{.UIDDomain}}"
+  domain: "{{ UIDDomain }}"
 
 vice:
   db:
-    uri: "postgresql://{{.DEDB.User}}:{{.DEDB.Password | urlencode}}@{{.DEDB.Host}}:{{.DEDB.Port}}/{{.DEDB.Name}}?sslmode=disable"
+    uri: "postgresql://{{ DEDB.User }}:{{ DEDB.Password | urlencode }}@{{ DEDB.Host }}:{{ DEDB.Port }}/{{ DEDB.Name }}?sslmode=disable"
   file-transfers:
-    image: "{{.VICE.FileTransfers.Image}}"
-    tag: "{{.VICE.FileTransfers.Tag}}"
+    image: "{{ VICE.FileTransfers.Image }}"
+    tag: "{{ VICE.FileTransfers.Tag }}"
   job-status:
-    base: "{{.BaseURLs.JobStatusListener}}"
-  image-pull-secret: {{ .VICE.ImagePullSecret }}
-  backend-namespace: {{.Namespace}}
-  use_csi_driver: {{.VICE.UseCSIDriver}}
+    base: "{{ BaseURLs.JobStatusListener }}"
+  image-pull-secret: {{ .VICE.ImagePullSecret  }}
+  backend-namespace: {{ Namespace }}
+  use_csi_driver: {{ VICE.UseCSIDriver }}
   default_backend:
-    loading_page_url: {{.VICE.DefaultBackend.LoadingPageTemplateString}}
-    base_url: {{.VICE.BaseURI}}
-{{- end -}}
+    loading_page_url: {{ VICE.DefaultBackend.LoadingPageTemplateString }}
+    base_url: {{ VICE.BaseURI }}

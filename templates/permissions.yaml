@@ -1,10 +1,9 @@
-{{with datasource "config"}}# -*- mode: yaml -*-
+# -*- mode: yaml -*-
 
 db:
-  uri: "postgresql://{{.DEDB.User}}:{{.DEDB.Password | urlencode}}@{{.DEDB.Host}}:{{.DEDB.Port}}/{{.DEDB.Name}}?sslmode=disable"
+  uri: "postgresql://{{ DEDB.User }}:{{ DEDB.Password | urlencode }}@{{ DEDB.Host }}:{{ DEDB.Port }}/{{ DEDB.Name }}?sslmode=disable"
   schema: "permissions"
 
 grouperdb:
-  uri: "postgresql://{{.GrouperDB.User}}:{{.GrouperDB.Password | urlencode}}@{{.GrouperDB.Host}}:{{.GrouperDB.Port}}/{{.GrouperDB.Name}}?sslmode=disable"
-  folder_name_prefix: "{{.Grouper.FolderNamePrefix}}"
-{{end}}
+  uri: "postgresql://{{ GrouperDB.User }}:{{ GrouperDB.Password | urlencode }}@{{ GrouperDB.Host }}:{{ GrouperDB.Port }}/{{ GrouperDB.Name }}?sslmode=disable"
+  folder_name_prefix: "{{ Grouper.FolderNamePrefix }}"

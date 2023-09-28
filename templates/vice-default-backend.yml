@@ -1,4 +1,4 @@
-{{with datasource "config"}}apiVersion: extensions/v1beta1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
@@ -23,9 +23,9 @@ spec:
     spec:
       containers:
       - args:
-        - --db-uri=postgresql://{{.DEDB.User}}:{{.DEDB.Password | urlencode}}@{{.DEDB.Host}}:{{.DEDB.Port}}/de?sslmode=disable
+        - --db-uri=postgresql://{{ DEDB.User }}:{{ DEDB.Password | urlencode }}@{{ DEDB.Host }}:{{ DEDB.Port }}/de?sslmode=disable
         - --listen=0.0.0.0:8080
-        image: harbor.cyverse.org/de/vice-default-backend:{{.Docker.Tag}}
+        image: harbor.cyverse.org/de/vice-default-backend:{{ Docker.Tag }}
         imagePullPolicy: Always
         livenessProbe:
           failureThreshold: 3
@@ -64,4 +64,4 @@ spec:
     app: nginx-ingress
     component: vice-default-backend
     release: nginx-ingress-controller
-  type: ClusterIP{{end}}
+  type: ClusterIP

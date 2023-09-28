@@ -1,4 +1,4 @@
-{{with datasource "deployment"}}apiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: local-exim
@@ -35,7 +35,7 @@ spec:
                 path: timezone
       containers:
       - name: local-exim
-        image: "{{if (index . "ImageDigest")}}{{.ImageDigest}}{{else}}discoenv/exim-sender{{end}}"
+        image: "{%- if ImageDigest %}{{ ImageDigest }}{%- else %}discoenv/exim-sender{%- endif %}"
         volumeMounts:
           - name: localtime
             mountPath: /etc/localtime
@@ -85,4 +85,5 @@ spec:
   ports:
     - protocol: TCP
       port: 25
-      targetPort: listen-port{{end}}
+      targetPort: listen-port
+
