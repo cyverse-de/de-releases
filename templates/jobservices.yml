@@ -99,7 +99,7 @@ vice:
     tag: "{{ VICE.FileTransfers.Tag }}"
   job-status:
     base: "{{ BaseURLs.JobStatusListener }}"
-  image-pull-secret: {{ .VICE.ImagePullSecret  }}
+  image-pull-secret: {{ VICE.ImagePullSecret  }}
   backend-namespace: {{ Namespace }}
   use_csi_driver: {{ VICE.UseCSIDriver }}
   default_backend:

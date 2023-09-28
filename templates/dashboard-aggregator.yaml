@@ -19,7 +19,7 @@ permissions:
   uri: {{ BaseURLs.Permissions }}
 
 website:
-  url: {{ .DashboardAggregator.Website.URL }}
+  url: {{ DashboardAggregator.Website.URL }}
   feeds:
     news: /news/rss.xml
     events: /events/rss.xml
