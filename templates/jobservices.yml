@@ -71,7 +71,7 @@ notification_agent:
 
 notifications:
   db:
-    uri: "postgresql://{{ NewNotificationsDB.User }}:{{ NewNotificationsDB.Password | urlencode }}@{{ NewNotificationsDB.Host }}:{{ NewNotificationsDB.Port }}/{{ NewNotificationsDB.Name }}?sslmode=disable"
+    uri: "postgresql://{{ NotificationsDB.User }}:{{ NotificationsDB.Password | urlencode }}@{{ NotificationsDB.Host }}:{{ NotificationsDB.Port }}/{{ NotificationsDB.Name }}?sslmode=disable"
 
 path_list:
   file_identifier: "# application/vnd.de.multi-input-path-list+csv; version=1"
