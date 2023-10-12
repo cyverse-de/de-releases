@@ -1,4 +1,4 @@
-{{with datasource "deployment"}}apiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: notification-agent
@@ -41,7 +41,7 @@ spec:
                 path: notification-agent.properties
       containers:
       - name: notification-agent
-        image: "{{if (index . "ImageDigest")}}{{.ImageDigest}}{{else}}discoenv/notification-agent{{end}}"
+        image: "{% if ImageDigest %}{{ ImageDigest }}{% else %}discoenv/notification-agent{% endif %}"
         volumeMounts:
           - name: localtime
             mountPath: /etc/localtime
@@ -96,4 +96,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: listen-port{{end}}
+      targetPort: listen-port
+

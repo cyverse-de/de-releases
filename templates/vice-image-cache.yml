@@ -1,18 +1,17 @@
-{{- with $config := datasource "config" -}}
-{{- range .VICE.ImageCache -}}
+{%- for image in VICE.ImageCache -%}
 ---
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: cache-{{ . | strings.Slug | strings.ReplaceAll "_" "-" | strings.Trunc 57 }}
+  name: cache-{{ image | slugify | replace(from="_", to="-") | truncate(length=57) }}
 spec:
   selector:
     matchLabels:
-      name: cache-{{ . | strings.Slug | strings.ReplaceAll "_" "-" | strings.Trunc 57 }}
+      name: cache-{{ image | slugify | replace(from="_", to="-") | truncate(length=57) }}
   template:
     metadata:
       labels:
-        name: cache-{{ . | strings.Slug | strings.ReplaceAll "_" "-" | strings.Trunc 57 }}
+        name: cache-{{ image | slugify | replace(from="_", to="-") | truncate(length=57) }}
     spec:
       tolerations:
       - key: "vice"
@@ -28,37 +27,36 @@ spec:
                 operator: In
                 values:
                 - "true"
-{{- if $config.VICE.ImagePullSecret }}
+{%- if VICE.ImagePullSecret %}
       imagePullSecrets:
-        - name: {{ $config.VICE.ImagePullSecret }}
-{{- end}}
+        - name: {{ VICE.ImagePullSecret }}
+{%- endif %}
       initContainers:
       - name: cache
         image: harbor.cyverse.org/hub/library/docker
-        command: ["docker", "pull", "{{.}}"]
+        command: ["docker", "pull", "{{ image }}"]
         volumeMounts:
         - name: docker
           mountPath: /var/run
-{{- if $config.VICE.ImagePullSecret }}
+{%- if VICE.ImagePullSecret %}
         - name: docker-config
           mountPath: /root/.docker
           readOnly: true
-{{- end}}
+{%- endif %}
       volumes:
       - name: docker
         hostPath:
           path: /var/run
-{{- if $config.VICE.ImagePullSecret }}
+{%- if VICE.ImagePullSecret %}
       - name: docker-config
         secret:
-          secretName: {{ $config.VICE.ImagePullSecret }}
+          secretName: {{ VICE.ImagePullSecret }}
           items:
             - key: .dockerconfigjson
               path: config.json
               mode: 0600
-{{- end}}
+{%- endif %}
       containers:
       - name: pause
         image: gcr.io/google_containers/pause
-{{end}}
-{{- end}}
+{% endfor %}

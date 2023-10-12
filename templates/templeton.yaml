@@ -1,16 +1,15 @@
-{{with datasource "config"}}amqp:
-  uri: amqp://{{.DE.AMQP.User}}:{{.DE.AMQP.Password | urlencode}}@{{.DE.AMQP.Host}}:{{.DE.AMQP.Port}}/{{.DE.AMQP.Vhost | urlencode}}
+{amqp:
+  uri: amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode }}
   exchange:
     name: de
     type: topic
   queue_prefix: templeton
 
 elasticsearch:
-  base: {{.Elasticsearch.BaseURI}}
-  username: {{.Elasticsearch.Username}}
-  password: {{.Elasticsearch.Password}}
-  index: {{.Elasticsearch.Index}}
+  base: {{ Elasticsearch.BaseURI }}
+  username: {{ Elasticsearch.Username }}
+  password: {{ Elasticsearch.Password }}
+  index: {{ Elasticsearch.Index }}
 
 db:
-  uri: postgresql://{{.MetadataDB.User}}:{{.MetadataDB.Password | urlencode}}@{{.MetadataDB.Host}}:{{.MetadataDB.Port}}/{{.MetadataDB.Name}}?sslmode=disable
-{{end}}
+  uri: postgresql://{{ MetadataDB.User }}:{{ MetadataDB.Password | urlencode }}@{{ MetadataDB.Host }}:{{ MetadataDB.Port }}/{{ MetadataDB.Name }}?sslmode=disable

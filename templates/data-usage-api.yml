@@ -1,19 +1,19 @@
-{{with datasource "config"}}db:
-  uri: postgresql://{{.DEDB.User}}:{{.DEDB.Password | urlencode}}@{{.DEDB.Host}}:{{.DEDB.Port}}/{{.DEDB.Name}}?sslmode=disable
+db:
+  uri: postgresql://{{ DEDB.User }}:{{ DEDB.Password | urlencode }}@{{ DEDB.Host }}:{{ DEDB.Port }}/{{ DEDB.Name }}?sslmode=disable
   schema: public
 
 icat:
-  zone: {{ .IRODS.Zone }}
-  uri: postgresql://{{.ICAT.User}}:{{.ICAT.Password | urlencode}}@{{.ICAT.Host}}:{{.ICAT.Port}}/ICAT?sslmode=disable
-  rootResources:{{ range (.IRODS.QuotaRootResources | strings.Split ",")}}
-    - {{.}}{{end}}
+  zone: {{ IRODS.Zone }}
+  uri: postgresql://{{ ICAT.User }}:{{ ICAT.Password | urlencode }}@{{ ICAT.Host }}:{{ ICAT.Port }}/ICAT?sslmode=disable
+  rootResources:{% for resc in IRODS.QuotaRootResources | split(pat=",") %}
+    - {{ resc }}
+{%- endfor %}
 
 users:
-  domain: "{{.UIDDomain}}"
+  domain: "{{ UIDDomain }}"
 
 amqp:
-  uri: amqp://{{.DE.AMQP.User}}:{{.DE.AMQP.Password | urlencode}}@{{.DE.AMQP.Host}}:{{.DE.AMQP.Port}}/{{.DE.AMQP.Vhost | urlencode}}
+  uri: amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode }}
   exchange:
     name: de
     type: topic
-{{end}}

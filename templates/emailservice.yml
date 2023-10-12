@@ -1,6 +1,5 @@
-{{- with datasource "config" -}}
 de:
-  base: {{.DE.BaseURI}}
+  base: {{ DE.BaseURI }}
   admin: /admin
   analyses: /analyses
   apps: /apps
@@ -13,4 +12,3 @@ de:
 email:
   fromAddress: noreply@cyverse.org
   smtpHost: local-exim
-{{- end -}}
