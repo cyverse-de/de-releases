@@ -57,3 +57,5 @@ username:
 subscriptions:
   checkout_url: {{ DE.Subscriptions.CheckoutURL | trim_end_matches(pat="/")}}
   enforce: {{ DE.Subscriptions.Enforce }}
+elastic:
+  enabled: true
