@@ -5,13 +5,14 @@ amqp:
     type: topic
 
 iplant_groups:
-  base: "{{ BaseURLs.IplantGroups }}"
+  base: "{{ BaseURLs.IplantGroups | trim_end_matches(pat='/')}}"
   user: de_grouper
   folder_name_prefix: "{{ Grouper.FolderNamePrefix }}"
   public_group: "iplant:de:{{ Environment }}:users:de-users"
 
 data_info:
-  base: "{{ BaseURLs.DataInfo }}"
+  base: "{{ BaseURLs.DataInfo | trim_end_matches(pat='/')}}"
 
 irods:
   user: "{{ IRODS.User }}"
+

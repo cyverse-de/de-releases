@@ -1,5 +1,5 @@
 base_url: {{ DE.BaseURI }}
-terrain_url: {{ BaseURLs.Terrain }}/
+terrain_url: {{ BaseURLs.Terrain }}
 {% if DE.Legacy.BaseURI -%}
 legacy_de_url: {{ DE.Legacy.BaseURI }}
 {% endif -%}
