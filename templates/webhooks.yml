@@ -7,6 +7,6 @@ amqp:
 db:
   uri: postgresql://{{ DEDB.User }}:{{ DEDB.Password | urlencode }}@{{ DEDB.Host }}:{{ DEDB.Port }}/{{ DEDB.Name }}?sslmode=disable
 de:
-  base: {{ DE.BaseURI }}
+  base: {{ DE.BaseURI | trim_end_matches(pat="/") }}
 user:
   suffix: iplantcollaborative.org
