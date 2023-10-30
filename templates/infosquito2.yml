@@ -20,7 +20,7 @@ infosquito:
   base_prefix_length: {{ Infosquito.PrefixLength }}
 
 elasticsearch:
-  base: {{ Elasticsearch.BaseURI }}
+  base: {{ Elasticsearch.BaseURI | | trim_end_matches(pat="/")}}
   user: {{ Elasticsearch.Username }}
   password: {{ Elasticsearch.Password }}
   index: {{ Elasticsearch.Index }}
