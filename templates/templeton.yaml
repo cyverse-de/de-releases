@@ -1,4 +1,4 @@
-{amqp:
+amqp:
   uri: amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode_strict }}
   exchange:
     name: de
@@ -6,7 +6,7 @@
   queue_prefix: templeton
 
 elasticsearch:
-  base: {{ Elasticsearch.BaseURI }}
+  base: {{ Elasticsearch.BaseURI | trim_end_matches(pat="/")}}
   username: {{ Elasticsearch.Username }}
   password: {{ Elasticsearch.Password }}
   index: {{ Elasticsearch.Index }}
