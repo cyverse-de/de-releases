@@ -1,8 +1,5 @@
 base_url: {{ DE.BaseURI | trim_end_matches(pat="/")}}
 terrain_url: {{ BaseURLs.Terrain }}
-{% if DE.Legacy.BaseURI -%}
-legacy_de_url: {{ DE.Legacy.BaseURI | trim_end_matches(pat="/")}}
-{% endif -%}
 user_portal_url: {{ UserPortal.BaseURI | trim_end_matches(pat="/")}}
 support_email: {{ Email.SupportDest }}
 de_faq: {{ DE.Info.FAQ }}
