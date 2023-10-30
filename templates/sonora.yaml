@@ -55,5 +55,5 @@ unleash:
 username:
   suffix: {{ UIDDomain }}
 subscriptions:
-    checkout_url: {{ DE.Subscriptions.CheckoutURL | trim_end_matches(pat="/")}}
-    enforce: {{ DE.Subscriptions.Enforce }}
+  checkout_url: {{ DE.Subscriptions.CheckoutURL | trim_end_matches(pat="/")}}
+  enforce: {{ DE.Subscriptions.Enforce }}
