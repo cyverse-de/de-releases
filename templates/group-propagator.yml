@@ -15,4 +15,3 @@ data_info:
 
 irods:
   user: "{{ IRODS.User }}"
-
