@@ -1,6 +1,6 @@
 amqp:
-  uri: amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode }}
-  dewey_uri: amqp://{{ IRODS.AMQP.User }}:{{ IRODS.AMQP.Password | urlencode }}@{{ IRODS.AMQP.Host }}:{{ IRODS.AMQP.Port }}/{{ IRODS.AMQP.Vhost | urlencode }}
+  uri: amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode_strict }}
+  dewey_uri: amqp://{{ IRODS.AMQP.User }}:{{ IRODS.AMQP.Password | urlencode }}@{{ IRODS.AMQP.Host }}:{{ IRODS.AMQP.Port }}/{{ IRODS.AMQP.Vhost | urlencode_strict }}
   dewey_queue: "dewey.indexing"
   exchange:
     name: de
@@ -14,7 +14,7 @@ db:
   schema: public
 
 irods:
-  zone: {{ IRODS.Zone  }}
+  zone: {{ IRODS.Zone }}
 
 infosquito:
   base_prefix_length: {{ Infosquito.PrefixLength }}

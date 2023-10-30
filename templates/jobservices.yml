@@ -1,5 +1,5 @@
 amqp:
-  uri: amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode }}
+  uri: amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode_strict }}
   exchange:
     name: de
     type: topic
@@ -99,7 +99,7 @@ vice:
     tag: "{{ VICE.FileTransfers.Tag }}"
   job-status:
     base: "{{ BaseURLs.JobStatusListener }}"
-  image-pull-secret: {{ VICE.ImagePullSecret  }}
+  image-pull-secret: {{ VICE.ImagePullSecret }}
   backend-namespace: {{ Namespace }}
   use_csi_driver: {{ VICE.UseCSIDriver }}
   default_backend:
