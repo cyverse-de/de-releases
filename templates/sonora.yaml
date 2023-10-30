@@ -1,9 +1,9 @@
-base_url: {{ DE.BaseURI }}
-terrain_url: {{ BaseURLs.Terrain }}
+base_url: {{ DE.BaseURI | trim_end_matches(pat="/")}}
+terrain_url: {{ BaseURLs.Terrain | trim_end_matches(pat="/") }}
 {% if DE.Legacy.BaseURI -%}
-legacy_de_url: {{ DE.Legacy.BaseURI }}
+legacy_de_url: {{ DE.Legacy.BaseURI | trim_end_matches(pat="/")}}
 {% endif -%}
-user_portal_url: {{ UserPortal.BaseURI }}
+user_portal_url: {{ UserPortal.BaseURI | trim_end_matches(pat="/")}}
 support_email: {{ Email.SupportDest }}
 de_faq: {{ DE.Info.FAQ }}
 cyverse_url: {{ DE.Info.Description }}
@@ -49,11 +49,11 @@ tools:
     max_memory_limit: {{ DE.Tools.Admin.MaxMemoryLimit }}
     max_disk_limit: {{ DE.Tools.Admin.MaxDiskLimit }}
 unleash:
-  api_url: {{ Unleash.BaseURL }}{{ Unleash.APIPath }}
+  api_url: {{ Unleash.BaseURL | trim_end_matches(pat="/")}}{{ Unleash.APIPath }}
   client_secret: "{{ Unleash.APIToken }}"
   maintenance_flag: {{ Unleash.MaintenanceFlag }}
 username:
   suffix: {{ UIDDomain }}
 subscriptions:
-    checkout_url: {{ DE.Subscriptions.CheckoutURL }}
+    checkout_url: {{ DE.Subscriptions.CheckoutURL | trim_end_matches(pat="/")}}
     enforce: {{ DE.Subscriptions.Enforce }}
