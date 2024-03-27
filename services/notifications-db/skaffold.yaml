@@ -1,0 +1,14 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: notifications-db
+deploy:
+  kubectl:
+    manifests:
+      - k8s/notifications-db.yml
+build:
+  tagPolicy:
+    gitCommit: {}
+  artifacts:
+  - image: harbor.cyverse.org/de/notifications-db
+  local: {}
