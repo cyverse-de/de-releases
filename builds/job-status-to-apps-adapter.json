@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/job-status-to-apps-adapter","tag":"harbor.cyverse.org/de/job-status-to-apps-adapter:v3.0.0-rc01@sha256:55878df17943076422b9d9b13aa3e075214185ed18f2d766f246d5f10fed2a2c"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/job-status-to-apps-adapter","tag":"harbor.cyverse.org/de/job-status-to-apps-adapter:v3.0.1-rc03@sha256:4e068ef1f97e815993036ecc3c60159211ae1cd637990f4385020acfda376fd1"}]}
