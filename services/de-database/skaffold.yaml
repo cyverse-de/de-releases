@@ -1,0 +1,14 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: de-database
+deploy:
+  kubectl:
+    manifests:
+      - k8s/de-database.yml
+build:
+  tagPolicy:
+    gitCommit: {}
+  artifacts:
+  - image: harbor.cyverse.org/de/de-database
+  local: {}
