@@ -48,9 +48,11 @@ spec:
           requests:
             cpu: "1m"
             memory: "128Mi"
+            ephemeral-storage: "1Gi"
           limits:
             cpu: "100m"
             memory: "256Mi"
+            ephemeral-storage: "1Gi"
         args:
           - --namespace
           - "$(VSL_NAMESPACE)"
@@ -73,5 +75,3 @@ spec:
           - name: service-configs
             mountPath: /etc/iplant/de
             readOnly: true
-
-          
