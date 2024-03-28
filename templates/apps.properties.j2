@@ -1,10 +1,10 @@
 # Application details.
 apps.app.listen-port      = 60000
-apps.app.environment-name = {{ Environment }}
+apps.app.environment-name = {{ ns }}
 
 # Route-independent feature flags.
-apps.features.agave      = {{ Agave.Enabled }}
-apps.features.agave.jobs = {{ Agave.JobsEnabled }}
+apps.features.agave      = {{ agave_enabled}}
+apps.features.agave.jobs = {{ agave_jobs_enabled }}
 
 # Database settings.
 apps.db.driver      = org.postgresql.Driver
