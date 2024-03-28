@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/qms-adapter","tag":"harbor.cyverse.org/de/qms-adapter:v3.0.0-rc01@sha256:53172938c07581461fb98f95143f9796742fc8870dcf356f88dc8a88646002ff"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/qms-adapter","tag":"harbor.cyverse.org/de/qms-adapter:v3.0.1-rc02@sha256:aadd26d27cb0dd4ac83a31c2e01a2b50bb95c4a7e43c6b1518d7ec3a24828cdf"}]}

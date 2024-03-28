@@ -47,9 +47,11 @@ spec:
           requests:
             cpu: "1m"
             memory: "128Mi"
+            ephemeral-storage: "1Mi"
           limits:
             cpu: "100m"
             memory: "256Mi"
+            ephemeral-storage: "1Mi"
         env:
           - name: OTEL_TRACES_EXPORTER
             valueFrom:
@@ -89,4 +91,3 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: listen-port
-          
