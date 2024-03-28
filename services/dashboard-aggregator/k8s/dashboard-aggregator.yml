@@ -43,9 +43,11 @@ spec:
             requests:
               cpu: "100m"
               memory: "1Gi"
+              ephemeral-storage: "1Gi"
             limits:
               cpu: "3000m"
               memory: "3Gi"
+              ephemeral-storage: "1Gi"
           volumeMounts:
             - name: localtime
               mountPath: /etc/localtime
@@ -55,15 +57,7 @@ spec:
               readOnly: true
           env:
             - name: OTEL_TRACES_EXPORTER
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: OTEL_TRACES_EXPORTER
-            - name: OTEL_EXPORTER_JAEGER_ENDPOINT
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
+              value: none
           ports:
             - name: listen-port
               containerPort: 3000
