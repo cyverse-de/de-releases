@@ -45,9 +45,11 @@ spec:
           requests:
             cpu: "1000m"
             memory: "1Gi"
+            ephemeral-storage: "1Gi"
           limits:
             cpu: "4000m"
             memory: "2Gi"
+            ephemeral-storage: "1Gi"
         args:
           - --config
           - /etc/iplant/de/bulk-typer.properties
