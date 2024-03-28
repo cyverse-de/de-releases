@@ -1,0 +1,144 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grouper-ws
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      de-app: grouper-ws
+  template:
+    metadata:
+      labels:
+        de-app: grouper-ws
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: de-app
+                    operator: In
+                    values:
+                      - grouper-ws
+              topologyKey: kubernetes.io/hostname
+      restartPolicy: Always
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+        - name: timezone
+          configMap:
+            name: timezone
+            items:
+              - key: timezone
+                path: timezone
+        - name: realm-config
+          secret:
+            secretName: service-configs
+            items:
+              - key: grouper-realm.properties
+                path: realm.properties
+        - name: service-configs
+          secret:
+            secretName: service-configs
+            items:
+              - key: grouper-cache.properties
+                path: grouper.cache.properties
+
+              - key: grouper-client.properties
+                path: grouper.client.properties
+
+              - key: grouper-hibernate.properties
+                path: grouper.hibernate.properties
+
+              - key: grouper-loader.properties
+                path: grouper-loader.properties
+
+              - key: grouper-log4j.properties
+                path: log4j.properties
+
+              - key: grouper-morph-string.properties
+                path: morphString.properties
+
+              - key: grouper-subject.properties
+                path: subject.properties
+
+              - key: grouper-ui.properties
+                path: grouper-ui.properties
+
+              - key: grouper-ws.properties
+                path: grouper-ws.properties
+
+              - key: grouper.properties
+                path: grouper.properties
+      containers:
+        - name: grouper
+          image: harbor.cyverse.org/de/grouper
+          resources:
+            requests:
+              cpu: "256m"
+              memory: "1Gi"
+              ephemeral-storage: "1Gi"
+            limits:
+              cpu: "1024m"
+              memory: "3Gi"
+              ephemeral-storage: "1Gi"
+          args: ["ws"]
+          volumeMounts:
+            - name: localtime
+              mountPath: /etc/localtime
+              readOnly: true
+
+            - name: timezone
+              mountPath: /etc/timezone
+              subPath: timezone
+
+            - name: realm-config
+              mountPath: /usr/src/app/realm.properties
+              subPath: realm.properties
+
+            - name: service-configs
+              mountPath: /etc/grouper
+              readOnly: true
+          env:
+            - name: WEBAPPS_HOME
+              value: "/usr/src/app"
+            - name: JAVA_TOOL_OPTIONS
+              valueFrom:
+                configMapKeyRef:
+                  name: java-tool-options
+                  key: high
+            - name: GROUPER_USE_SSL
+              value: "false"
+            - name: GROUPER_WS_GROUPER_AUTH
+              value: "true"
+          ports:
+            - name: listen-port
+              containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /grouper-ws/status?diagnosticType=trivial
+              port: 80
+            timeoutSeconds: 20
+            initialDelaySeconds: 60
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /grouper-ws/status?diagnosticType=trivial
+              port: 80
+            timeoutSeconds: 20
+            initialDelaySeconds: 60
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grouper-ws
+spec:
+  selector:
+    de-app: grouper-ws
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: listen-port
