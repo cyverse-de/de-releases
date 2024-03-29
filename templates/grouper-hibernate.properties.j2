@@ -1,6 +1,6 @@
 # The URL to use when connecting to the database.
-hibernate.connection.url = jdbc:postgresql://{{ GrouperDB.Host }}:{{ GrouperDB.Port }}/{{ GrouperDB.Name }}
+hibernate.connection.url = jdbc:postgresql://{{ grouper_db_host }}:{{ grouper_db_port }}/{{ grouper_db_name }}
 
 # The credentials used to access the database.
-hibernate.connection.username = {{ GrouperDB.User }}
-hibernate.connection.password = {{ GrouperDB.Password }}
+hibernate.connection.username = {{ grouper_db_user }}
+hibernate.connection.password = {{ grouper_db_password }}

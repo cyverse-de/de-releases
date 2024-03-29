@@ -1,26 +1,26 @@
 amqp:
-  uri: amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode_strict }}
-  dewey_uri: amqp://{{ IRODS.AMQP.User }}:{{ IRODS.AMQP.Password | urlencode }}@{{ IRODS.AMQP.Host }}:{{ IRODS.AMQP.Port }}/{{ IRODS.AMQP.Vhost | urlencode_strict }}
+  uri: amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict }}
+  dewey_uri: amqp://{{ irods_amqp_user }}:{{ irods_amqp_password | urlencode }}@{{ irods_amqp_host }}:{{ irods_amqp_port }}/{{ irods_amqp_vhost | urlencode_strict }}
   dewey_queue: "dewey.indexing"
   exchange:
     name: de
     type: topic
 
 icat:
-  uri: postgresql://{{ ICAT.User }}:{{ ICAT.Password }}@{{ ICAT.Host }}:{{ ICAT.Port }}/ICAT?sslmode=disable
+  uri: postgresql://{{ icat_user }}:{{ icat_password }}@{{ icat_host }}:{{ icat_port }}/ICAT?sslmode=disable
 
 db:
-  uri: postgresql://{{ MetadataDB.User }}:{{ MetadataDB.Password | urlencode }}@{{ MetadataDB.Host }}:{{ MetadataDB.Port }}/{{ MetadataDB.Name }}?sslmode=disable
+  uri: postgresql://{{ dbms_connection_user }}:{{ dbms_connection_pass | urlencode }}@{{ groups['dbms_primary'][0] }}:{{ pg_listen_port }}/{{ metadata_db_name }}?sslmode=disable
   schema: public
 
 irods:
-  zone: {{ IRODS.Zone }}
+  zone: {{ irods_zone }}
 
 infosquito:
-  base_prefix_length: {{ Infosquito.PrefixLength }}
+  base_prefix_length: {{ infosquito_prefix_length }}
 
 elasticsearch:
-  base: {{ Elasticsearch.BaseURI | trim_end_matches(pat="/")}}
-  user: {{ Elasticsearch.Username }}
-  password: {{ Elasticsearch.Password }}
-  index: {{ Elasticsearch.Index }}
+  base: {{ es_base_uri | trim_end_matches(pat="/")}}
+  user: {{ es_username }}
+  password: {{ es_password }}
+  index: {{ es_index }}

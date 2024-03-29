@@ -1,19 +1,19 @@
 db:
-  uri: postgresql://{{ DEDB.User }}:{{ DEDB.Password | urlencode }}@{{ DEDB.Host }}:{{ DEDB.Port }}/{{ DEDB.Name }}?sslmode=disable
+  uri: postgresql://{{ dbms_connection_user }}:{{ dbms_connection_pass | urlencode }}@{{ groups['dbms_primary'][0] }}:{{ pg_listen_port }}/{{ de_db_name }}?sslmode=disable
   schema: public
 
 icat:
-  zone: {{ IRODS.Zone }}
-  uri: postgresql://{{ ICAT.User }}:{{ ICAT.Password | urlencode }}@{{ ICAT.Host }}:{{ ICAT.Port }}/ICAT?sslmode=disable
-  rootResources:{% for resc in IRODS.QuotaRootResources | split(pat=",") %}
+  zone: {{ irods_zone }}
+  uri: postgresql://{{ icat_user }}:{{ icat_password | urlencode }}@{{ icat_host }}:{{ icat_port }}/ICAT?sslmode=disable
+  rootResources:{% for resc in irods_quota_root_resources | split(pat=",") %}
     - {{ resc }}
 {%- endfor %}
 
 users:
-  domain: "{{ UIDDomain }}"
+  domain: "{{ uid_domain }}"
 
 amqp:
-  uri: amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode_strict }}
+  uri: amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict }}
   exchange:
     name: de
     type: topic

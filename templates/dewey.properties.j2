@@ -1,21 +1,21 @@
-dewey.environment-name          = {{ Environment }}
+dewey.environment-name          = {{ ns }}
 
-dewey.amqp.uri                  = amqp://{{ IRODS.AMQP.User }}:{{ IRODS.AMQP.Password | urlencode }}@{{ IRODS.AMQP.Host }}:{{ IRODS.AMQP.Port }}/{{ IRODS.AMQP.Vhost | urlencode_strict }}
+dewey.amqp.uri                  = amqp://{{ irods_amqp_user }}:{{ irods_amqp_password | urlencode }}@{{ irods_amqp_host }}:{{ irods_amqp_port }}/{{ irods_amqp_vhost | urlencode_strict }}
 dewey.amqp.exchange.name        = irods
 dewey.amqp.queue_name           = dewey.indexing
 dewey.amqp.qos                  = 100
 
-dewey.events.amqp.uri           = amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode_strict }}
+dewey.events.amqp.uri           = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict }}
 
-dewey.es.uri                    = {{ Elasticsearch.BaseURI | trim_end_matches(pat="/")}}
-dewey.es.username               = {{ Elasticsearch.Username }}
-dewey.es.password               = {{ Elasticsearch.Password }}
-dewey.es.index                  = {{ Elasticsearch.Index }}
+dewey.es.uri                    = {{ es_base_uri | trim_end_matches(pat="/")}}
+dewey.es.username               = {{ es_username }}
+dewey.es.password               = {{ es_password }}
+dewey.es.index                  = {{ es_index }}
 
-dewey.irods.host                = {{ IRODS.Host }}
+dewey.irods.host                = {{ irods_host }}
 dewey.irods.port                = 1247
-dewey.irods.zone                = {{ IRODS.Zone }}
-dewey.irods.user                = {{ IRODS.User }}
-dewey.irods.password            = {{ IRODS.Password }}
+dewey.irods.zone                = {{ irods_zone }}
+dewey.irods.user                = {{ irods_user }}
+dewey.irods.password            = {{ irods_password }}
 
-dewey.irods.home                = /{{ IRODS.Zone }}/home
+dewey.irods.home                = /{{ irods_zone }}/home

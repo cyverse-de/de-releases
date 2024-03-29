@@ -1,23 +1,23 @@
 # ElasticSearch Settings
-infosquito.es.uri         = {{ Elasticsearch.BaseURI }}
-infosquito.es.username    = {{ Elasticsearch.Username }}
-infosquito.es.password    = {{ Elasticsearch.Password }}
-infosquito.es.index       = {{ Elasticsearch.Index }}
+infosquito.es.uri         = {{ es_base_uri }}
+infosquito.es.username    = {{ es_username }}
+infosquito.es.password    = {{ es_password }}
+infosquito.es.index       = {{ es_index }}
 infosquito.es.scroll-size = 1000
 
 # ICAT Database Connection Settings
-infosquito.icat.host     = {{ ICAT.Host }}
-infosquito.icat.port     = {{ ICAT.Port }}
-infosquito.icat.user     = {{ ICAT.User }}
-infosquito.icat.password = {{ ICAT.Password }}
+infosquito.icat.host     = {{ icat_host }}
+infosquito.icat.port     = {{ icat_port }}
+infosquito.icat.user     = {{ icat_user }}
+infosquito.icat.password = {{ icat_password }}
 infosquito.icat.db       = ICAT
 
 # Indexing Options
-infosquito.base-collection  = /{{ IRODS.Zone }}
+infosquito.base-collection  = /{{ irods_zone }}
 infosquito.index-batch-size = 1000
 
 # AMQP Settings
-infosquito.amqp.uri                  = amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode_strict }}
+infosquito.amqp.uri                  = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict }}
 infosquito.amqp.reindex-queue        = infosquito.reindex
 infosquito.amqp.exchange.name        = de
 infosquito.amqp.exchange.durable     = True
