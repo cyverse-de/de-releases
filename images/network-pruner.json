@@ -1,0 +1,5 @@
+{
+  "repository": "https://github.com/cyverse-de/network-pruner",
+  "release": "v3.0.1-rc02",
+  "image": "harbor.cyverse.org/de/network-pruner:v3.0.1-rc02"
+}
