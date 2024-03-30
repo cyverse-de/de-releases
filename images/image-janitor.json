@@ -1,0 +1,5 @@
+{
+  "repository": "https://github.com/cyverse-de/image-janitor",
+  "release": "",
+  "image": "harbor.cyverse.org/de/image-janitor:v3.0.1-rc01"
+}
