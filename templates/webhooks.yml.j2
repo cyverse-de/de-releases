@@ -1,12 +1,12 @@
 amqp:
-  uri: amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode_strict }}
+  uri: amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict }}
   exchange:
     name: de
     type: topic
   routing: notification.*
 db:
-  uri: postgresql://{{ DEDB.User }}:{{ DEDB.Password | urlencode }}@{{ DEDB.Host }}:{{ DEDB.Port }}/{{ DEDB.Name }}?sslmode=disable
+  uri: postgresql://{{ groups['dbms_primary'][0] }}:{{ dbms_connection_pass | urlencode }}@{{ groups['dbms_primary'][0] }}:{{ pg_listen_port }}/{{ DEDB.Name }}?sslmode=disable
 de:
-  base: {{ DE.BaseURI | trim_end_matches(pat="/") }}
+  base: {{ de_base_uri | trim_end_matches(pat="/") }}
 user:
   suffix: iplantcollaborative.org

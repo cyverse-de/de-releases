@@ -1,4 +1,4 @@
-{%- for image in VICE.ImageCache -%}
+{%- for image in vice_image_cache -%}
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -27,9 +27,9 @@ spec:
                 operator: In
                 values:
                 - "true"
-{%- if VICE.ImagePullSecret %}
+{%- if vice_image_pull_secret %}
       imagePullSecrets:
-        - name: {{ VICE.ImagePullSecret }}
+        - name: {{ vice_image_pull_secret }}
 {%- endif %}
       initContainers:
       - name: cache
@@ -38,7 +38,7 @@ spec:
         volumeMounts:
         - name: docker
           mountPath: /var/run
-{%- if VICE.ImagePullSecret %}
+{%- if vice_image_pull_secret %}
         - name: docker-config
           mountPath: /root/.docker
           readOnly: true
@@ -47,10 +47,10 @@ spec:
       - name: docker
         hostPath:
           path: /var/run
-{%- if VICE.ImagePullSecret %}
+{%- if vice_image_pull_secret %}
       - name: docker-config
         secret:
-          secretName: {{ VICE.ImagePullSecret }}
+          secretName: {{ vice_image_pull_secret }}
           items:
             - key: .dockerconfigjson
               path: config.json

@@ -1,14 +1,14 @@
 # Database connection settings.
-notificationagent.db.host        = {{ NotificationsDB.Host }}
-notificationagent.db.port        = {{ NotificationsDB.Port }}
-notificationagent.db.name        = {{ NotificationsDB.Name }}
-notificationagent.db.user        = {{ NotificationsDB.User }}
-notificationagent.db.password    = {{ NotificationsDB.Password }}
+notificationagent.db.host        = {{ groups['dbms_primary'][0] }}
+notificationagent.db.port        = {{ pg_listen_port }}
+notificationagent.db.name        = {{ notifications_db_name }}
+notificationagent.db.user        = {{ dbms_connection_user }}
+notificationagent.db.password    = {{ dbms_connection_pass }}
 
 # E-mail configuration settings.
-notificationagent.email-url      = {{ BaseURLs.IplantEmail }}
+notificationagent.email-url      = {{ baseurls_iplant_email }}
 
 # AMQP connection settings.
-notificationagent.amqp.uri                  = amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode_strict }}
+notificationagent.amqp.uri                  = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict }}
 notificationagent.amqp.exchange.name        = de
 notificationagent.amqp.exchange.type        = topic

@@ -33,10 +33,10 @@ apps.workspace.metadata.beta.attr.label     = releaseStatus
 apps.workspace.metadata.beta.value          = beta
 
 # The domain name to append to the user id to get the fully qualified user id.
-apps.uid.domain = {{ UIDDomain }}
+apps.uid.domain = {{ uid_domain }}
 
 # The path to the home directory in iRODS.
-apps.irods.home = /{{ IRODS.Zone }}/home
+apps.irods.home = /{{ irods_zone }}/home
 
 # The maximum length of an iRODS path, used in max HT Path List file size calculations.
 # See https://github.com/irods/irods/blob/805c01f55ea23a141cb0fa3f449f5172b3a19657/lib/core/include/rodsDef.h#L59-L61
@@ -100,7 +100,7 @@ apps.email.app-request.from     = {{ Email.Src }}
 apps.email.app-request.to       = {{ Email.Dest }}
 
 # UI host
-apps.ui.base-url = {{ DE.BaseURI | trim_end_matches(pat="/")}}
+apps.ui.base-url = {{ de_base_uri | trim_end_matches(pat="/")}}
 
 # VICE base URL
 apps.interactive-apps.base-url = {{ VICE.BaseURI | trim_end_matches(pat="/")}}
@@ -109,4 +109,4 @@ apps.interactive-apps.base-url = {{ VICE.BaseURI | trim_end_matches(pat="/")}}
 apps.tools.trusted-registries = {{ Docker.TrustedRegistries | join(sep=",") }}
 
 # AMQP
-apps.amqp.uri = amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode_strict }}
+apps.amqp.uri = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict }}

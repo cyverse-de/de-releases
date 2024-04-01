@@ -17,7 +17,7 @@ terrain.routes.coge          = true
 terrain.routes.search        = true
 
 # Terrain base URL.
-terrain.base-url = {{ BaseURLs.Terrain | trim_end_matches(pat="/")}}
+terrain.base-url = {{ baseurls_terrain | trim_end_matches(pat="/")}}
 
 # CyVerse Email service connection settings.
 terrain.email.base-url           = {{ BaseURLs.IplantEmail | trim_end_matches(pat="/")}}
@@ -25,7 +25,7 @@ terrain.email.tool-request-dest  = {{ Email.Dest }}
 terrain.email.tool-request-src   = {{ Email.Src }}
 terrain.email.perm-id-req.dest   = {{ Email.PermIDRequestDest }}
 terrain.email.perm-id-req.src    = {{ Email.Src }}
-terrain.email.support-email-dest = {{ Email.SupportDest }}
+terrain.email.support-email-dest = {{ email_support_dest }}
 terrain.email.support-email-src  = {{ Email.Src }}
 
 # Analyses connection settings
@@ -52,7 +52,7 @@ terrain.oauth.client-secret = {{ CAS.ClientSecret }}
 terrain.cas.allowed-groups  = {{ Admin.Groups }}
 
 # The domain name to append to the user id to get the fully qualified user id.
-terrain.uid.domain = {{ UIDDomain }}
+terrain.uid.domain = {{ uid_domain }}
 
 # iplant-groups connection settings
 terrain.iplant-groups.base-url = {{ BaseURLs.IplantGroups | trim_end_matches(pat="/")}}
@@ -84,8 +84,8 @@ terrain.irods.host          = {{ IRODS.Host }}
 terrain.irods.port          = 1247
 terrain.irods.user          = {{ IRODS.User }}
 terrain.irods.pass          = {{ IRODS.Password }}
-terrain.irods.home          = /{{ IRODS.Zone }}/home
-terrain.irods.zone          = {{ IRODS.Zone }}
+terrain.irods.home          = /{{ irods_zone }}/home
+terrain.irods.zone          = {{ irods_zone }}
 
 terrain.irods.max-retries   = 10
 terrain.irods.retry-sleep   = 1000
@@ -107,7 +107,7 @@ terrain.fileio.url-import-app = 1E8F719B-0452-4D39-A2F3-8714793EE3E6
 
 # Filesystem settings
 terrain.data-info.base-url            = {{ BaseURLs.DataInfo | trim_end_matches(pat="/")}}
-terrain.fs.community-data             = /{{ IRODS.Zone }}/home/shared
+terrain.fs.community-data             = /{{ irods_zone }}/home/shared
 terrain.fs.bad-names                  = cacheServiceTempDir
 terrain.fs.perms-filter               = {{ IRODS.PermsFilter | join(sep=",") }}
 terrain.fs.bad-chars                  = \u0060\u0027\u000A\u0009
@@ -138,8 +138,8 @@ terrain.saved-searches.host = {{ BaseURLs.UserInfo | trim_end_matches(pat="/")}}
 
 # Permanent ID Request Settings
 terrain.permanent-id.curators-group  = {{ PermanentID.CuratorsGroup }}
-terrain.permanent-id.staging-dir     = /{{ IRODS.Zone }}/home/shared/commons_repo/staging
-terrain.permanent-id.publish-dir     = /{{ IRODS.Zone }}/home/shared/commons_repo/curated
+terrain.permanent-id.staging-dir     = /{{ irods_zone }}/home/shared/commons_repo/staging
+terrain.permanent-id.publish-dir     = /{{ irods_zone }}/home/shared/commons_repo/curated
 terrain.permanent-id.target-base-url = http://datacommons.cyverse.org/browse
 
 # Set data move timeout to just over 68 minutes = 4095 (2^12-1) seconds:

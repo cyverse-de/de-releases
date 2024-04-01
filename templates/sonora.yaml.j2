@@ -1,30 +1,30 @@
-base_url: {{ DE.BaseURI | trim_end_matches(pat="/")}}
-terrain_url: {{ BaseURLs.Terrain }}
-user_portal_url: {{ UserPortal.BaseURI | trim_end_matches(pat="/")}}
-support_email: {{ Email.SupportDest }}
-de_faq: {{ DE.Info.FAQ }}
-cyverse_url: {{ DE.Info.Description }}
+base_url: {{ de_base_uri | trim_end_matches(pat="/")}}
+terrain_url: {{ baseurls_terrain }}
+user_portal_url: {{ user_portal_base_uri | trim_end_matches(pat="/")}}
+support_email: {{ email_support_dest }}
+de_faq: {{ de_info_faq }}
+cyverse_url: {{ de_info_description }}
 db:
-  host: {{ DEDB.Host }}
-  user: {{ DEDB.User }}
-  password: {{ DEDB.Password }}
+  host: {{ groups['dbms_primary'][0] }}
+  user: {{ dbms_connection_user }}
+  password: {{ dbms_connection_pass }}
 keycloak:
-  server_url: {{ Keycloak.ServerURI }}
-  realm: {{ Keycloak.Realm }}
-  client_id: {{ Keycloak.ClientID }}
-  client_secret: {{ Keycloak.ClientSecret }}
+  server_url: {{ keycloak_server_uri }}
+  realm: {{ keycloak_realm_name }}
+  client_id: {{ keycloak_client_id }}
+  client_secret: {{ keycloak_client_secret }}
 intercom:
-  app_id: {{ Intercom.AppID }}
-  enabled: {{ Intercom.Enabled }}
-  company_id: {{ Intercom.CompanyID }}
-  company_name: {{ Intercom.CompanyName }}
-  user_profile_url: https://app.intercom.com/apps/{{ Intercom.AppID }}/users/show?user_id=
+  app_id: {{ intercom_app_id }}
+  enabled: {{ intercom_enabled }}
+  company_id: {{ intercom_company_id }}
+  company_name: {{ intercom_company_name }}
+  user_profile_url: https://app.intercom.com/apps/{{ intercom_app_id }}/users/show?user_id=
 irods:
-  home_path: /{{ IRODS.Zone }}/home
-  trash_path: /{{ IRODS.Zone }}/trash/home
-  community_path: /{{ IRODS.Zone }}/home/shared
+  home_path: /{{ irods_zone }}/home
+  trash_path: /{{ irods_zone }}/trash/home
+  community_path: /{{ irods_zone }}/home/shared
 amqp:
-  amqp_uri: amqp://{{ DE.AMQP.User }}:{{ DE.AMQP.Password | urlencode }}@{{ DE.AMQP.Host }}:{{ DE.AMQP.Port }}/{{ DE.AMQP.Vhost | urlencode_strict }}
+  amqp_uri: amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict }}
   exchange_name: de
   exchange_durable: true
   auto_delete: false
@@ -35,24 +35,24 @@ fileIdentifier:
   htPathList: "# application/vnd.de.path-list+csv; version=1"
   multiInputPathList: "# application/vnd.de.multi-input-path-list+csv; version=1"
 analytics:
-  enabled: {{ Analytics.Enabled }}
-  id: {{ Analytics.Id }}
+  enabled: {{ analytics_enabled }}
+  id: {{ analytics_id }}
 grouper:
   allUsers: GrouperAll
   admin: de_grouper
 tools:
   admin:
-    max_cpu_limit: {{ DE.Tools.Admin.MaxCpuLimit }}
-    max_memory_limit: {{ DE.Tools.Admin.MaxMemoryLimit }}
+    max_cpu_limit: {{ de_tools_admin_max_cpu_limit }}
+    max_memory_limit: {{ de_tools_admin_max_memory_limit }}
     max_disk_limit: {{ DE.Tools.Admin.MaxDiskLimit }}
 unleash:
-  api_url: {{ Unleash.BaseURL | trim_end_matches(pat="/")}}{{ Unleash.APIPath }}
-  client_secret: "{{ Unleash.APIToken }}"
-  maintenance_flag: {{ Unleash.MaintenanceFlag }}
+  api_url: {{ unleash_base_url | trim_end_matches(pat="/")}}{{ Unleash.APIPath }}
+  client_secret: "{{ unleash_api_token }}"
+  maintenance_flag: {{ unleash_maintenance_flag }}
 username:
-  suffix: {{ UIDDomain }}
+  suffix: {{ uid_domain }}
 subscriptions:
-  checkout_url: {{ DE.Subscriptions.CheckoutURL | trim_end_matches(pat="/")}}
-  enforce: {{ DE.Subscriptions.Enforce }}
+  checkout_url: {{ de_subscriptions_checkout_url | trim_end_matches(pat="/")}}
+  enforce: {{ de_subscriptions_enforce }}
 elastic:
-  enabled: {{ Elasticsearch.Enabled }}
+  enabled: {{ es_enabled }}
