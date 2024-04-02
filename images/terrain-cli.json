@@ -1,0 +1,5 @@
+{
+  "repository": "https://github.com/cyverse-de/terrain-cli",
+  "release": "v3.0.0",
+  "image": "harbor.cyverse.org/de/terrain-cli:v3.0.0"
+}
