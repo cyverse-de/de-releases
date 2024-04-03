@@ -41,7 +41,7 @@ spec:
                 path: notification-agent.properties
       containers:
       - name: notification-agent
-        image: "{% if notification_agent_image_digest %}{{ notification_agent_image_digest }}{% else %}discoenv/notification-agent{% endif %}"
+        image: "discoenv/notification-agent"
         volumeMounts:
           - name: localtime
             mountPath: /etc/localtime
