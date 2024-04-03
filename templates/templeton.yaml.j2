@@ -6,7 +6,7 @@ amqp:
   queue_prefix: templeton
 
 elasticsearch:
-  base: {{ Elasticsearch.BaseURI.rtrim(pat="/")}}
+  base: {{ Elasticsearch.BaseURI.rtrim("/")}}
   username: {{ Elasticsearch.Username }}
   password: {{ Elasticsearch.Password }}
   index: {{ Elasticsearch.Index }}

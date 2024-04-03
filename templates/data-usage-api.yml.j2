@@ -5,7 +5,7 @@ db:
 icat:
   zone: {{ irods_zone }}
   uri: postgresql://{{ icat_user }}:{{ icat_password | urlencode }}@{{ icat_host }}:{{ icat_port }}/ICAT?sslmode=disable
-  rootResources:{% for resc in irods_quota_root_resources | split(pat=",") %}
+  rootResources:{% for resc in irods_quota_root_resources | split(",") %}
     - {{ resc }}
 {%- endfor %}
 

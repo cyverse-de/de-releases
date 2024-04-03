@@ -8,7 +8,7 @@ db:
   database: {{ de_db_name }}
 
 iplant_groups:
-  uri: {{ baseurls_iplant_groups.rtrim(pat="/")}}
+  uri: {{ baseurls_iplant_groups.rtrim("/")}}
 
 logging:
   level: info
@@ -16,10 +16,10 @@ logging:
 
 permissions:
   public_group: iplant:de:{{ ns }}:users:de-users
-  uri: {{ baseurls_permissions.rtrim(pat="/")}}
+  uri: {{ baseurls_permissions.rtrim("/")}}
 
 website:
-  url: {{ dashboard_aggregator_website_url.rtrim(pat="/")}}
+  url: {{ dashboard_aggregator_website_url.rtrim("/")}}
   feeds:
     news: /news/rss.xml
     events: /events/rss.xml
@@ -29,13 +29,13 @@ videos:
 
 apps:
   favorites_group_index: 1
-  url: {{ baseurls_apps.rtrim(pat="/")}}
+  url: {{ baseurls_apps.rtrim("/")}}
 
 app-exposer:
-  url: {{ baseurls_app_exposer.rtrim(pat="/")}}
+  url: {{ baseurls_app_exposer.rtrim("/")}}
   user: dashboard-aggregator
 
 metadata:
-  url: {{ baseurls_metadata.rtrim(pat="/")}}
+  url: {{ baseurls_metadata.rtrim("/")}}
   featured_apps_attr: cyverse-blessed
   featured_apps_value: true

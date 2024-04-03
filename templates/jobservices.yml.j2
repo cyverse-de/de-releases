@@ -9,8 +9,8 @@ amqp:
     events: 0
 
 apps:
-  base: "{{ baseurls_apps.rtrim(pat='/')}}"
-  callbacks_uri: "{{ baseurls_apps.rtrim(pat='/')}}/callbacks/de-job"
+  base: "{{ baseurls_apps.rtrim('/')}}"
+  callbacks_uri: "{{ baseurls_apps.rtrim('/')}}/callbacks/de-job"
 
 condor:
   condor_config: /etc/condor/condor_config
@@ -38,10 +38,10 @@ interapps:
     tag: {{ docker_tag }}
 
 iplant_email:
-  base: "{{ baseurls_iplant_email.rtrim(pat='/')}}"
+  base: "{{ baseurls_iplant_email.rtrim('/')}}"
 
 iplant_groups:
-  base: "{{ baseurls_iplant_groups.rtrim(pat='/')}}"
+  base: "{{ baseurls_iplant_groups.rtrim('/')}}"
   user: de_grouper
 
 irods:
@@ -55,7 +55,7 @@ irods:
 
 k8s:
   frontend:
-    base: "{{ vice_base_uri.rtrim(pat='/')}}"
+    base: "{{ vice_base_uri.rtrim('/')}}"
 
 keycloak:
   base: "{{ keycloak_server_uri }}"
@@ -64,10 +64,10 @@ keycloak:
   client-secret: "{{ keycloak_vice_client_secret }}"
 
 metadata:
-  base: "{{ baseurls_metadata.rtrim(pat='/')}}"
+  base: "{{ baseurls_metadata.rtrim('/')}}"
 
 notification_agent:
-  base: "{{ baseurls_notifications.rtrim(pat='/')}}"
+  base: "{{ baseurls_notifications.rtrim('/')}}"
 
 notifications:
   db:
@@ -82,7 +82,7 @@ porklock:
 
 qms:
   enabled: {{ qms_enabled }}
-  base: "{{ baseurls_qms.rtrim(pat='/')}}"
+  base: "{{ baseurls_qms.rtrim('/')}}"
   usage: "/v1/admin/usages"
 
 tickets_path_list:
@@ -98,10 +98,10 @@ vice:
     image: "{{ vice_file_transfers_image }}"
     tag: "{{ vice_file_transfers_tag }}"
   job-status:
-    base: "{{ baseurls_job_status_listener.rtrim(pat='/')}}"
+    base: "{{ baseurls_job_status_listener.rtrim('/')}}"
   image-pull-secret: {{ vice_image_pull_secret }}
   backend-namespace: {{ ns }}
   use_csi_driver: {{ vice_use_csi_driver }}
   default_backend:
     loading_page_url: {{ vice_default_backend_loading_page_template_string }}
-    base_url: {{ vice_base_uri.rtrim(pat='/')}}
+    base_url: {{ vice_base_uri.rtrim('/')}}
