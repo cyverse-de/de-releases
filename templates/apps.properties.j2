@@ -16,10 +16,10 @@ apps.db.user        = {{ dbms_connection_user }}
 apps.db.password    = {{ dbms_connection_pass }}
 
 # JEX connection settings.
-apps.jex.base-url = {{ baseurls.jex_adapter | rstrip("/")}}
+apps.jex.base-url = {{ baseurls.jex_adapter.rstrip("/")}}
 
 # Data Info connection settings.
-apps.data-info.base-url = {{ baseurls.data_info | rstrip("/")}}
+apps.data-info.base-url = {{ baseurls.data_info.rstrip("/")}}
 
 # Workspace app category names.
 apps.workspace.root-app-category            = Workspace
@@ -68,42 +68,42 @@ apps.pgp.keyring-path = /etc/iplant/crypto/secring.gpg
 apps.pgp.key-password = {{ pgp_key_password }}
 
 # Notification agent connection settings.
-apps.notificationagent.base-url = {{ baseurls_notifications | rstrip("/")}}
+apps.notificationagent.base-url = {{ baseurls_notifications.rstrip("/")}}
 
 # The job status polling interval.
 apps.jobs.poll-interval = 15
 
 # The base URL for analyses.
-apps.analyses.base-url = {{ baseurls_analyses | rstrip("/")}}
+apps.analyses.base-url = {{ baseurls_analyses.rstrip("/")}}
 
 # The base URL for async-tasks.
-apps.async-tasks.base-url = {{ baseurls_async_tasks | rstrip("/")}}
+apps.async-tasks.base-url = {{ baseurls_async_tasks.rstrip("/")}}
 
 # The base URL for iplant-groups.
-apps.iplant-groups.base-url     = {{ baseurls_iplant_groups | rstrip("/")}}
+apps.iplant-groups.base-url     = {{ baseurls_iplant_groups.rstrip("/")}}
 apps.iplant-groups.grouper-user = de_grouper
 
 # Metadata connection settings
-apps.metadata.base-url = {{ baseurls_metadata | rstrip("/")}}
+apps.metadata.base-url = {{ baseurls_metadata.rstrip("/")}}
 
 # Permissions service connection settings.
-apps.permissions.base-url = {{ baseurls_permissions | rstrip("/")}}
+apps.permissions.base-url = {{ baseurls_permissions.rstrip("/")}}
 
 # Requests service connection settings
-apps.requests.base-url = {{ baseurls_requests | rstrip("/")}}
+apps.requests.base-url = {{ baseurls_requests.rstrip("/")}}
 
 # CyVerse Email service settings.
-apps.email.base-url             = {{ baseurls_iplant_email | rstrip("/")}}
+apps.email.base-url             = {{ baseurls_iplant_email.rstrip("/")}}
 apps.email.app-deletion.from    = {{ email_src }}
 apps.email.app-deletion.subject = Your "%s" app has been administratively deprecated
 apps.email.app-request.from     = {{ email_src }}
 apps.email.app-request.to       = {{ email_dest }}
 
 # UI host
-apps.ui.base-url = {{ de_base_uri | rstrip(pat="/")}}
+apps.ui.base-url = {{ de_base_uri.rstrip(pat="/")}}
 
 # VICE base URL
-apps.interactive-apps.base-url = {{ vice_base_uri | rstrip("/")}}
+apps.interactive-apps.base-url = {{ vice_base_uri.rstrip("/")}}
 
 # Tools settings.
 apps.tools.trusted-registries = {{ docker_trusted_tegistries | join(sep=",") }}
