@@ -21,12 +21,12 @@ terrain.base-url = {{ baseurls_terrain|string|regex_replace("\/$","") }}
 
 # CyVerse Email service connection settings.
 terrain.email.base-url           = {{ baseurls_iplant_email|string|regex_replace("\/$","") }}
-terrain.email.tool-request-dest  = {{ Email.Dest }}
-terrain.email.tool-request-src   = {{ Email.Src }}
+terrain.email.tool-request-dest  = {{ email_dest }}
+terrain.email.tool-request-src   = {{ email_src }}
 terrain.email.perm-id-req.dest   = {{ Email.PermIDRequestDest }}
-terrain.email.perm-id-req.src    = {{ Email.Src }}
+terrain.email.perm-id-req.src    = {{ email_src }}
 terrain.email.support-email-dest = {{ email_support_dest }}
-terrain.email.support-email-src  = {{ Email.Src }}
+terrain.email.support-email-src  = {{ email_src }}
 
 # Analyses connection settings
 terrain.analyses.base-uri = {{ baseurls_analyses|string|regex_replace("\/$","") }}
