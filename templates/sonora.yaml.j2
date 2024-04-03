@@ -29,8 +29,8 @@ amqp:
   exchange_durable: true
   auto_delete: false
 admin:
-  group_attribute_name: {{ Admin.Attribute }}
-  groups: {{ Admin.Groups }}
+  group_attribute_name: {{ admin_attribute }}
+  groups: {{ admin_groups }}
 fileIdentifier:
   htPathList: "# application/vnd.de.path-list+csv; version=1"
   multiInputPathList: "# application/vnd.de.multi-input-path-list+csv; version=1"
@@ -44,7 +44,7 @@ tools:
   admin:
     max_cpu_limit: {{ de_tools_admin_max_cpu_limit }}
     max_memory_limit: {{ de_tools_admin_max_memory_limit }}
-    max_disk_limit: {{ DE.Tools.Admin.MaxDiskLimit }}
+    max_disk_limit: {{ de_tools_admin_max_disk_limit }}
 unleash:
   api_url: {{ unleash_base_url|string|regex_replace("\/$","") }}{{ Unleash.APIPath }}
   client_secret: "{{ unleash_api_token }}"
