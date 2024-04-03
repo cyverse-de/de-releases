@@ -1,7 +1,7 @@
 elasticsearch:
-  base: "{{ es_base_uri | trim_end_matches(pat="/")}}"
+  base: "{{ es_base_uri.rtrim(pat="/")}}"
   user: "{{ es_username }}"
   password: "{{ es_password }}"
   index: "{{ es_index }}"
 data_info:
-  base: "{{ baseurls_data_info | trim_end_matches(pat="/")}}"
+  base: "{{ baseurls_data_info.rtrim(pat="/")}}"
