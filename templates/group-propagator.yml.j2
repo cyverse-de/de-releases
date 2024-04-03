@@ -5,13 +5,13 @@ amqp:
     type: topic
 
 iplant_groups:
-  base: "{{ baseurls_iplant_groups.rtrim('/')}}"
+  base: "{{ baseurls_iplant_groups|string|regex_replace("\/$","") }}"
   user: de_grouper
   folder_name_prefix: "{{ grouper_folder_name_prefix }}"
   public_group: "iplant:de:{{ ns }}:users:de-users"
 
 data_info:
-  base: "{{ baseurls_data_info.rtrim('/')}}"
+  base: "{{ baseurls_data_info|string|regex_replace("\/$","") }}"
 
 irods:
   user: "{{ irods_user }}"
