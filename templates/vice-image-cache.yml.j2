@@ -3,15 +3,15 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: cache-{{ image | b64encode | replace(from="_", to="-") | truncate(length=57) }}
+  name: cache-{{ image | regex_replace("[^A-Za-z0-9], "") | truncate(57) }}
 spec:
   selector:
     matchLabels:
-      name: cache-{{ image | b64encode | replace(from="_", to="-") | truncate(length=57) }}
+      name: cache-{{ image | regex_replace("[^A-Za-z0-9], "") | truncate(57) }}
   template:
     metadata:
       labels:
-        name: cache-{{ image | b64encode | replace(from="_", to="-") | truncate(length=57) }}
+        name: cache-{{ image | regex_replace("[^A-Za-z0-9], "") | truncate(57) }}
     spec:
       tolerations:
       - key: "vice"
