@@ -1,6 +1,6 @@
-base_url: {{ de_base_uri.rtrim("/")}}
+base_url: {{ de_base_uri|string|regex_replace("\/$","") }}
 terrain_url: {{ baseurls_terrain }}
-user_portal_url: {{ user_portal_base_uri.rtrim("/")}}
+user_portal_url: {{ user_portal_base_uri|string|regex_replace("\/$","") }}
 support_email: {{ email_support_dest }}
 de_faq: {{ de_info_faq }}
 cyverse_url: {{ de_info_description }}
@@ -46,13 +46,13 @@ tools:
     max_memory_limit: {{ de_tools_admin_max_memory_limit }}
     max_disk_limit: {{ DE.Tools.Admin.MaxDiskLimit }}
 unleash:
-  api_url: {{ unleash_base_url.rtrim("/")}}{{ Unleash.APIPath }}
+  api_url: {{ unleash_base_url|string|regex_replace("\/$","") }}{{ Unleash.APIPath }}
   client_secret: "{{ unleash_api_token }}"
   maintenance_flag: {{ unleash_maintenance_flag }}
 username:
   suffix: {{ uid_domain }}
 subscriptions:
-  checkout_url: {{ de_subscriptions_checkout_url.rtrim("/")}}
+  checkout_url: {{ de_subscriptions_checkout_url|string|regex_replace("\/$","") }}
   enforce: {{ de_subscriptions_enforce }}
 elastic:
   enabled: {{ es_enabled }}

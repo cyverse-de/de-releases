@@ -1,5 +1,5 @@
 de:
-  base: {{ de_base_uri.rtrim("/")}}
+  base: {{ de_base_uri|string|regex_replace("\/$","") }}
   admin: /admin
   analyses: /analyses
   apps: /apps

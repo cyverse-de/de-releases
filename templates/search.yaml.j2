@@ -1,7 +1,7 @@
 elasticsearch:
-  base: "{{ es_base_uri.rtrim("/")}}"
+  base: "{{ es_base_uri|string|regex_replace("\/$","") }}"
   user: "{{ es_username }}"
   password: "{{ es_password }}"
   index: "{{ es_index }}"
 data_info:
-  base: "{{ baseurls_data_info.rtrim("/")}}"
+  base: "{{ baseurls_data_info|string|regex_replace("\/$","") }}"

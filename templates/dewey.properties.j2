@@ -7,7 +7,7 @@ dewey.amqp.qos                  = 100
 
 dewey.events.amqp.uri           = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode }}
 
-dewey.es.uri                    = {{ es_base_uri.rtrim("/")}}
+dewey.es.uri                    = {{ es_base_uri|string|regex_replace("\/$","") }}
 dewey.es.username               = {{ es_username }}
 dewey.es.password               = {{ es_password }}
 dewey.es.index                  = {{ es_index }}
