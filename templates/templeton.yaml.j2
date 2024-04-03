@@ -6,10 +6,10 @@ amqp:
   queue_prefix: templeton
 
 elasticsearch:
-  base: {{ Elasticsearch.BaseURI.rtrim("/")}}
-  username: {{ Elasticsearch.Username }}
-  password: {{ Elasticsearch.Password }}
-  index: {{ Elasticsearch.Index }}
+  base: {{ es_base_uri.rtrim("/")}}
+  username: {{ es_username }}
+  password: {{ es_password }}
+  index: {{ es_index }}
 
 db:
-  uri: postgresql://{{ MetadataDB.User }}:{{ MetadataDB.Password | urlencode }}@{{ MetadataDB.Host }}:{{ MetadataDB.Port }}/{{ MetadataDB.Name }}?sslmode=disable
+  uri: postgresql://{{ dbms_connection_user }}:{{ dbms_connection_pass | urlencode }}@{{ groups['dbms_primary'][0] }}:{{ pg_listen_port }}/{{ metadata_db_name }}?sslmode=disable
