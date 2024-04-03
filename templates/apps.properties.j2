@@ -106,7 +106,7 @@ apps.ui.base-url = {{ de_base_uri.rstrip("/")}}
 apps.interactive-apps.base-url = {{ vice_base_uri.rstrip("/")}}
 
 # Tools settings.
-apps.tools.trusted-registries = {{ docker_trusted_tegistries | join(sep=",") }}
+apps.tools.trusted-registries = {{ docker_trusted_tegistries | join(",") }}
 
 # AMQP
 apps.amqp.uri = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode }}
