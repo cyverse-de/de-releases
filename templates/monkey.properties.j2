@@ -1,6 +1,6 @@
 monkey.log-progress-enabled  = true
 
-monkey.amqp.uri           = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict}}
+monkey.amqp.uri           = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode}}
 monkey.amqp.exchange.name = de
 monkey.amqp.queue         = monkey
 

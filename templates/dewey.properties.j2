@@ -1,11 +1,11 @@
 dewey.environment-name          = {{ ns }}
 
-dewey.amqp.uri                  = amqp://{{ irods_amqp_user }}:{{ irods_amqp_password | urlencode }}@{{ irods_amqp_host }}:{{ irods_amqp_port }}/{{ irods_amqp_vhost | urlencode_strict }}
+dewey.amqp.uri                  = amqp://{{ irods_amqp_user }}:{{ irods_amqp_password | urlencode }}@{{ irods_amqp_host }}:{{ irods_amqp_port }}/{{ irods_amqp_vhost | urlencode }}
 dewey.amqp.exchange.name        = irods
 dewey.amqp.queue_name           = dewey.indexing
 dewey.amqp.qos                  = 100
 
-dewey.events.amqp.uri           = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict }}
+dewey.events.amqp.uri           = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode }}
 
 dewey.es.uri                    = {{ es_base_uri | trim_end_matches(pat="/")}}
 dewey.es.username               = {{ es_username }}

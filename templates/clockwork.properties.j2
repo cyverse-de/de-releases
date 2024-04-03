@@ -9,7 +9,7 @@ clockwork.irods-zone     = {{ irods_zone }}
 clockwork.irods-resource =
 
 # Events settings.
-clockwork.amqp.uri = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict }}
+clockwork.amqp.uri = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode }}
 
 # Indexing Job settings
 clockwork.jobs.infosquito.indexing-enabled = True

@@ -17,7 +17,7 @@ infosquito.base-collection  = /{{ irods_zone }}
 infosquito.index-batch-size = 1000
 
 # AMQP Settings
-infosquito.amqp.uri                  = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict }}
+infosquito.amqp.uri                  = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode }}
 infosquito.amqp.reindex-queue        = infosquito.reindex
 infosquito.amqp.exchange.name        = de
 infosquito.amqp.exchange.durable     = True

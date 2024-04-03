@@ -24,7 +24,7 @@ irods:
   trash_path: /{{ irods_zone }}/trash/home
   community_path: /{{ irods_zone }}/home/shared
 amqp:
-  amqp_uri: amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict }}
+  amqp_uri: amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode }}
   exchange_name: de
   exchange_durable: true
   auto_delete: false

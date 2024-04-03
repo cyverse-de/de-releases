@@ -20,6 +20,6 @@ bulk-typer.icat.password     = {{ icat_password }}
 bulk-typer.icat.db           = ICAT
 
 # AMQP settings
-bulk-typer.amqp.uri                  = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode_strict }}
+bulk-typer.amqp.uri                  = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode }}
 bulk-typer.amqp.exchange.name        = de
 bulk-typer.amqp.qos                  = 1
