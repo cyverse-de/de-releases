@@ -5,5 +5,5 @@ db:
   schema: "permissions"
 
 grouperdb:
-  uri: "postgresql://{{ grouper_connection_user }}:{{ grouper_connection_pass | urlencode }}@{{ groups_db_host }}:{{ grouper_db_port }}/{{ grouper_db_name }}?sslmode=disable"
+  uri: "postgresql://{{ grouper_connection_user }}:{{ grouper_connection_pass | urlencode }}@{{ grouper_db_host }}:{{ grouper_db_port }}/{{ grouper_db_name }}?sslmode=disable"
   folder_name_prefix: "{{ grouper_folder_name_prefix }}"
