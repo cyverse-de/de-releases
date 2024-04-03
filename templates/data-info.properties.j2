@@ -15,7 +15,7 @@ data-info.notificationagent.base-url = {{ baseurls_notifications|string|regex_re
 data-info.metadata.base-url          = {{ baseurls_metadata|string|regex_replace("\/$","") }}
 data-info.kifshare-download-template = \{\{url\}\}/d/\{\{ticket-id\}\}/\{\{filename\}\}
 data-info.kifshare-external-url      = {{ de_base_uri|string|regex_replace("\/$","") }}/dl
-data-info.perms-filter               = {{ irods_perms_filter | join(sep=",") }}
+data-info.perms-filter               = {{ irods_perms_filter | join(",") }}
 data-info.port                       = 60000
 
 # ICAT configuration
@@ -36,7 +36,7 @@ data-info.irods.resc          =
 data-info.irods.max-retries   = 10
 data-info.irods.retry-sleep   = 1000
 data-info.irods.use-trash     = true
-data-info.irods.admin-users   = {{ irods_admin_users | join(sep=",")}}
+data-info.irods.admin-users   = {{ irods_admin_users | join(",")}}
 
 # file typing configuration
 data-info.type-detect.type-attribute       = ipc-filetype

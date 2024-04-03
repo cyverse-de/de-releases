@@ -23,7 +23,7 @@ terrain.base-url = {{ baseurls_terrain|string|regex_replace("\/$","") }}
 terrain.email.base-url           = {{ baseurls_iplant_email|string|regex_replace("\/$","") }}
 terrain.email.tool-request-dest  = {{ email_dest }}
 terrain.email.tool-request-src   = {{ email_src }}
-terrain.email.perm-id-req.dest   = {{ Email.PermIDRequestDest }}
+terrain.email.perm-id-req.dest   = {{ email_perm_id_request_dest }}
 terrain.email.perm-id-req.src    = {{ email_src }}
 terrain.email.support-email-dest = {{ email_support_dest }}
 terrain.email.support-email-src  = {{ email_src }}
@@ -90,7 +90,7 @@ terrain.irods.zone          = {{ irods_zone }}
 terrain.irods.max-retries   = 10
 terrain.irods.retry-sleep   = 1000
 terrain.irods.use-trash     = true
-terrain.irods.admin-users   = {{ IRODS.AdminUsers | join(sep=",")  }}
+terrain.irods.admin-users   = {{ IRODS.AdminUsers | join(",")  }}
 
 # ICAT configuration
 terrain.icat.host           = {{ ICAT.Host }}
@@ -109,7 +109,7 @@ terrain.fileio.url-import-app = 1E8F719B-0452-4D39-A2F3-8714793EE3E6
 terrain.data-info.base-url            = {{ baseurls_data_info|string|regex_replace("\/$","") }}
 terrain.fs.community-data             = /{{ irods_zone }}/home/shared
 terrain.fs.bad-names                  = cacheServiceTempDir
-terrain.fs.perms-filter               = {{ IRODS.PermsFilter | join(sep=",") }}
+terrain.fs.perms-filter               = {{ IRODS.PermsFilter | join(",") }}
 terrain.fs.bad-chars                  = \u0060\u0027\u000A\u0009
 terrain.fs.max-paths-in-request       = 1000
 
