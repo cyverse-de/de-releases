@@ -35,7 +35,7 @@ spec:
                 path: timezone
       containers:
       - name: local-exim
-        image: "{%- if ImageDigest %}{{ ImageDigest }}{%- else %}discoenv/exim-sender{%- endif %}"
+        image: "{%- if exim_sender_image_digest %}{{ exim_sender_image_digest }}{%- else %}discoenv/exim-sender{%- endif %}"
         volumeMounts:
           - name: localtime
             mountPath: /etc/localtime
