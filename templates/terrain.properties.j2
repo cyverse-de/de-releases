@@ -2,7 +2,7 @@
 terrain.app.listen-port = 60000
 
 # Environment information.
-terrain.app.environment-name = {{ Environment }}
+terrain.app.environment-name = {{ ns }}
 
 # Route flags.
 terrain.routes.notifications = true
@@ -71,10 +71,10 @@ terrain.search.base-url = {{ baseurls_search.rtrim("/")}}
 terrain.jex.base-url = {{ baseurls_jex_adapter.rtrim("/")}}
 
 # Data-Store Elastic Search settings
-terrain.infosquito.es-url = {{ Elasticsearch.BaseURI.rtrim("/")}}
-terrain.es.username       = {{ Elasticsearch.Username }}
-terrain.es.password       = {{ Elasticsearch.Password }}
-terrain.es.index          = {{ Elasticsearch.Index }}
+terrain.infosquito.es-url = {{ es_base_uri.rtrim("/")}}
+terrain.es.username       = {{ es_username }}
+terrain.es.password       = {{ es_password }}
+terrain.es.index          = {{ es_index }}
 
 # App execution settings
 terrain.job-exec.default-output-folder = {{ DE.DefaultOutputFolder }}
