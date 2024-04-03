@@ -154,10 +154,10 @@ terrain.permanent-id.attr.alt-identifier-type = alternateIdentifierType
 terrain.permanent-id.attr.publication-year    = publicationYear
 
 # Permanent ID Request DataCite API Settings
-terrain.permanent-id.datacite.base-url   = {{ PermanentID.DataCite.BaseURI.rtrim("/")}}
-terrain.permanent-id.datacite.username   = {{ PermanentID.DataCite.User }}
-terrain.permanent-id.datacite.password   = {{ PermanentID.DataCite.Password }}
-terrain.permanent-id.datacite.doi-prefix = {{ PermanentID.DataCite.DOIPrefix }}
+terrain.permanent-id.datacite.base-url   = {{ perm_id_datacite_base_uri.rtrim("/")}}
+terrain.permanent-id.datacite.username   = {{ perm_id_datacite_user }}
+terrain.permanent-id.datacite.password   = {{ perm_id_datacite_password }}
+terrain.permanent-id.datacite.doi-prefix = {{ perm_id_datacite_doi_prefix }}
 
 # Dashboard Settings
 terrain.dashboard-aggregator.base-uri = {{ baseurls_dashboard_aggregator.rtrim("/")}}
