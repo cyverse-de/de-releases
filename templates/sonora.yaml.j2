@@ -46,7 +46,7 @@ tools:
     max_memory_limit: {{ de_tools_admin_max_memory_limit }}
     max_disk_limit: {{ de_tools_admin_max_disk_limit }}
 unleash:
-  api_url: {{ unleash_base_url|string|regex_replace("\/$","") }}{{ Unleash.APIPath }}
+  api_url: {{ unleash_base_url|string|regex_replace("\/$","") }}{{ unleash_api_path }}
   client_secret: "{{ unleash_api_token }}"
   maintenance_flag: {{ unleash_maintenance_flag }}
 username:
