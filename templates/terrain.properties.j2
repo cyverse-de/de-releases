@@ -75,23 +75,23 @@ terrain.es.index          = {{ es_index }}
 terrain.job-exec.default-output-folder = {{ DE.DefaultOutputFolder }}
 
 # iRODS configuration
-terrain.irods.host          = {{ IRODS.Host }}
+terrain.irods.host          = {{ irods_host }}
 terrain.irods.port          = 1247
-terrain.irods.user          = {{ IRODS.User }}
-terrain.irods.pass          = {{ IRODS.Password }}
+terrain.irods.user          = {{ irods_user }}
+terrain.irods.pass          = {{ irods_password }}
 terrain.irods.home          = /{{ irods_zone }}/home
 terrain.irods.zone          = {{ irods_zone }}
 
 terrain.irods.max-retries   = 10
 terrain.irods.retry-sleep   = 1000
 terrain.irods.use-trash     = true
-terrain.irods.admin-users   = {{ IRODS.AdminUsers | join(",")  }}
+terrain.irods.admin-users   = {{ irods_admin_users | join(",")  }}
 
 # ICAT configuration
-terrain.icat.host           = {{ ICAT.Host }}
-terrain.icat.port           = {{ ICAT.Port }}
-terrain.icat.user           = {{ ICAT.User }}
-terrain.icat.password       = {{ ICAT.Password }}
+terrain.icat.host           = {{ icat_host }}
+terrain.icat.port           = {{ icat_port }}
+terrain.icat.user           = {{ icat_user }}
+terrain.icat.password       = {{ icat_password }}
 terrain.icat.db             = ICAT
 
 # Garnish configuration
@@ -104,20 +104,20 @@ terrain.fileio.url-import-app = 1E8F719B-0452-4D39-A2F3-8714793EE3E6
 terrain.data-info.base-url            = {{ baseurls_data_info|string|regex_replace("\/$","") }}
 terrain.fs.community-data             = /{{ irods_zone }}/home/shared
 terrain.fs.bad-names                  = cacheServiceTempDir
-terrain.fs.perms-filter               = {{ IRODS.PermsFilter | join(",") }}
+terrain.fs.perms-filter               = {{ irods_perms_filter | join(",") }}
 terrain.fs.bad-chars                  = \u0060\u0027\u000A\u0009
 terrain.fs.max-paths-in-request       = 1000
 
 # Keycloak settings
-terrain.keycloak.base-uri = {{ Keycloak.ServerURI }}
-terrain.keycloak.realm = {{ Keycloak.Realm }}
-terrain.keycloak.client-id = {{ Keycloak.ClientID }}
-terrain.keycloak.client-secret = {{ Keycloak.ClientSecret }}
+terrain.keycloak.base-uri = {{ keycloak_server_uri }}
+terrain.keycloak.realm = {{ keycloak_realm }}
+terrain.keycloak.client-id = {{ keycloak_client_id }}
+terrain.keycloak.client-secret = {{ keycloak_client_secret }}
 
 # COGE settings
 terrain.coge.user             = coge
 terrain.coge.data-folder-name = coge_data
-terrain.coge.base-url         = {{ DE.Coge.BaseURI }}
+terrain.coge.base-url         = {{ de_coge_base_uri }}
 
 # Search settings
 terrain.search.default-limit = 200
@@ -132,7 +132,7 @@ terrain.sessions.host = {{ baseurls_user_info|string|regex_replace("\/$","") }}/
 terrain.saved-searches.host = {{ baseurls_user_info|string|regex_replace("\/$","") }}/searches
 
 # Permanent ID Request Settings
-terrain.permanent-id.curators-group  = {{ PermanentID.CuratorsGroup }}
+terrain.permanent-id.curators-group  = {{ perm_id_curators_group }}
 terrain.permanent-id.staging-dir     = /{{ irods_zone }}/home/shared/commons_repo/staging
 terrain.permanent-id.publish-dir     = /{{ irods_zone }}/home/shared/commons_repo/curated
 terrain.permanent-id.target-base-url = http://datacommons.cyverse.org/browse
