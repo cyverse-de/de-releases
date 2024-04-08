@@ -3,4 +3,4 @@ iplant-groups.grouper.api-version = v2_2_000
 iplant-groups.grouper.username    = GrouperSystem
 iplant-groups.grouper.password    = {{ grouper_connection_pass }}
 
-iplant-groups.amqp.uri = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode }}
+iplant-groups.amqp.uri = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode | regex_replace('/', '%2F') }}

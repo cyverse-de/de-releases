@@ -9,6 +9,6 @@ notificationagent.db.password    = {{ dbms_connection_pass }}
 notificationagent.email-url      = {{ baseurls_iplant_email }}
 
 # AMQP connection settings.
-notificationagent.amqp.uri                  = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode }}
+notificationagent.amqp.uri                  = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode | regex_replace('/', '%2F') }}
 notificationagent.amqp.exchange.name        = de
 notificationagent.amqp.exchange.type        = topic
