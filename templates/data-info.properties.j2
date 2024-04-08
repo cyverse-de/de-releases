@@ -5,6 +5,7 @@ data-info.anon-files-mappings        = {"/{{ irods_zone }}/home/shared/": "{{ ir
 data-info.anon-files-base-url        = {{ de_base_uri|string|regex_replace("\/$","") }}/anon-files
 data-info.anon-files-mappings        = {"/{{ irods_zone }}/": "{{ irods_zone }}/"}
 {%- endif %}
+
 data-info.anon-user                  = anonymous
 data-info.async-tasks.base-url       = {{ baseurls_async_tasks|string|regex_replace("\/$","") }}
 data-info.bad-chars                  = \u0060\u0027\u000A\u0009
@@ -31,7 +32,7 @@ data-info.irods.port          = 1247
 data-info.irods.user          = {{ irods_user }}
 data-info.irods.password      = {{ irods_password }}
 data-info.irods.home          = /{{ irods_zone }}/home
-data-info.irods_zone          = {{ irods_zone }}
+data-info.irods.zone          = {{ irods_zone }}
 data-info.irods.resc          =
 data-info.irods.max-retries   = 10
 data-info.irods.retry-sleep   = 1000
