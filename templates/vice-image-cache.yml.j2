@@ -27,10 +27,10 @@ spec:
                 operator: In
                 values:
                 - "true"
-{%- if vice_image_pull_secret %}
+{% if vice_image_pull_secret %}
       imagePullSecrets:
         - name: {{ vice_image_pull_secret }}
-{%- endif %}
+{% endif %}
       initContainers:
       - name: cache
         image: harbor.cyverse.org/hub/library/docker
@@ -38,16 +38,16 @@ spec:
         volumeMounts:
         - name: docker
           mountPath: /var/run
-{%- if vice_image_pull_secret %}
+{% if vice_image_pull_secret %}
         - name: docker-config
           mountPath: /root/.docker
           readOnly: true
-{%- endif %}
+{% endif %}
       volumes:
       - name: docker
         hostPath:
           path: /var/run
-{%- if vice_image_pull_secret %}
+{% if vice_image_pull_secret %}
       - name: docker-config
         secret:
           secretName: {{ vice_image_pull_secret }}
@@ -55,7 +55,7 @@ spec:
             - key: .dockerconfigjson
               path: config.json
               mode: 0600
-{%- endif %}
+{% endif %}
       containers:
       - name: pause
         image: gcr.io/google_containers/pause
