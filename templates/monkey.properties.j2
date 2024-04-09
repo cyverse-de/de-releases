@@ -1,0 +1,18 @@
+monkey.log-progress-enabled  = true
+
+monkey.amqp.uri           = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode}}
+monkey.amqp.exchange.name = de
+monkey.amqp.queue         = monkey
+
+monkey.es.url            = {{ es_base_uri }}
+monkey.es.username       = {{ es_username }}
+monkey.es.password       = {{ es_password }}
+monkey.es.index          = {{ es_index }}
+monkey.es.batch-size     = 1000
+monkey.es.scroll-size    = 1000
+
+monkey.tags.host       = {{ groups['dbms_primary'][0] }}
+monkey.tags.port       = {{ pg_listen_port }}
+monkey.tags.db         = {{ metadata_db_name }}
+monkey.tags.user       = {{ dbms_connection_user }}
+Monkey.tags.password   = {{ dbms_connection_pass }}

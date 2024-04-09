@@ -1,0 +1,18 @@
+--name DE
+--noncritical test
+--noncritical unstable
+-e skipped
+
+--variable Environment:{{ ns }}
+## PASSWORDS_START
+--variable Password:{{ qa_de_password}}
+--variable AdminPass:{{ qa_de_admin_password }}
+## PASSWORDS_END
+
+# customizable for local testing
+--variable jwtName:{{ qa_de_jwt_name }}
+--variable LocalUser:{{ qa_de_local_user }}
+--variable BaseDir:/Users/{{ qa_de_local_user }}/src
+--variable Username:{{ qa_de_username }}
+--variable FirstName:{{ qa_de_first_name }}
+--variable LastName:{{ qa_de_last_name }}

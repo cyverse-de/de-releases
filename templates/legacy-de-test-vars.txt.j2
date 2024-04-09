@@ -1,0 +1,25 @@
+--name Legacy DE
+--noncritical skipped
+--noncritical unstable
+-e skipped
+-e prod
+
+--variable Environment:{{ ns }}
+--variable iRODSAdminUser:{{ irods_user }}
+
+## PASSWORDS_START
+--variable DBPASS:{{ dbms_connection_pass }}
+--variable jwtPrivPass:{{ qa_legacy_jwt_priv_pass }}
+--variable AdminPass:{{ qa_legacy_admin_password }}
+--variable AdminPass2:{{ qa_legacy_admin_password2 }}
+--variable iRODSAdminPass:{{ irods_password }}
+--variable Password:{{ qa_legacy_password }}
+## PASSWORDS_END
+
+# customizable for local testing
+--variable jwtName:{{ qa_legacy_jwt_name }}
+--variable LocalUser:{{ qa_legacy_local_user }}
+--variable BaseDir:/Users/{{ qa_legacy_local_user }}/trunk
+--variable UserName:{{ qa_legacy_username }}
+--variable FirstName:{{ qa_legacy_first_name }}
+--variable LastName:{{ qa_legacy_last_name }}

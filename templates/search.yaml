@@ -1,7 +1,0 @@
-elasticsearch:
-  base: "{{ Elasticsearch.BaseURI | trim_end_matches(pat="/")}}"
-  user: "{{ Elasticsearch.Username }}"
-  password: "{{ Elasticsearch.Password }}"
-  index: "{{ Elasticsearch.Index }}"
-data_info:
-  base: "{{ BaseURLs.DataInfo | trim_end_matches(pat="/")}}"

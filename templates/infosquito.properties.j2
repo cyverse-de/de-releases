@@ -1,0 +1,31 @@
+# ElasticSearch Settings
+infosquito.es.uri         = {{ es_base_uri }}
+infosquito.es.username    = {{ es_username }}
+infosquito.es.password    = {{ es_password }}
+infosquito.es.index       = {{ es_index }}
+infosquito.es.scroll-size = 1000
+
+# ICAT Database Connection Settings
+infosquito.icat.host     = {{ icat_host }}
+infosquito.icat.port     = {{ icat_port }}
+infosquito.icat.user     = {{ icat_user }}
+infosquito.icat.password = {{ icat_password }}
+infosquito.icat.db       = ICAT
+
+# Indexing Options
+infosquito.base-collection  = /{{ irods_zone }}
+infosquito.index-batch-size = 1000
+
+# AMQP Settings
+infosquito.amqp.uri                  = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode | regex_replace('/', '%2F') }}
+infosquito.amqp.reindex-queue        = infosquito.reindex
+infosquito.amqp.exchange.name        = de
+infosquito.amqp.exchange.durable     = True
+infosquito.amqp.exchange.auto-delete = False
+
+# Progress Notification Settings
+infosquito.notify.enabled = True
+infosquito.notify.count   = 10000
+
+# Retry Interval (in seconds)
+infosquito.retry-interval = 900

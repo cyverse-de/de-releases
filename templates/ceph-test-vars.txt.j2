@@ -1,0 +1,14 @@
+--name Ceph Stress Tests
+
+--variable Environment:{{ ns }}
+
+## PASSWORDS_START
+--variable Password:{{ qa_ceph_password }}
+## PASSWORDS_END
+
+# customizable for local testing
+--variable LocalUser:{{ qa_ceph_local_user }}
+--variable BaseDir:/Users/{{ qa_ceph_local_user }}/trunk
+--variable UserName:{{ qa_ceph_username }}
+--variable FirstName:{{ qa_ceph_first_name }}
+--variable LastName:{{ qa_ceph_last_name}}
