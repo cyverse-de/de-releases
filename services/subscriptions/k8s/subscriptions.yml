@@ -48,19 +48,6 @@ spec:
             secretName: nats-services-creds
         - name: nats-configuration
           emptyDir: {}
-      initContainers:
-      - name: nats-configurator
-        image: harbor.cyverse.org/de/nats-configurator
-        env:
-        - name: NAMESPACE
-          valueFrom:
-            fieldRef:
-                fieldPath: metadata.namespace
-        - name: ENV_VAR
-          value: QMS_NATS_CLUSTER
-        volumeMounts:
-          - name: nats-configuration
-            mountPath: /etc/cyverse/de/env
       containers:
         - name: subscriptions
           image: harbor.cyverse.org/de/subscriptions
@@ -72,6 +59,11 @@ spec:
                 secretKeyRef:
                   name: configs
                   key: QMS_DATABASE_URI
+            - name: QMS_NATS_CLUSTER
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: NATS_URLS
             - name: QMS_USERNAME_SUFFIX
               valueFrom:
                 secretKeyRef:
