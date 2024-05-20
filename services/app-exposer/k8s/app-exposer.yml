@@ -41,6 +41,9 @@ spec:
             items:
               - key: jobservices.yml
                 path: service.yml
+        - name: nats-services-creds
+          secret:
+            secretName: nats-services-creds
         - name: nats-client-tls
           secret:
             secretName: nats-client-tls
@@ -106,9 +109,6 @@ spec:
             readOnly: true
           - name: nats-services-creds
             mountPath: /etc/nats/creds
-            readOnly: true
-          - name: nats-configuration
-            mountPath: /etc/cyverse/de/env
             readOnly: true
         livenessProbe:
           httpGet:
