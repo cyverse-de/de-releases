@@ -44,11 +44,6 @@ spec:
         - name: nats-client-tls
           secret:
             secretName: nats-client-tls
-        - name: nats-services-creds
-          secret:
-            secretName: nats-services-creds
-        - name: nats-configuration
-          emptyDir: {}
       containers:
       - name: app-exposer
         image: harbor.cyverse.org/de/app-exposer
@@ -92,7 +87,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: configs
-                key: NATS_URL
+                key: NATS_URLS
         ports:
           - name: listen-port
             containerPort: 60000
