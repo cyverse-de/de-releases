@@ -49,17 +49,6 @@ spec:
             secretName: nats-services-creds
         - name: nats-configuration
           emptyDir: {}
-      initContainers:
-      - name: nats-configurator
-        image: harbor.cyverse.org/de/nats-configurator
-        env:
-        - name: NAMESPACE
-          valueFrom:
-            fieldRef:
-                fieldPath: metadata.namespace
-        volumeMounts:
-          - name: nats-configuration
-            mountPath: /etc/cyverse/de/env
       containers:
       - name: resource-usage-api
         image: harbor.cyverse.org/de/resource-usage-api
@@ -83,6 +72,11 @@ spec:
               secretKeyRef:
                 name: configs
                 key: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
+          - name: DISCOENV_NATS_CLUSTER
+            valueFrom:
+              secretKeyRef:
+                name: configs
+                key: NATS_URLS
         args:
           - --log-level
           - debug
