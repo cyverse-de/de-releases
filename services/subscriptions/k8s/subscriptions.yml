@@ -109,7 +109,7 @@ spec:
               readOnly: true
           ports:
             - name: listen-port
-              containerPort: 9000
+              containerPort: 60000
           livenessProbe:
             httpGet:
               path: /debug/vars
