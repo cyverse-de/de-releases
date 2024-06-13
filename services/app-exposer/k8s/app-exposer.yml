@@ -61,7 +61,7 @@ spec:
             - --namespace
             - "$(APP_EXPOSER_NAMESPACE)"
             - --user-suffix
-            - "@$(USER_SUFFIX)"
+            - "$(USER_SUFFIX)"
             - --log-level
             - debug
           env:
