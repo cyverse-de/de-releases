@@ -62,6 +62,8 @@ spec:
             - "$(APP_EXPOSER_NAMESPACE)"
             - --user-suffix
             - "$(USER_SUFFIX)"
+            - --ingress-class
+            - traefik
             - --log-level
             - debug
           env:
