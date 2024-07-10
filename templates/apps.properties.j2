@@ -3,8 +3,8 @@ apps.app.listen-port      = 60000
 apps.app.environment-name = {{ ns }}
 
 # Route-independent feature flags.
-apps.features.agave      = {{ agave_enabled}}
-apps.features.agave.jobs = {{ agave_jobs_enabled }}
+apps.features.tapis      = {{ tapis_enabled}}
+apps.features.tapis.jobs = {{ tapis_jobs_enabled }}
 
 # Database settings.
 apps.db.driver      = org.postgresql.Driver
@@ -49,19 +49,19 @@ apps.batch.path-list.ht.max-paths          = 100000
 apps.batch.path-list.multi-input.info-type = multi-input-path-list
 apps.batch.path-list.multi-input.max-paths = 20000
 
-# Agave connection settings.
-apps.agave.base-url             = https://agave.iplantc.org
-apps.agave.key                  = {{ agave_key }}
-apps.agave.secret               = {{ agave_secret }}
-apps.agave.oauth-base           = https://agave.iplantc.org/oauth2
-apps.agave.oauth-refresh-window = 5
-apps.agave.redirect-uri         = {{ agave_redirect_uri }}
-apps.agave.storage-system       = {{ agave_storage_system }}
-apps.agave.read-timeout         = {{ agave_read_timeout }}
-apps.agave.page-length          = 300
+# Tapis connection settings.
+apps.tapis.base-url             = https://cyverse.tapis.io/v3
+apps.tapis.key                  = {{ tapis_key }}
+apps.tapis.secret               = {{ tapis_secret }}
+apps.tapis.oauth-base           = https://cyverse.tapis.io/v3/oauth2
+apps.tapis.oauth-refresh-window = 5
+apps.tapis.redirect-uri         = {{ tapis_redirect_uri }}
+apps.tapis.storage-system       = {{ tapis_storage_system }}
+apps.tapis.read-timeout         = {{ tapis_read_timeout }}
+apps.tapis.page-length          = 300
 
-# Agave callback settings.
-apps.agave.callback-base = {{ agave_callback_base_uri }}
+# Tapis callback settings.
+apps.tapis.callback-base = {{ tapis_callback_base_uri }}
 
 # PGP Settings
 apps.pgp.keyring-path = /etc/iplant/crypto/secring.gpg
