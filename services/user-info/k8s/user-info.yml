@@ -34,8 +34,8 @@ spec:
               - key: timezone
                 path: timezone
         - name: service-configs
-          secret:
-            secretName: service-configs
+          configMap:
+            name: service-configs
             items:
               - key: jobservices.yml
                 path: jobservices.yml
