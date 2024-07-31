@@ -57,7 +57,7 @@ unleash:
   client_secret: "{{ unleash_api_token }}"
   maintenance_flag: {{ unleash_maintenance_flag }}
 username:
-  suffix: {{ uid_domain }}
+  suffix: "{{ uid_domain }}"
 subscriptions:
   checkout_url: {{ de_subscriptions_checkout_url|string|regex_replace("\/$","") }}
   enforce: {{ de_subscriptions_enforce }}
