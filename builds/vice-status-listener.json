@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/vice-status-listener","tag":"harbor.cyverse.org/de/vice-status-listener:v3.0.1-rc02@sha256:11325f0c9af99b51c0a43fb09bdb65d610d2ea02c6668a87d84c7e2826e8c86f"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/vice-status-listener","tag":"harbor.cyverse.org/de/vice-status-listener:v3.0.1@sha256:a41100072a3b5edf9fa260fbdb8dd3b2aa8534c984f07380aa3d7df0814941d0"}]}
