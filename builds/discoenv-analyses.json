@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/discoenv-analyses","tag":"harbor.cyverse.org/de/discoenv-analyses:v3.0.1-rc02@sha256:4b2ef8aad590445ef8999bbd87425b0a1c4011798a47489227986b3a620762bc"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/discoenv-analyses","tag":"harbor.cyverse.org/de/discoenv-analyses:v3.0.1@sha256:0c14fa2de33193033bd9513f3de79b7c4727187e2e26adc5f73dc7be954e0748"}]}
