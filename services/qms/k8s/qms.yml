@@ -78,11 +78,11 @@ spec:
             requests:
               cpu: "1m"
               memory: "128Mi"
-              ephemeral-storage: "10Mi"
+              ephemeral-storage: "100Mi"
             limits:
               cpu: "100m"
               memory: "256Mi"
-              ephemeral-storage: "10Mi"
+              ephemeral-storage: "100Mi"
           volumeMounts:
             - name: localtime
               mountPath: /etc/localtime
