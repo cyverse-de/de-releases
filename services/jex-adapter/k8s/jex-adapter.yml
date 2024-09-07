@@ -47,6 +47,19 @@ spec:
         - name: nats-services-creds
           secret:
             secretName: nats-services-creds
+        - name: nats-configuration
+          emptyDir: {}
+      initContainers:
+      - name: nats-configurator
+        image: harbor.cyverse.org/de/nats-configurator
+        env:
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+                fieldPath: metadata.namespace
+        volumeMounts:
+          - name: nats-configuration
+            mountPath: /etc/cyverse/de/env
       containers:
       - name: jex-adapter
         image: harbor.cyverse.org/de/jex-adapter
@@ -66,21 +79,19 @@ spec:
           - name: nats-services-creds
             mountPath: /etc/nats/creds
             readOnly: true
+          - name: nats-configuration
+            mountPath: /etc/cyverse/de/env
+            readOnly: true
         resources:
           requests:
             cpu: "1m"
             memory: "128Mi"
-            ephemeral-storage: "100Mi"
+            ephemeral-storage: "1Gi"
           limits:
             cpu: "100m"
             memory: "256Mi"
             ephemeral-storage: "1Gi"
         env:
-          - name: DISCOENV_NATS_CLUSTER
-            valueFrom:
-              secretKeyRef:
-                name: configs
-                key: NATS_URLS
           - name: OTEL_TRACES_EXPORTER
             valueFrom:
               secretKeyRef:

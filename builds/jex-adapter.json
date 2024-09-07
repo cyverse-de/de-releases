@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/jex-adapter","tag":"harbor.cyverse.org/de/jex-adapter:v3.0.1-rc02@sha256:c174f4e31f3dd7486722761c38f744db09a4c3210e23ff8cd771ead624bf69af"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/jex-adapter","tag":"harbor.cyverse.org/de/jex-adapter:v3.0.1@sha256:51f5b5183fa8f940bfb8c1ebee297a0c2b170776a9fd48a443fccd3577bf4ced"}]}
