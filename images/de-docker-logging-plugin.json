@@ -1,5 +1,5 @@
 {
   "repository": "https://github.com/cyverse-de/de-docker-logging-plugin",
-  "release": "v3.0.1-rc03",
-  "image": "harbor.cyverse.org/de/de-docker-logging-plugin:v3.0.1-rc03"
+  "release": "v3.0.1",
+  "image": "harbor.cyverse.org/de/de-docker-logging-plugin:v3.0.1"
 }
