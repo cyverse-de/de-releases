@@ -1,5 +1,5 @@
 {
   "repository": "https://github.com/cyverse-de/de-job-killer",
-  "release": "v3.0.1-rc01",
-  "image": "harbor.cyverse.org/de/de-job-killer:v3.0.1-rc01"
+  "release": "v3.0.1",
+  "image": "harbor.cyverse.org/de/de-job-killer:v3.0.1"
 }
