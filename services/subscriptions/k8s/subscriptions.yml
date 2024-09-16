@@ -46,8 +46,6 @@ spec:
         - name: nats-services-creds
           secret:
             secretName: nats-services-creds
-        - name: nats-configuration
-          emptyDir: {}
       containers:
         - name: subscriptions
           image: harbor.cyverse.org/de/subscriptions
@@ -103,9 +101,6 @@ spec:
               readOnly: true
             - name: nats-services-creds
               mountPath: /etc/nats/creds
-              readOnly: true
-            - name: nats-configuration
-              mountPath: /etc/cyverse/de/env
               readOnly: true
           ports:
             - name: listen-port
