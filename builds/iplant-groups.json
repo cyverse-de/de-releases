@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/iplant-groups","tag":"harbor.cyverse.org/de/iplant-groups:v3.0.1@sha256:3c0363b8ecf49a06731f23ba707d0f9d0729866b8f91ac8b0b7ee42bf38ea702"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/iplant-groups","tag":"harbor.cyverse.org/de/iplant-groups:v3.0.2-rc1@sha256:2a43ff1bde755c339b32bd1ab9742d0928b6d5b039eb89ccc013d0fac87f276c"}]}
