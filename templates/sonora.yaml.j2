@@ -48,6 +48,7 @@ services:
   local_contexts:
     base: {{ de_services_local_contexts_base }}
 tools:
+  default_selected_max_cpus: 4
   admin:
     max_cpu_limit: {{ de_tools_admin_max_cpu_limit }}
     max_memory_limit: {{ de_tools_admin_max_memory_limit }}
