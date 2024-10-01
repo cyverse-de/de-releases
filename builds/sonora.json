@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/sonora","tag":"harbor.cyverse.org/de/sonora:v3.0.8-rc04@sha256:7cd1b86e77fcd2506a5d7af6e16798481fc3666aa3281e7140518be5e369c35d"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/sonora","tag":"harbor.cyverse.org/de/sonora:v3.0.8@sha256:1b8a4b0d90a405e17fb6de8f22b10103623111a558dd7bb164d96a7ea76a8f43"}]}
