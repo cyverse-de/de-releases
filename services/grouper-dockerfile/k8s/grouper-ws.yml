@@ -12,6 +12,13 @@ spec:
       labels:
         de-app: grouper-ws
     spec:
+      nodeSelector:
+        grouper: "true"
+      tolerations:
+        - key: "grouper"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

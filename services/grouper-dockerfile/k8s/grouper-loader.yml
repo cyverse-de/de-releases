@@ -8,10 +8,18 @@ spec:
     matchLabels:
       de-app: grouper-loader
   template:
+
     metadata:
       labels:
         de-app: grouper-loader
     spec:
+      nodeSelector:
+        grouper: "true"
+      tolerations:
+        - key: "grouper"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
