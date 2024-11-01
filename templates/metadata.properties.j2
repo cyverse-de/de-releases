@@ -2,7 +2,7 @@
 metadata.app.environment-name = {{ ns }}
 
 # Database settings.
-metadata.db.host     = {{ groups['dbms_primary'][0] }}
+metadata.db.host     = {{ groups['dbms'][0] }}
 metadata.db.port     = {{ pg_listen_port }}
 metadata.db.name     = {{ metadata_db_name }}
 metadata.db.user     = {{ dbms_connection_user }}

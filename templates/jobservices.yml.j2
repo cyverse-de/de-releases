@@ -20,7 +20,7 @@ condor:
   filter_files: .job.ad,.machine.ad,_condor_stderr,_condor_stdout,condor_exec.exe,.chirp_config,.chirp.config,logs/logs-stderr-output,logs/logs-stdout-output,config,job,iplant.cmd
 
 db:
-  uri: postgresql://{{ dbms_connection_user }}:{{ dbms_connection_pass | urlencode }}@{{ groups['dbms_primary'][0] }}:{{ pg_listen_port }}/{{ de_db_name }}?sslmode=disable
+  uri: postgresql://{{ dbms_connection_user }}:{{ dbms_connection_pass | urlencode }}@{{ groups['dbms'][0] }}:{{ pg_listen_port }}/{{ de_db_name }}?sslmode=disable
 
 email:
   request: {{ email_support_dest }}
@@ -71,7 +71,7 @@ notification_agent:
 
 notifications:
   db:
-    uri: "postgresql://{{ dbms_connection_user }}:{{ dbms_connection_pass | urlencode }}@{{ groups['dbms_primary'][0] }}:{{ pg_listen_port }}/{{ notifications_db_name }}?sslmode=disable"
+    uri: "postgresql://{{ dbms_connection_user }}:{{ dbms_connection_pass | urlencode }}@{{ groups['dbms'][0] }}:{{ pg_listen_port }}/{{ notifications_db_name }}?sslmode=disable"
 
 path_list:
   file_identifier: "# application/vnd.de.multi-input-path-list+csv; version=1"
@@ -93,7 +93,7 @@ users:
 
 vice:
   db:
-    uri: "postgresql://{{ dbms_connection_user }}:{{ dbms_connection_pass | urlencode }}@{{ groups['dbms_primary'][0] }}:{{ pg_listen_port }}/{{ de_db_name }}?sslmode=disable"
+    uri: "postgresql://{{ dbms_connection_user }}:{{ dbms_connection_pass | urlencode }}@{{ groups['dbms'][0] }}:{{ pg_listen_port }}/{{ de_db_name }}?sslmode=disable"
   file-transfers:
     image: "{{ vice_file_transfers_image }}"
     tag: "{{ vice_file_transfers_tag }}"

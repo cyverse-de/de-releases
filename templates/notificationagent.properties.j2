@@ -1,5 +1,5 @@
 # Database connection settings.
-notificationagent.db.host        = {{ groups['dbms_primary'][0] }}
+notificationagent.db.host        = {{ groups['dbms'][0] }}
 notificationagent.db.port        = {{ pg_listen_port }}
 notificationagent.db.name        = {{ notifications_db_name }}
 notificationagent.db.user        = {{ dbms_connection_user }}

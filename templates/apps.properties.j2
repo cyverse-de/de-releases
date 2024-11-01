@@ -9,7 +9,7 @@ apps.features.agave.jobs = {{ agave_jobs_enabled }}
 # Database settings.
 apps.db.driver      = org.postgresql.Driver
 apps.db.subprotocol = postgresql
-apps.db.host        = {{ groups['dbms_primary'][0] }}
+apps.db.host        = {{ groups['dbms'][0] }}
 apps.db.port        = {{ pg_listen_port }}
 apps.db.name        = {{ de_db_name }}
 apps.db.user        = {{ dbms_connection_user }}

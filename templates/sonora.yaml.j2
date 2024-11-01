@@ -5,7 +5,7 @@ support_email: {{ email_support_dest }}
 de_faq: {{ de_info_faq }}
 cyverse_url: {{ de_info_description }}
 db:
-  host: {{ groups['dbms_primary'][0] }}
+  host: {{ groups['dbms'][0] }}
   user: {{ dbms_connection_user }}
   password: {{ dbms_connection_pass }}
 keycloak:
