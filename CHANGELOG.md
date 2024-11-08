@@ -9,9 +9,11 @@ All notable changes to this project will be documented in this file. The format 
 - The DE now has the ability to generate HTML source for a badge that can be used to instantly launch an analysis with
   predefined parameters.
 - When an analysis launch link is used for an instant launch, the DE will now launch the analysis immediately rather
-  than display the analysis launhch wizard.
+  than display the analysis launch wizard.
 - While analyses are running, perodic notifications will be sent to users in order to remind them that the analysis is
   running. This notification should help to prevent the unintentional consumption of compute hours.
+- When an app has multiple versions, anyone with permission to modify the app can change the order of the app versions
+  in order to ensure that the most commonly used app versions stay close to the top of the list.
 
 ### Changed
 
@@ -21,8 +23,6 @@ All notable changes to this project will be documented in this file. The format 
 - The option to request help for an analysis has been moved into the ellipsis menu on the analysis summary page.
 - When launching an analysis, the default setting for maximum CPUs requested will be set to 4 CPUs rather than being set
   to the highest number of CPUs that can be requested for the app.
-- When an app has multiple versions, anyone with permission to modify the app can change the order of the app versions
-  in order to ensure that the most commonly used app versions stay close to the top of the list.
 - Fixed a bug that was intermittently preventing the user's current subscription from being retrieved correctly.
 
 ### Removed
