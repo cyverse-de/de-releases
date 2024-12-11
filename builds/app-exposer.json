@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/app-exposer","tag":"harbor.cyverse.org/de/app-exposer:v2025.01.07-rc2@sha256:90218363b4819716831db984f01fe640c85ce9c384abfcd3a4a42e266191a0c1"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/app-exposer","tag":"harbor.cyverse.org/de/app-exposer:v2025.01.07-rc3@sha256:a455733e5d1c6a556357ae7e205d8582b111c8f46920a82617d27232cb8ffbb0"}]}
