@@ -48,7 +48,6 @@ terrain.oauth.base-uri = {{ cas_base_uri }}/oauth2.0
 terrain.oauth.client-id = {{ cas_terrain_client_id }}
 terrain.oauth.client-secret = {{ cas_terrain_client_secret }}
 
-
 # The settings to use for authorization.
 terrain.cas.allowed-groups  = {{ admin_groups }}
 
@@ -120,6 +119,11 @@ terrain.keycloak.base-uri = {{ keycloak_server_uri }}
 terrain.keycloak.realm = {{ keycloak_realm_name }}
 terrain.keycloak.client-id = {{ keycloak_client_id }}
 terrain.keycloak.client-secret = {{ keycloak_client_secret }}
+
+# Keycloak Admin API settings
+terrain.keycloak.admin-base-uri = {{ keycloak_server_uri }}/admin
+terrain.keycloak.admin-client-id = {{ keycloak_admin_client_id }}
+terrain.keycloak.admin-client-secret = {{ keycloak_admin_client_secret }}
 
 # COGE settings
 terrain.coge.user             = coge
