@@ -65,7 +65,7 @@ spec:
             - --user-suffix
             - "$(USER_SUFFIX)"
             - --ingress-class
-            - nginx
+            - traefik
             - --log-level
             - debug
           env:
