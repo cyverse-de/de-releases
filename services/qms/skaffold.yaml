@@ -1,14 +1,17 @@
-apiVersion: skaffold/v1
+apiVersion: skaffold/v3
 kind: Config
 metadata:
   name: qms
-deploy:
-  kubectl:
-    manifests:
-      - k8s/qms.yml
 build:
+  artifacts:
+    - image: harbor.cyverse.org/de/qms
   tagPolicy:
     gitCommit: {}
-  artifacts:
-  - image: harbor.cyverse.org/de/qms
   local: {}
+  platforms:
+    - "linux/amd64"
+manifests:
+  rawYaml:
+    - k8s/qms.yml
+deploy:
+  kubectl: {}
