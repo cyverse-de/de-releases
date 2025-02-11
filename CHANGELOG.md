@@ -6,6 +6,33 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Added
 
+- It is now possible for users to download public data from the Data Store in the Discovery Environment without having
+  to log in.
+- Discovery Environment administrators can now edit the list of rates associated with a subscription add-on.
+
+### Changed
+
+- A bug that prevented proper redirection for users with pre-existing single sign-on sessions was fixed.
+
+## [v2025.02.04]
+
+### Added
+
+- A list of recent logins will now be displayed on the DE dashboard.
+- The Terrain API now supports scheduled changes in rates and quota defaults for both subscriptions and add-ons.
+
+### Changed
+
+- The minimum and maximum CPU usage request fields in the app launch wizard have been replaced by a single CPU request
+  field.
+- Users who already have a single sign-on session for CyVerse should now be logged in automatically wihtout having to
+  click the login button.
+- Clicking on binary file types will no longer open the file edit dialog. Instead, the file will simply be downloaded.
+
+## [v2024.12.04]
+
+### Added
+
 - The DE now has the ability to generate HTML source for a badge that can be used to instantly launch an analysis with
   predefined parameters.
 - When an analysis launch link is used for an instant launch, the DE will now launch the analysis immediately rather
@@ -31,6 +58,8 @@ All notable changes to this project will be documented in this file. The format 
 
 This is the initial release using this deployment method.
 
-[Unreleased]: https://github.com/cyverse-de/de-releases/compare/v3.1.2...HEAD
+[Unreleased]: https://github.com/cyverse-de/de-releases/compare/v2025.02.04...HEAD
+[v2025.02.05]: https://github.com/cyverse-de/de-releases/compare/v2024.12.04...v2025.02.04
+[v2024.12.04]: https://github.com/cyverse-de/de-releases/compare/v3.1.2...v2024.12.04
 [v3.1.2]: https://github.com/cyverse-de/de-releases/compare/v0.0.7...v3.1.2
 [1]: https://keepachangelog.com/en/1.1.0/
