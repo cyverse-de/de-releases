@@ -59,7 +59,7 @@ All notable changes to this project will be documented in this file. The format 
 This is the initial release using this deployment method.
 
 [Unreleased]: https://github.com/cyverse-de/de-releases/compare/v2025.02.04...HEAD
-[v2025.02.05]: https://github.com/cyverse-de/de-releases/compare/v2024.12.04...v2025.02.04
+[v2025.02.04]: https://github.com/cyverse-de/de-releases/compare/v2024.12.04...v2025.02.04
 [v2024.12.04]: https://github.com/cyverse-de/de-releases/compare/v3.1.2...v2024.12.04
 [v3.1.2]: https://github.com/cyverse-de/de-releases/compare/v0.0.7...v3.1.2
 [1]: https://keepachangelog.com/en/1.1.0/
