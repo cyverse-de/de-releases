@@ -20,6 +20,9 @@ All notable changes to this project will be documented in this file. The format 
 
 - A list of recent logins will now be displayed on the DE dashboard.
 - The Terrain API now supports scheduled changes in rates and quota defaults for both subscriptions and add-ons.
+- It is now possible to instruct the DE to associate shared memory volumes with VICE apps by adding a a container device
+  to the tool with a `Host Path` of `/dev/shm` and a `Container Path` set to the amount of memory to allocate, for
+  example, `8Gi`.
 
 ### Changed
 
