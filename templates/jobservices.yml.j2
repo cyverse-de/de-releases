@@ -33,6 +33,10 @@ external_irods:
 graphql:
   uri: http://de-graphql
 
+harbor:
+  user: {{ harbor_robot_name }}
+  pass: {{ harbor_robot_secret }}
+
 interapps:
   proxy:
     tag: {{ docker_tag }}
