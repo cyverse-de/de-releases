@@ -68,7 +68,7 @@ terrain.requests.base-url = {{ baseurls_requests|string|regex_replace("\/$","") 
 terrain.search.base-url = {{ baseurls_search|string|regex_replace("\/$","") }}
 
 # JEX connection settings
-terrain.jex.base-url = {{ baseurls_jex_adapter|string|regex_replace("\/$","") }}
+terrain.jex.base-url = {{ baseurls_app_exposer|string|regex_replace("\/$","") }}/batch
 
 # Data-Store Elastic Search settings
 terrain.es.enabled        = {{ es_enabled }}
