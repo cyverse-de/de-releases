@@ -16,7 +16,7 @@ apps.db.user        = {{ dbms_connection_user }}
 apps.db.password    = {{ dbms_connection_pass }}
 
 # JEX connection settings.
-apps.jex.base-url = {{ baseurls_jex_adapter.rstrip("/")}}
+apps.jex.base-url = {{ baseurls_app_exposer.rstrip("/")}}/batch
 
 # Data Info connection settings.
 apps.data-info.base-url = {{ baseurls_data_info.rstrip("/")}}
