@@ -4,6 +4,7 @@ user_portal_url: {{ user_portal_base_uri|string|regex_replace("\/$","") }}
 support_email: {{ email_support_dest }}
 de_faq: {{ de_info_faq }}
 cyverse_url: {{ de_info_description }}
+queriesConcurrencyLimit: {{ de_queries_concurrency_limit }}
 db:
   host: {{ groups['dbms'][0] }}
   user: {{ dbms_connection_user }}
