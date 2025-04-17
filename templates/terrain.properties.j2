@@ -16,9 +16,6 @@ terrain.routes.collaborator  = true
 terrain.routes.coge          = true
 terrain.routes.search        = true
 
-# Terrain base URL.
-terrain.base-url = {{ baseurls_terrain|string|regex_replace("\/$","") }}
-
 # CyVerse Email service connection settings.
 terrain.email.base-url           = {{ baseurls_iplant_email|string|regex_replace("\/$","") }}
 terrain.email.tool-request-dest  = {{ email_dest }}
@@ -43,20 +40,14 @@ terrain.metadata.base-url = {{ baseurls_metadata|string|regex_replace("\/$","") 
 # Notification agent connection settings.
 terrain.notifications.base-url = {{ baseurls_notifications|string|regex_replace("\/$","") }}
 
-# The OAuth 2.0 connection and authentication info.
-terrain.oauth.base-uri = {{ cas_base_uri }}/oauth2.0
-terrain.oauth.client-id = {{ cas_terrain_client_id }}
-terrain.oauth.client-secret = {{ cas_terrain_client_secret }}
-
 # The settings to use for authorization.
-terrain.cas.allowed-groups  = {{ admin_groups }}
+terrain.authz.allowed-groups = {{ admin_groups }}
 
 # The domain name to append to the user id to get the fully qualified user id.
 terrain.uid.domain = {{ uid_domain }}
 
 # iplant-groups connection settings
 terrain.iplant-groups.base-url = {{ baseurls_iplant_groups|string|regex_replace("\/$","") }}
-terrain.iplant-groups.default-search-limit = 50
 
 # Permissions service connection settings
 terrain.permissions.base-url = {{ baseurls_permissions|string|regex_replace("\/$","") }}
@@ -154,10 +145,8 @@ terrain.permanent-id.target-base-url = http://datacommons.cyverse.org/browse
 terrain.permanent-id.async-move.wait-seconds.max = 4095
 
 # Permanent ID Request Metadata Attribute Settings
-terrain.permanent-id.attr.identifier          = identifier
-terrain.permanent-id.attr.alt-identifier      = alternateIdentifier
-terrain.permanent-id.attr.alt-identifier-type = alternateIdentifierType
-terrain.permanent-id.attr.publication-year    = publicationYear
+terrain.permanent-id.attr.identifier       = identifier
+terrain.permanent-id.attr.publication-year = publicationYear
 
 # Permanent ID Request DataCite API Settings
 terrain.permanent-id.datacite.base-url   = {{ perm_id_datacite_base_uri|string|regex_replace("\/$","") }}
