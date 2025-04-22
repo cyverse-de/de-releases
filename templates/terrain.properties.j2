@@ -145,8 +145,11 @@ terrain.permanent-id.target-base-url = http://datacommons.cyverse.org/browse
 terrain.permanent-id.async-move.wait-seconds.max = 4095
 
 # Permanent ID Request Metadata Attribute Settings
-terrain.permanent-id.attr.identifier       = identifier
-terrain.permanent-id.attr.publication-year = publicationYear
+terrain.permanent-id.attr.identifier          = identifier
+terrain.permanent-id.attr.publication-year    = publicationYear
+terrain.permanent-id.attr.alt-identifier      = alternateIdentifier
+terrain.permanent-id.attr.alt-identifier-type = alternateIdentifierType
+terrain.permanent-id.attr.publication-year    = publicationYear
 
 # Permanent ID Request DataCite API Settings
 terrain.permanent-id.datacite.base-url   = {{ perm_id_datacite_base_uri|string|regex_replace("\/$","") }}
