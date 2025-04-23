@@ -47,6 +47,8 @@ spec:
         - name: nats-services-creds
           secret:
             secretName: nats-services-creds
+        - name: nats-configuration
+          emptyDir: {}
       containers:
       - name: resource-usage-api
         image: harbor.cyverse.org/de/resource-usage-api
@@ -96,6 +98,9 @@ spec:
             readOnly: true
           - name: nats-services-creds
             mountPath: /etc/nats/creds
+            readOnly: true
+          - name: nats-configuration
+            mountPath: /etc/cyverse/de/env
             readOnly: true
         livenessProbe:
           httpGet:
