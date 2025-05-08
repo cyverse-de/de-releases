@@ -1,14 +1,17 @@
-apiVersion: skaffold/v1
+apiVersion: skaffold/v3
 kind: Config
 metadata:
   name: app-exposer
-deploy:
-  kubectl:
-    manifests:
-    - k8s/app-exposer.yml
 build:
+  artifacts:
+    - image: harbor.cyverse.org/de/app-exposer
+  platforms:
+    - "linux/amd64"
   tagPolicy:
     gitCommit: {}
-  artifacts:
-  - image: harbor.cyverse.org/de/app-exposer
   local: {}
+manifests:
+  rawYaml:
+    - k8s/app-exposer.yml
+deploy:
+  kubectl: {}
