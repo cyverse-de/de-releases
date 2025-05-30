@@ -1,14 +1,17 @@
-apiVersion: skaffold/v1
+apiVersion: skaffold/v3
 kind: Config
 metadata:
   name: event-recorder
-deploy:
-  kubectl:
-    manifests:
-      - k8s/event-recorder.yml
 build:
-  tagPolicy:
-    gitCommit: {}
   artifacts:
     - image: harbor.cyverse.org/de/event-recorder
+  platforms:
+    - linux/amd64
+  tagPolicy:
+    gitCommit: {}
   local: {}
+manifests:
+  rawYaml:
+    - k8s/event-recorder.yml
+deploy:
+  kubectl: {}
