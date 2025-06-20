@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/group-propagator","tag":"harbor.cyverse.org/de/group-propagator:v2025.05.06u03@sha256:ca3f446f7008366906a5a9ef994def907de2ae204fcf91b234d56a46c80abbb4"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/group-propagator","tag":"harbor.cyverse.org/de/group-propagator:v2025.07.01-rc01@sha256:9533d74c8c3eea13f4f88b671038bde7a4f5dcd4a10e6e17b0d304da4a71c521"}]}
