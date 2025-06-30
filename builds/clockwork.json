@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/clockwork","tag":"harbor.cyverse.org/de/clockwork:v2025.07.01-rc02@sha256:462cd91128085bf139716f792444d1f4b618ef21c3930ad1156e77ea2fa57c65"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/clockwork","tag":"harbor.cyverse.org/de/clockwork:v2025.07.01@sha256:0fc7cf9b8fd8115432774920dd16c2520fb47ef197d1bedd147fa6140c134684"}]}
