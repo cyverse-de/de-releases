@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/kifshare","tag":"harbor.cyverse.org/de/kifshare:v2025.07.01-rc01@sha256:a73e3d6888ef7658447e64d47c519d4ce6038572395ad4f32ecfbd75dd0736b3"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/kifshare","tag":"harbor.cyverse.org/de/kifshare:v2025.07.01@sha256:2faf4f3b300b7296295877667c66ff5af445b7312e35395a11569b1bed8a4a15"}]}
