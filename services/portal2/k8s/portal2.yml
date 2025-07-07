@@ -1,0 +1,423 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-portal
+  labels:
+    app: user-portal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-portal
+  template:
+    metadata:
+      labels:
+        app: user-portal
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - user-portal
+              topologyKey: kubernetes.io/hostname
+      restartPolicy: Always
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+        - name: nginx-config
+          configMap:
+            name: nginx-config
+      containers:
+        - name: mail
+          image: imixs/exim4:latest
+          ports:
+            - containerPort: 25
+          env:
+            - name: EXIM_SMARTHOST
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: EXIM_SMARTHOST
+            - name: EXIM_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: EXIM_PASSWORD
+            - name: EXIM_ALLOWED_SENDERS
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: EXIM_ALLOWED_SENDERS
+
+        - name: portal
+          image: harbor.cyverse.org/de/portal2
+          imagePullPolicy: Always
+          env:
+            - name: UI_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: UI_BASE_URL
+            - name: API_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: API_BASE_URL
+            - name: WS_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: WS_BASE_URL
+            - name: UID_NUMBER_OFFSET
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: UID_NUMBER_OFFSET
+            - name: HMAC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: HMAC_KEY
+            - name: GOOGLE_ANALYTICS_ID
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: GOOGLE_ANALYTICS_ID
+            - name: SENTRY_DSN
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: SENTRY_DSN
+            - name: IRODS_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: IRODS_HOST
+            - name: IRODS_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: IRODS_PORT
+            - name: IRODS_ZONE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: IRODS_ZONE_NAME
+            - name: IRODS_USER_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: IRODS_USER_NAME
+            - name: IRODS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: IRODS_PASSWORD
+            - name: IRODS_HOME_DIR
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: IRODS_HOME_DIR
+            - name: IRODS_IPCSERVICES_ENABLED
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: IRODS_IPCSERVICES_ENABLED
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: DB_PORT
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: DB_PASSWORD
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: DB_NAME
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: SESSION_SECRET
+            - name: SESSION_SECURE_COOKIE
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: SESSION_SECURE_COOKIE
+            - name: KEYCLOAK_REALM
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: KEYCLOAK_REALM
+            - name: KEYCLOAK_AUTH_URL
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: KEYCLOAK_AUTH_URL
+            - name: KEYCLOAK_CLIENT
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: KEYCLOAK_CLIENT
+            - name: KEYCLOAK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: KEYCLOAK_SECRET
+            - name: LDAP_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: LDAP_HOST
+            - name: LDAP_ADMIN
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: LDAP_ADMIN
+            - name: LDAP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: LDAP_PASSWORD
+            - name: LDAP_BASE_DN
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: LDAP_BASE_DN
+            - name: LDAP_EVERYONE_GROUP
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: LDAP_EVERYONE_GROUP
+            - name: BCC_NEW_ACCOUNT_CONFIRMATION
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: BCC_NEW_ACCOUNT_CONFIRMATION
+            - name: BCC_PASSWORD_CHANGE_REQUEST
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: BCC_PASSWORD_CHANGE_REQUEST
+            - name: BCC_SERVICE_ACCESS_GRANTED
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: BCC_SERVICE_ACCESS_GRANTED
+            - name: BCC_WORKSHOP_ENROLLMENT_REQUEST
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: BCC_WORKSHOP_ENROLLMENT_REQUEST
+            - name: INTERCOM_ENABLED
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: INTERCOM_ENABLED
+            - name: INTERCOM_APP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: INTERCOM_APP_ID
+            - name: INTERCOM_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: INTERCOM_TOKEN
+            - name: INTERCOM_COMPANY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: INTERCOM_COMPANY_ID
+            - name: INTERCOM_ADMIN_USER_PORTAL_BOT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: INTERCOM_ADMIN_USER_PORTAL_BOT_ID
+            - name: INTERCOM_ADMIN_TIER1_ATMOSPHERE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: INTERCOM_ADMIN_TIER1_ATMOSPHERE_ID
+            - name: INTERCOM_ADMIN_TIER1_SCIENCE_TEAM_ID
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: INTERCOM_ADMIN_TIER1_SCIENCE_TEAM_ID
+            - name: INTERCOM_ADMIN_TIER1_DATA_WATCH_ID
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: INTERCOM_ADMIN_TIER1_DATA_WATCH_ID
+            - name: MAILCHIMP_ENABLED
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: MAILCHIMP_ENABLED
+            - name: MAILCHIMP_URL
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: MAILCHIMP_URL
+            - name: MAILCHIMP_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: MAILCHIMP_API_KEY
+            - name: MAILCHIMP_LIST_ID
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: MAILCHIMP_LIST_ID
+            - name: MAILCHIMP_TAGS
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: MAILCHIMP_TAGS
+            - name: MAILMAN_ENABLED
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: MAILMAN_ENABLED
+            - name: MAILMAN_URL
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: MAILMAN_URL
+            - name: MAILMAN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: MAILMAN_PASSWORD
+            - name: BISQUE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: BISQUE_URL
+            - name: BISQUE_USER
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: BISQUE_USER
+            - name: BISQUE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: BISQUE_PASSWORD
+            - name: TERRAIN_URL
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: TERRAIN_URL
+            - name: TERRAIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: TERRAIN_USER
+            - name: TERRAIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: TERRAIN_PASSWORD
+            - name: PROFILE_UPDATE_PERIOD
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: PROFILE_UPDATE_PERIOD
+            - name: PROFILE_WARNING_PERIOD
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: PROFILE_WARNING_PERIOD
+            - name: PROFILE_UPDATE_TEXT
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: PROFILE_UPDATE_TEXT
+            - name: PROFILE_WARNING_TEXT
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: PROFILE_WARNING_TEXT
+            - name: SMTP_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: SMTP_HOST
+            - name: SMTP_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: SMTP_PORT
+            - name: SMTP_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: SMTP_FROM
+            - name: SUPPORT_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: SUPPORT_EMAIL
+            - name: FAQ_URL
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: FAQ_URL
+            - name: INSTANCE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: user-portal-config
+                  key: INSTANCE_NAME
+          ports:
+            - name: http
+              containerPort: 3000
+            - name: ws
+              containerPort: 3001
+          volumeMounts:
+            - name: nginx-config
+              mountPath: "/etc/nginx"
+              readOnly: true
+            - name: localtime
+              mountPath: /etc/localtime
+              readOnly: true
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-portal
+spec:
+  selector:
+    app: user-portal
+  ports:
+    - name: http
+      protocol: TCP
+      port: 3000
+      targetPort: http
+    - name: ws
+      protocol: TCP
+      port: 3001
+      targetPort: ws
