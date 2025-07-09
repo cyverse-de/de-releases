@@ -268,31 +268,6 @@ spec:
                 secretKeyRef:
                   name: user-portal-config
                   key: INTERCOM_ADMIN_TIER1_DATA_WATCH_ID
-            - name: MAILCHIMP_ENABLED
-              valueFrom:
-                secretKeyRef:
-                  name: user-portal-config
-                  key: MAILCHIMP_ENABLED
-            - name: MAILCHIMP_URL
-              valueFrom:
-                secretKeyRef:
-                  name: user-portal-config
-                  key: MAILCHIMP_URL
-            - name: MAILCHIMP_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: user-portal-config
-                  key: MAILCHIMP_API_KEY
-            - name: MAILCHIMP_LIST_ID
-              valueFrom:
-                secretKeyRef:
-                  name: user-portal-config
-                  key: MAILCHIMP_LIST_ID
-            - name: MAILCHIMP_TAGS
-              valueFrom:
-                secretKeyRef:
-                  name: user-portal-config
-                  key: MAILCHIMP_TAGS
             - name: MAILMAN_ENABLED
               valueFrom:
                 secretKeyRef:
@@ -378,16 +353,6 @@ spec:
                 secretKeyRef:
                   name: user-portal-config
                   key: SUPPORT_EMAIL
-            - name: FAQ_URL
-              valueFrom:
-                secretKeyRef:
-                  name: user-portal-config
-                  key: FAQ_URL
-            - name: INSTANCE_NAME
-              valueFrom:
-                secretKeyRef:
-                  name: user-portal-config
-                  key: INSTANCE_NAME
           ports:
             - name: http
               containerPort: 3000
