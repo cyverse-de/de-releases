@@ -29,9 +29,6 @@ spec:
         - name: localtime
           hostPath:
             path: /etc/localtime
-        - name: nginx-config
-          configMap:
-            name: nginx-config
       containers:
         - name: mail
           image: imixs/exim4:latest
@@ -357,9 +354,6 @@ spec:
             - name: http
               containerPort: 3000
           volumeMounts:
-            - name: nginx-config
-              mountPath: "/etc/nginx"
-              readOnly: true
             - name: localtime
               mountPath: /etc/localtime
               readOnly: true
