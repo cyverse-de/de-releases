@@ -30,27 +30,6 @@ spec:
           hostPath:
             path: /etc/localtime
       containers:
-        - name: mail
-          image: imixs/exim4:latest
-          ports:
-            - containerPort: 25
-          env:
-            - name: EXIM_SMARTHOST
-              valueFrom:
-                secretKeyRef:
-                  name: user-portal-config
-                  key: EXIM_SMARTHOST
-            - name: EXIM_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: user-portal-config
-                  key: EXIM_PASSWORD
-            - name: EXIM_ALLOWED_SENDERS
-              valueFrom:
-                secretKeyRef:
-                  name: user-portal-config
-                  key: EXIM_ALLOWED_SENDERS
-
         - name: portal
           image: harbor.cyverse.org/de/portal2
           imagePullPolicy: Always
