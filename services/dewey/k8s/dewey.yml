@@ -17,15 +17,6 @@ spec:
     spec:
       restartPolicy: Always
       volumes:
-        - name: localtime
-          hostPath:
-            path: /etc/localtime
-        - name: timezone
-          configMap:
-            name: timezone
-            items:
-              - key: timezone
-                path: timezone
         - name: service-configs
           secret:
             secretName: service-configs
@@ -48,16 +39,15 @@ spec:
             - --config
             - /etc/iplant/de/dewey.properties
           volumeMounts:
-            - name: localtime
-              mountPath: /etc/localtime
-              readOnly: true
-            - name: timezone
-              mountPath: /etc/timezone
-              subPath: timezone
             - name: service-configs
               mountPath: /etc/iplant/de
               readOnly: true
           env:
+            - name: TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: timezone
+                  key: timezone
             - name: JAVA_TOOL_OPTIONS
               valueFrom:
                 configMapKeyRef:
