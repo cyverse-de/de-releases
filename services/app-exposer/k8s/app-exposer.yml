@@ -26,15 +26,6 @@ spec:
               topologyKey: kubernetes.io/hostname
       restartPolicy: Always
       volumes:
-        - name: localtime
-          hostPath:
-            path: /etc/localtime
-        - name: timezone
-          configMap:
-            name: timezone
-            items:
-              - key: timezone
-                path: timezone
         - name: service-configs
           secret:
             secretName: service-configs
@@ -69,6 +60,11 @@ spec:
             - --log-level
             - debug
           env:
+            - name: TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: timezone
+                  key: timezone
             - name: APP_EXPOSER_NAMESPACE
               valueFrom:
                 fieldRef:
@@ -99,12 +95,6 @@ spec:
             - name: listen-port
               containerPort: 60000
           volumeMounts:
-            - name: localtime
-              mountPath: /etc/localtime
-              readOnly: true
-            - name: timezone
-              mountPath: /etc/timezone
-              subPath: timezone
             - name: service-configs
               mountPath: /etc/cyverse/de/configs
               readOnly: true
