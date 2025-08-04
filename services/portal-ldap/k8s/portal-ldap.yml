@@ -12,7 +12,6 @@ spec:
       labels:
         app: portal-ldap
     spec:
-      serviceAccountName: portal-ldap
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
