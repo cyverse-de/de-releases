@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/portal-ldap","tag":"harbor.cyverse.org/de/portal-ldap:v2025.08.05-rc07@sha256:08d882ca1d1c4de8471f57ecf041eb6747ed48fa266c235ecd67353c7c87d835"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/portal-ldap","tag":"harbor.cyverse.org/de/portal-ldap:v2025.08.05-rc08@sha256:ba0d26b97306106453c23342ab839bbb207b7ebcc6d05ec504e19c0d55a31a82"}]}
