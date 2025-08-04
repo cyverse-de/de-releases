@@ -58,18 +58,18 @@ spec:
                   key: LDAP_PASSWORD
           ports:
             - name: listen-port
-              containerPort: 4000
+              containerPort: 8000
           volumeMounts:
           livenessProbe:
             httpGet:
               path: /
-              port: 4000
+              port: 8000
             initialDelaySeconds: 5
             periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /
-              port: 4000
+              port: 8000
             initialDelaySeconds: 5
             periodSeconds: 5
 ---
