@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/check-resource-access","tag":"harbor.cyverse.org/de/check-resource-access:v3.0.1@sha256:b01d11837a5d65528c7ee63399f352381e5b49b5777d067220214f1824c33646"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/check-resource-access","tag":"harbor.cyverse.org/de/check-resource-access:v2025.08.05-rc01@sha256:7da23953aa06f41783189dd15555cdd62d176324654189a3590317c5d64b3124"}]}
