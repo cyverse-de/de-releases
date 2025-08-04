@@ -1,13 +1,16 @@
-apiVersion: skaffold/v1
+apiVersion: skaffold/v3
 kind: Config
 metadata:
   name: discoenv-analyses
-deploy:
-  kubectl:
-    manifests:
-    - k8s/discoenv-analyses.yml
 build:
+  artifacts:
+    - image: harbor.cyverse.org/de/discoenv-analyses
+  platforms:
+    - "linux/amd64"
   tagPolicy:
     gitCommit: {}
-  artifacts:
-  - image: harbor.cyverse.org/de/discoenv-analyses
+manifests:
+  rawYaml:
+    - k8s/discoenv-analyses.yml
+deploy:
+  kubectl: {}
