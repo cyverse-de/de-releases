@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/event-recorder","tag":"harbor.cyverse.org/de/event-recorder:v2025.06.03@sha256:05f52ef549aa4877419c2d3859fd95ae68aa651d5fd7ba4950d85d5ca06ae706"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/event-recorder","tag":"harbor.cyverse.org/de/event-recorder:v2025.08.05-rc01@sha256:4c61b2885f2325b147a4a67addd6dc8c4114c1f6548b7f890d1a54105de56d87"}]}
