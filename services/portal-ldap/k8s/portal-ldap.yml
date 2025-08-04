@@ -26,15 +26,6 @@ spec:
       containers:
         - name: portal-ldap
           image: harbor.cyverse.org/de/portal-ldap
-          resources:
-            requests:
-              cpu: "1m"
-              memory: "128Mi"
-              ephemeral-storage: "100Mi"
-            limits:
-              cpu: "500m"
-              memory: "1Gi"
-              ephemeral-storage: "200Mi"
           env:
             - name: LDAP_URL
               valueFrom:
