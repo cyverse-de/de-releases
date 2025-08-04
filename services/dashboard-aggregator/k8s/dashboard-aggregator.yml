@@ -25,9 +25,6 @@ spec:
               topologyKey: kubernetes.io/hostname
       restartPolicy: Always
       volumes:
-        - name: localtime
-          hostPath:
-            path: /etc/localtime
         - name: service-configs
           secret:
             secretName: service-configs
@@ -49,13 +46,15 @@ spec:
               memory: "3Gi"
               ephemeral-storage: "1Gi"
           volumeMounts:
-            - name: localtime
-              mountPath: /etc/localtime
-              readOnly: true
             - name: service-configs
               mountPath: /etc/cyverse/de/configs
               readOnly: true
           env:
+            - name: TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: timezone
+                  key: timezone
             - name: OTEL_TRACES_EXPORTER
               value: none
           ports:
