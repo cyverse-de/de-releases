@@ -1,14 +1,17 @@
-apiVersion: skaffold/v1
+apiVersion: skaffold/v3
 kind: Config
 metadata:
   name: iplant-groups
-deploy:
-  kubectl:
-    manifests:
-    - k8s/iplant-groups.yml
 build:
+  artifacts:
+    - image: harbor.cyverse.org/de/iplant-groups
+  platforms:
+    - "linux/amd64"
   tagPolicy:
     gitCommit: {}
-  artifacts:
-  - image: harbor.cyverse.org/de/iplant-groups
   local: {}
+manifests:
+  rawYaml:
+    - k8s/iplant-groups.yml
+deploy:
+  kubectl: {}
