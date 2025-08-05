@@ -16,24 +16,15 @@ spec:
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: de-app
-                operator: In
-                values:
-                - qms-adapter
-            topologyKey: kubernetes.io/hostname
+            - labelSelector:
+                matchExpressions:
+                  - key: de-app
+                    operator: In
+                    values:
+                      - qms-adapter
+              topologyKey: kubernetes.io/hostname
       restartPolicy: Always
       volumes:
-        - name: localtime
-          hostPath:
-            path: /etc/localtime
-        - name: timezone
-          configMap:
-            name: timezone
-            items:
-              - key: timezone
-                path: timezone
         - name: service-configs
           secret:
             secretName: service-configs
@@ -41,44 +32,43 @@ spec:
               - key: jobservices.yml
                 path: jobservices.yml
       containers:
-      - name: qms-adapter
-        image: harbor.cyverse.org/de/qms-adapter
-        resources:
-          requests:
-            cpu: "1m"
-            memory: "128Mi"
-            ephemeral-storage: "1Mi"
-          limits:
-            cpu: "100m"
-            memory: "256Mi"
-            ephemeral-storage: "1Mi"
-        env:
-          - name: OTEL_TRACES_EXPORTER
-            valueFrom:
-              secretKeyRef:
-                name: configs
-                key: OTEL_TRACES_EXPORTER
-          - name: OTEL_EXPORTER_JAEGER_ENDPOINT
-            valueFrom:
-              secretKeyRef:
-                name: configs
-                key: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
-        args:
-          - --log-level
-          - debug
-        ports:
-          - name: listen-port
-            containerPort: 60000
-        volumeMounts:
-          - name: localtime
-            mountPath: /etc/localtime
-            readOnly: true
-          - name: timezone
-            mountPath: /etc/timezone
-            subPath: timezone
-          - name: service-configs
-            mountPath: /etc/iplant/de
-            readOnly: true
+        - name: qms-adapter
+          image: harbor.cyverse.org/de/qms-adapter
+          resources:
+            requests:
+              cpu: "1m"
+              memory: "128Mi"
+              ephemeral-storage: "1Mi"
+            limits:
+              cpu: "100m"
+              memory: "256Mi"
+              ephemeral-storage: "1Mi"
+          env:
+            - name: TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: timezone
+                  key: timezone
+            - name: OTEL_TRACES_EXPORTER
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: OTEL_TRACES_EXPORTER
+            - name: OTEL_EXPORTER_JAEGER_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
+          args:
+            - --log-level
+            - debug
+          ports:
+            - name: listen-port
+              containerPort: 60000
+          volumeMounts:
+            - name: service-configs
+              mountPath: /etc/iplant/de
+              readOnly: true
 ---
 apiVersion: v1
 kind: Service
