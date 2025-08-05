@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/job-status-recorder","tag":"harbor.cyverse.org/de/job-status-recorder:v3.0.1@sha256:6189288fc095a98411b8424ac2abcb89d6b095cb456c97995b6b82fef13c6a56"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/job-status-recorder","tag":"harbor.cyverse.org/de/job-status-recorder:v2025.08.05-rc01@sha256:7c58d0fe6d9e34696ad844ae9f2ab0811c4b0db53cd3b213dddb91acd411e7d6"}]}
