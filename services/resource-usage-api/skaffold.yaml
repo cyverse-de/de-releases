@@ -1,14 +1,17 @@
-apiVersion: skaffold/v1
+apiVersion: skaffold/v3
 kind: Config
 metadata:
   name: resource-usage-api
-deploy:
-  kubectl:
-    manifests:
-    - k8s/resource-usage-api.yml
 build:
+  artifacts:
+    - image: harbor.cyverse.org/de/resource-usage-api
+  platforms:
+    - "linux/amd64"
   tagPolicy:
     gitCommit: {}
-  artifacts:
-  - image: harbor.cyverse.org/de/resource-usage-api
   local: {}
+manifests:
+  rawYaml:
+    - k8s/resource-usage-api.yml
+deploy:
+  kubectl: {}
