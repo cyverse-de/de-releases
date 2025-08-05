@@ -1,14 +1,17 @@
-apiVersion: skaffold/v1
+apiVersion: skaffold/v3
 kind: Config
 metadata:
   name: vice-status-listener
-deploy:
-  kubectl:
-    manifests:
-    - k8s/vice-status-listener.yml
 build:
+  artifacts:
+    - image: harbor.cyverse.org/de/vice-status-listener
+  platforms:
+    - "linux/amd64"
   tagPolicy:
     gitCommit: {}
-  artifacts:
-  - image: harbor.cyverse.org/de/vice-status-listener
   local: {}
+manifests:
+  rawYaml:
+    - k8s/vice-status-listener.yml
+deploy:
+  kubectl: {}
