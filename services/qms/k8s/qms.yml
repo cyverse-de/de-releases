@@ -25,15 +25,6 @@ spec:
               topologyKey: kubernetes.io/hostname
       restartPolicy: Always
       volumes:
-        - name: localtime
-          hostPath:
-            path: /etc/localtime
-        - name: timezone
-          configMap:
-            name: timezone
-            items:
-              - key: timezone
-                path: timezone
         - name: service-configs
           secret:
             secretName: service-configs
@@ -44,6 +35,11 @@ spec:
         - name: qms
           image: harbor.cyverse.org/de/qms
           env:
+            - name: TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: timezone
+                  key: timezone
             - name: QMS_DATABASE_URI
               valueFrom:
                 secretKeyRef:
@@ -84,12 +80,6 @@ spec:
               memory: "256Mi"
               ephemeral-storage: "100Mi"
           volumeMounts:
-            - name: localtime
-              mountPath: /etc/localtime
-              readOnly: true
-            - name: timezone
-              mountPath: /etc/timezone
-              subPath: timezone
             - name: service-configs
               mountPath: /etc/cyverse/de/configs
               readOnly: true
