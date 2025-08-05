@@ -15,24 +15,15 @@ spec:
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: de-app
-                operator: In
-                values:
-                - job-status-to-apps-adapter
-            topologyKey: kubernetes.io/hostname
+            - labelSelector:
+                matchExpressions:
+                  - key: de-app
+                    operator: In
+                    values:
+                      - job-status-to-apps-adapter
+              topologyKey: kubernetes.io/hostname
       restartPolicy: Always
       volumes:
-        - name: localtime
-          hostPath:
-            path: /etc/localtime
-        - name: timezone
-          configMap:
-            name: timezone
-            items:
-              - key: timezone
-                path: timezone
         - name: service-configs
           secret:
             secretName: service-configs
@@ -40,40 +31,39 @@ spec:
               - key: jobservices.yml
                 path: jobservices.yml
       containers:
-      - name: job-status-to-apps-adapter
-        image: harbor.cyverse.org/de/job-status-to-apps-adapter
-        volumeMounts:
-          - name: localtime
-            mountPath: /etc/localtime
-            readOnly: true
-          - name: timezone
-            mountPath: /etc/timezone
-            subPath: timezone
-          - name: service-configs
-            mountPath: /etc/iplant/de
-            readOnly: true
-        resources:
-          requests:
-            cpu: "1m"
-            memory: "128Mi"
-            ephemeral-storage: "1Gi"
-          limits:
-            cpu: "100m"
-            memory: "256Mi"
-            ephemeral-storage: "1Gi"
-        env:
-          - name: OTEL_TRACES_EXPORTER
-            valueFrom:
-              secretKeyRef:
-                name: configs
-                key: OTEL_TRACES_EXPORTER
-          - name: OTEL_EXPORTER_JAEGER_ENDPOINT
-            valueFrom:
-              secretKeyRef:
-                name: configs
-                key: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
-        args:
-          - --config
-          - /etc/iplant/de/jobservices.yml
-          - --batch-size
-          - "20"
+        - name: job-status-to-apps-adapter
+          image: harbor.cyverse.org/de/job-status-to-apps-adapter
+          volumeMounts:
+            - name: service-configs
+              mountPath: /etc/iplant/de
+              readOnly: true
+          resources:
+            requests:
+              cpu: "1m"
+              memory: "128Mi"
+              ephemeral-storage: "1Gi"
+            limits:
+              cpu: "100m"
+              memory: "256Mi"
+              ephemeral-storage: "1Gi"
+          env:
+            - name: TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: timezone
+                  key: timezone
+            - name: OTEL_TRACES_EXPORTER
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: OTEL_TRACES_EXPORTER
+            - name: OTEL_EXPORTER_JAEGER_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
+          args:
+            - --config
+            - /etc/iplant/de/jobservices.yml
+            - --batch-size
+            - "20"
