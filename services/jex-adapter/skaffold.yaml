@@ -1,14 +1,17 @@
-apiVersion: skaffold/v1
+apiVersion: skaffold/v3
 kind: Config
 metadata:
   name: jex-adapter
-deploy:
-  kubectl:
-    manifests:
-    - k8s/jex-adapter.yml
 build:
+  artifacts:
+    - image: harbor.cyverse.org/de/jex-adapter
+  platforms:
+    - "linux/amd64"
   tagPolicy:
     gitCommit: {}
-  artifacts:
-  - image: harbor.cyverse.org/de/jex-adapter
   local: {}
+manifests:
+  rawYaml:
+    - k8s/jex-adapter.yml
+deploy:
+  kubectl: {}
