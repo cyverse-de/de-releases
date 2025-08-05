@@ -1,14 +1,17 @@
-apiVersion: skaffold/v1
+apiVersion: skaffold/v3
 kind: Config
 metadata:
   name: monitoring-db
-deploy:
-  kubectl:
-    manifests:
-      - k8s/monitoring-db.yml
 build:
+  artifacts:
+    - image: harbor.cyverse.org/de/monitoring-db
+  platforms:
+    - "linux/amd64"
   tagPolicy:
     gitCommit: {}
-  artifacts:
-  - image: harbor.cyverse.org/de/monitoring-db
   local: {}
+manifests:
+  rawYaml:
+    - k8s/monitoring-db.yml
+deploy:
+  kubectl: {}

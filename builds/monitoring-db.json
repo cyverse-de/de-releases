@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/monitoring-db","tag":"harbor.cyverse.org/de/monitoring-db:v3.0.0@sha256:88f9df17ccb23ce0c99dfd2b63bc1e2e1fadeb8453bef8e1b9b2e9d7f590a7fd"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/monitoring-db","tag":"harbor.cyverse.org/de/monitoring-db:v2025.08.05-rc01@sha256:2ac4eca6811cb249261f2e4bf8cfb979ff0fe03af7b6d016b9ec14210fb50007"}]}
