@@ -12,13 +12,6 @@ spec:
       labels:
         de-app: grouper-ws
     spec:
-      nodeSelector:
-        grouper: "true"
-      tolerations:
-        - key: "grouper"
-          operator: "Equal"
-          value: "true"
-          effect: "NoSchedule"
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -31,15 +24,6 @@ spec:
               topologyKey: kubernetes.io/hostname
       restartPolicy: Always
       volumes:
-        - name: localtime
-          hostPath:
-            path: /etc/localtime
-        - name: timezone
-          configMap:
-            name: timezone
-            items:
-              - key: timezone
-                path: timezone
         - name: realm-config
           secret:
             secretName: service-configs
@@ -93,14 +77,6 @@ spec:
               ephemeral-storage: "1Gi"
           args: ["ws"]
           volumeMounts:
-            - name: localtime
-              mountPath: /etc/localtime
-              readOnly: true
-
-            - name: timezone
-              mountPath: /etc/timezone
-              subPath: timezone
-
             - name: realm-config
               mountPath: /usr/src/app/realm.properties
               subPath: realm.properties
@@ -109,6 +85,11 @@ spec:
               mountPath: /etc/grouper
               readOnly: true
           env:
+            - name: TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: timezone
+                  key: timezone
             - name: WEBAPPS_HOME
               value: "/usr/src/app"
             - name: JAVA_TOOL_OPTIONS

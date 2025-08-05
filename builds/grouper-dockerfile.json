@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/grouper","tag":"harbor.cyverse.org/de/grouper:v3.0.1@sha256:f4230d0276395e1d1b5f8c8286abfbae3795591fbe0aad6645a3c11d59ff9e44"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/grouper","tag":"harbor.cyverse.org/de/grouper:v2025.08.05-rc01@sha256:12251eb20dccc5cbbb61c99543dbbaa78523fdf11f7d2e179c118dfe1d8cad48"}]}
