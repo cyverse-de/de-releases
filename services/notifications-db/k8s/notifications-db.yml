@@ -10,39 +10,34 @@ spec:
     spec:
       restartPolicy: Never
       containers:
-      - name: update-notifications-db
-        image: harbor.cyverse.org/de/notifications-db
-        imagePullPolicy: Always
-        resources:
-          requests:
-            cpu: "256m"
-            memory: "128Mi"
-            ephemeral-storage: "1Gi"
-          limits:
-            cpu: "512m"
-            memory: "256Mi"
-            ephemeral-storage: "1Gi"
-        env:
-          - name: NOTIFICATIONS_DATABASE_URI
-            valueFrom:
-              secretKeyRef:
-                name: configs
-                key: NOTIFICATIONS_DATABASE_URI
-        args: ["-database", "$(NOTIFICATIONS_DATABASE_URI)", "-path", "/migrations", "up"]
-        volumeMounts:
-          - name: localtime
-            mountPath: /etc/localtime
-            readOnly: true
-          - name: timezone
-            mountPath: /etc/timezone
-            subPath: timezone
-      volumes:
-        - name: localtime
-          hostPath:
-            path: /etc/localtime
-        - name: timezone
-          configMap:
-            name: timezone
-            items:
-              - key: timezone
-                path: timezone
+        - name: update-notifications-db
+          image: harbor.cyverse.org/de/notifications-db
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: "256m"
+              memory: "128Mi"
+              ephemeral-storage: "1Gi"
+            limits:
+              cpu: "512m"
+              memory: "256Mi"
+              ephemeral-storage: "1Gi"
+          env:
+            - name: TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: timezone
+                  key: timezone
+            - name: NOTIFICATIONS_DATABASE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: NOTIFICATIONS_DATABASE_URI
+          args:
+            [
+              "-database",
+              "$(NOTIFICATIONS_DATABASE_URI)",
+              "-path",
+              "/migrations",
+              "up",
+            ]
