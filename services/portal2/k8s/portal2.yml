@@ -25,15 +25,16 @@ spec:
                       - user-portal
               topologyKey: kubernetes.io/hostname
       restartPolicy: Always
-      volumes:
-        - name: localtime
-          hostPath:
-            path: /etc/localtime
       containers:
         - name: portal
           image: harbor.cyverse.org/de/portal2
           imagePullPolicy: Always
           env:
+            - name: TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: timezone
+                  key: timezone
             - name: UI_BASE_URL
               valueFrom:
                 secretKeyRef:
@@ -332,10 +333,6 @@ spec:
           ports:
             - name: http
               containerPort: 3000
-          volumeMounts:
-            - name: localtime
-              mountPath: /etc/localtime
-              readOnly: true
           readinessProbe:
             httpGet:
               path: /
