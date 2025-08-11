@@ -46,7 +46,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: configs
-                  key: LDAP_PASSWORD
+                  key: LDAP_BASE_DN
           ports:
             - name: listen-port
               containerPort: 8000
