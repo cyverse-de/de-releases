@@ -57,6 +57,8 @@ spec:
             - "$(USER_SUFFIX)"
             - --ingress-class
             - nginx
+            - --local-storage-class
+            - "$(VICE_LOCAL_STORAGE_CLASS)"
             - --log-level
             - debug
           env:
@@ -91,6 +93,11 @@ spec:
                 secretKeyRef:
                   name: configs
                   key: NATS_URLS
+            - name: VICE_LOCAL_STORAGE_CLASS
+              valueFrom:
+                secetKeyRef:
+                  name: configs
+                  key: VICE_LOCAL_STORAGE_CLASS
           ports:
             - name: listen-port
               containerPort: 60000
