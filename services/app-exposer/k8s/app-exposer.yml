@@ -95,7 +95,7 @@ spec:
                   key: NATS_URLS
             - name: VICE_LOCAL_STORAGE_CLASS
               valueFrom:
-                secetKeyRef:
+                secretKeyRef:
                   name: configs
                   key: VICE_LOCAL_STORAGE_CLASS
           ports:
