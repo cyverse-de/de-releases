@@ -53,6 +53,11 @@ spec:
                 secretKeyRef:
                   name: configs
                   key: IRODS_ZONE
+            - name: LDAP_EVERYONE_GROUP
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: LDAP_EVERYONE_GROUP
           ports:
             - name: listen-port
               containerPort: 8000
