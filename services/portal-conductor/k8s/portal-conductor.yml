@@ -58,6 +58,16 @@ spec:
                 secretKeyRef:
                   name: configs
                   key: LDAP_EVERYONE_GROUP
+            - name: MAILMAN_URL
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: MAILMAN_URL
+            - name: MAILMAN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: MAILMAN_PASSWORD
           ports:
             - name: listen-port
               containerPort: 8000
