@@ -58,6 +58,26 @@ spec:
                 secretKeyRef:
                   name: configs
                   key: LDAP_EVERYONE_GROUP
+            - name: TERRAIN_URL
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: TERRAIN_URL
+            - name: TERRAIN_USER
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: TERRAIN_USER
+            - name: TERRAIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: TERRAIN_PASSWORD
+            - name: MAILMAN_ENABLED
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: MAILMAN_ENABLED
             - name: MAILMAN_URL
               valueFrom:
                 secretKeyRef:
