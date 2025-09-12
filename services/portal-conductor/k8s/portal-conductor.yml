@@ -104,7 +104,7 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 5
         - name: exim
-          image: tianon/exim4:latest
+          image: docker.io/tianon/exim4:latest
           ports:
             - containerPort: 25
               name: smtp
