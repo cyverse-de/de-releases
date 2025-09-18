@@ -1,0 +1,29 @@
+{
+  "ldap": {
+    "url": "{{ portal_ldap_host }}",
+    "user": "{{ portal_ldap_admin  }}",
+    "password": "{{ portal_ldap_password  }}",
+    "base_dn": "{{ portal_ldap_base_dn  }}",
+    "community_group": "community",
+    "everyone_group": "{{ portal_ldap_everyone_group  }}"
+  },
+  "irods": {
+    "host": "{{ irods_host }}",
+    "port": "{{ irods_port  }}",
+    "user": "{{ irods_user  }}",
+    "password": "{{ irods_password  }}",
+    "zone": "{{ irods_zone  }}",
+    "admin_user": "rodsadmin",
+    "ipcservices_user": "ipcservices"
+  },
+  "terrain": {
+    "url": "{{ portal_terrain_url  }}",
+    "user": "{{ portal_terrain_user }}",
+    "password": "{{ portal_terrain_user  }}"
+  },
+  "mailman": {
+    "enabled": {{ portal_mailman_enabled }},
+    "url": "{{ portal_mailman_url  }}",
+    "password": "{{ portal_mailman_password }}"
+  }
+}

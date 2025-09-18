@@ -27,67 +27,26 @@ spec:
       containers:
         - name: portal-conductor
           image: harbor.cyverse.org/de/portal-conductor
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/cyverse/portal-conductor
+              readOnly: true
+          volumes:
+            - name: config-volume
+              secret:
+                secretName: service-configs
+                items:
+                  - key: portal-conductor.json
+                    path: portal-conductor.json
           env:
-            - name: IRODS_HOST
+            - name: TZ
               valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: IRODS_HOST
-            - name: IRODS_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: IRODS_PORT
-            - name: IRODS_USER
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: IRODS_USER
-            - name: IRODS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: IRODS_PASSWORD
-            - name: IRODS_ZONE
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: IRODS_ZONE
-            - name: LDAP_EVERYONE_GROUP
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: LDAP_EVERYONE_GROUP
-            - name: TERRAIN_URL
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: TERRAIN_URL
-            - name: TERRAIN_USER
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: TERRAIN_USER
-            - name: TERRAIN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: TERRAIN_PASSWORD
-            - name: MAILMAN_ENABLED
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: MAILMAN_ENABLED
-            - name: MAILMAN_URL
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: MAILMAN_URL
-            - name: MAILMAN_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: MAILMAN_PASSWORD
+                configMapKeyRef:
+                  name: timezone
+                  key: timezone
+            - name: PORTAL_CONDUCTOR_CONFIG
+              value: "/etc/cyverse/portal-conductor/portal-conductor.json"
           ports:
             - name: listen-port
               containerPort: 8000
