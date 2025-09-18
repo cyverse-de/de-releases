@@ -24,6 +24,13 @@ spec:
                       - portal-conductor
               topologyKey: kubernetes.io/hostname
       restartPolicy: Always
+      volumes:
+        - name: config-volume
+          secret:
+            secretName: service-configs
+            items:
+              - key: portal-conductor.json
+                path: portal-conductor.json
       containers:
         - name: portal-conductor
           image: harbor.cyverse.org/de/portal-conductor
@@ -32,13 +39,6 @@ spec:
             - name: config-volume
               mountPath: /etc/cyverse/portal-conductor
               readOnly: true
-          volumes:
-            - name: config-volume
-              secret:
-                secretName: service-configs
-                items:
-                  - key: portal-conductor.json
-                    path: portal-conductor.json
           env:
             - name: TZ
               valueFrom:
