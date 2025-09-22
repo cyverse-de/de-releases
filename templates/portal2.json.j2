@@ -24,7 +24,15 @@
     "secret": "{{ portal_keycloak_secret }}"
   },
   "portalConductor": {
-    "url": "{{ portal_conductor_url }}"
+    "url": "{{ portal_conductor_url }}",
+    "retries" : 5,
+    "auth" : {
+      "username" : "{{ portal_conductor_auth_username  }}",
+      "password" : "{{ portal_conductor_auth_password  }}"
+    },
+    "ssl" : {
+      "rejectUnauthorized" : false
+    }
   },
   "terrain": {
     "url": "{{ portal_terrain_url }}",

@@ -1,4 +1,19 @@
 {
+  "ssl": {
+    "enabled": true,
+    "cert_file": "/etc/ssl/certs/tls.crt",
+    "key_file": "/etc/ssl/certs/tls.key",
+    "port": 8443
+  },
+  "server": {
+    "http_port": 8000
+  },
+  "auth": {
+    "enabled": true,
+    "username": "{{ portal_conductor_auth_username | default('admin') }}",
+    "password": "{{ portal_conductor_auth_password }}",
+    "realm": "Portal Conductor API"
+  },
   "ldap": {
     "url": "{{ portal_ldap_host }}",
     "user": "{{ portal_ldap_admin  }}",

@@ -31,6 +31,9 @@ spec:
             items:
               - key: portal-conductor.json
                 path: portal-conductor.json
+        - name: ssl-certs
+          secret:
+            secretName: portal-conductor-ssl
       containers:
         - name: portal-conductor
           image: harbor.cyverse.org/de/portal-conductor
@@ -38,6 +41,9 @@ spec:
           volumeMounts:
             - name: config-volume
               mountPath: /etc/cyverse/portal-conductor
+              readOnly: true
+            - name: ssl-certs
+              mountPath: /etc/ssl/certs
               readOnly: true
           env:
             - name: TZ
@@ -50,6 +56,8 @@ spec:
           ports:
             - name: listen-port
               containerPort: 8000
+            - name: https-port
+              containerPort: 8443
           livenessProbe:
             httpGet:
               path: /
@@ -81,6 +89,11 @@ spec:
   selector:
     app: portal-conductor
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 80
       targetPort: listen-port
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: https-port
