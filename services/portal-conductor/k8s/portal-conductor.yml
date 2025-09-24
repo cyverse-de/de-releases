@@ -70,16 +70,6 @@ spec:
               port: 8000
             initialDelaySeconds: 5
             periodSeconds: 5
-        - name: exim
-          image: docker.io/tianon/exim4:latest
-          ports:
-            - containerPort: 25
-              name: smtp
-          env:
-            - name: EXIM_SMARTHOST
-              value: ""
-            - name: EXIM_ALLOWED_SENDERS
-              value: "172.16.0.0/12 : 10.0.0.0/8 : 192.168.0.0/16"
 ---
 apiVersion: v1
 kind: Service
@@ -97,3 +87,65 @@ spec:
       protocol: TCP
       port: 443
       targetPort: https-port
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smtp-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smtp-proxy
+  template:
+    metadata:
+      labels:
+        app: smtp-proxy
+    spec:
+      hostNetwork: true
+      restartPolicy: Always
+      containers:
+        - name: smtp-proxy
+          image: harbor.cyverse.org/de/smtp-proxy:latest
+          imagePullPolicy: Always
+          ports:
+            - name: smtp
+              containerPort: 2525
+              protocol: TCP
+            - name: stats
+              containerPort: 8404
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
+          livenessProbe:
+            tcpSocket:
+              port: 2525
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          readinessProbe:
+            tcpSocket:
+              port: 2525
+            initialDelaySeconds: 5
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smtp-proxy
+spec:
+  selector:
+    app: smtp-proxy
+  ports:
+    - name: smtp
+      protocol: TCP
+      port: 2525
+      targetPort: smtp
+    - name: stats
+      protocol: TCP
+      port: 8404
+      targetPort: stats
