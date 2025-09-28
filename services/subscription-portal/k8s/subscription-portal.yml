@@ -1,0 +1,129 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscription-portal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      de-app: subscription-portal
+  strategy:
+    rollingUpdate:
+      maxSurge: 200%
+  template:
+    metadata:
+      labels:
+        de-app: subscription-portal
+        app: de
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: de-app
+                    operator: In
+                    values:
+                      - subscription-portal
+              topologyKey: kubernetes.io/hostname
+      restartPolicy: Always
+      containers:
+        - name: subscription-portal
+          image: harbor.cyverse.org/de/subscription-portal
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "1Gi"
+              ephemeral-storage: "1Gi"
+            limits:
+              cpu: "3000m"
+              memory: "3Gi"
+              ephemeral-storage: "1Gi"
+          env:
+            - name: TZ
+              valueFrom:
+                configMapKeyRef:
+                  name: timezone
+                  key: timezone
+            - name: SP_AUTHORIZE_NET_LOGIN_ID
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_AUTHORIZE_NET_LOGIN_ID
+            - name: SP_AUTHORIZE_NET_TRANSACTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_AUTHORIZE_NET_TRANSACTION_KEY
+            - name: SP_AUTHORIZE_NET_API_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_AUTHORIZE_NET_API_ENDPOINT
+            - name: SP_TERRAIN_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_TERRAIN_BASE_URL
+            - name: SP_KEYCLOAK_ISSUER
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_KEYCLOAK_ISSUER
+            - name: SP_KEYCLOAK_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_KEYCLOAK_CLIENT_ID
+            - name: SP_KEYCLOAK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_KEYCLOAK_CLIENT_SECRET
+            - name: NEXTAUTH_URL
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: NEXTAUTH_URL
+            - name: NEXTAUTH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: NEXTAUTH_SECRET
+          ports:
+            - name: listen-port
+              containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 20
+            timeoutSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 20
+            timeoutSeconds: 10
+            failureThreshold: 100
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 60
+            periodSeconds: 20
+            timeoutSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: subscription-portal
+spec:
+  selector:
+    de-app: subscription-portal
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: listen-port
