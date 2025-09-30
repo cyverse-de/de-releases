@@ -65,6 +65,11 @@ spec:
                 secretKeyRef:
                   name: subscription-portal-configs
                   key: SP_TERRAIN_BASE_URL
+            - name: SP_CYVERSE_SUPPORT_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_CYVERSE_SUPPORT_EMAIL
             - name: SP_KEYCLOAK_ISSUER
               valueFrom:
                 secretKeyRef:
