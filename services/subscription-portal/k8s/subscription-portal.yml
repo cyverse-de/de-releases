@@ -90,6 +90,36 @@ spec:
                 secretKeyRef:
                   name: subscription-portal-configs
                   key: NEXTAUTH_SECRET
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: DB_DATABASE
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: DB_PASSWORD
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: DB_PORT
+            - name: DB_TIMEOUT
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: DB_TIMEOUT
           ports:
             - name: listen-port
               containerPort: 3000
