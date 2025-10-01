@@ -60,6 +60,11 @@ spec:
                 secretKeyRef:
                   name: subscription-portal-configs
                   key: SP_AUTHORIZE_NET_API_ENDPOINT
+            - name: SP_AUTHORIZE_NET_TEST_REQUESTS
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_AUTHORIZE_NET_TEST_REQUESTS
             - name: SP_TERRAIN_BASE_URL
               valueFrom:
                 secretKeyRef:
