@@ -1,0 +1,8 @@
+{
+  "builds": [
+    {
+      "imageName": "harbor.cyverse.org/de/formation",
+      "tag": "harbor.cyverse.org/de/formation:qa"
+    }
+  ]
+}
