@@ -42,7 +42,7 @@
     "password": "{{ portal_mailman_password }}"
   },
   "smtp" : {
-    "host" : "localhost",
-    "port" : 25
+    "host" : "{{ portal_smtp_host }}",
+    "port" : {{ portal_smtp_port }}
   }
 }
