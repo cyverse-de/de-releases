@@ -45,6 +45,11 @@ spec:
                 configMapKeyRef:
                   name: timezone
                   key: timezone
+            - name: SP_LOG_LEVEL
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_LOG_LEVEL
             - name: SP_AUTHORIZE_NET_LOGIN_ID
               valueFrom:
                 secretKeyRef:
