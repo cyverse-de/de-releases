@@ -1,8 +1,1 @@
-{
-  "builds": [
-    {
-      "imageName": "harbor.cyverse.org/de/formation",
-      "tag": "harbor.cyverse.org/de/formation:qa"
-    }
-  ]
-}
+{"builds":[{"imageName":"harbor.cyverse.org/de/formation","tag":"harbor.cyverse.org/de/formation:v2025.11.04@sha256:b2dec2f39e4c863868a2b36569e425e01f3f1499db3f995a21f36d64d6dda907"}]}
