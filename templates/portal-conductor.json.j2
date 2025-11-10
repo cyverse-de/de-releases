@@ -42,7 +42,7 @@
     "password": "{{ portal_mailman_password }}"
   },
   "formation" : {
-    "base_url" : "http://formation",
+    "base_url" : "https://qa.cyverse.org/formation",
     "keycloak" : {
       "server_url" : "{{ formation_keycloak_server_uri }}",
       "realm" : "{{ formation_keycloak_realm_name  }}",
@@ -51,7 +51,7 @@
     },
     "user_deletion_app_name" : "{{ formation_user_deletion_app_name }}",
     "system_id" : "de",
-    "verify_ssl" : "{{ formation_verify_ssl }}"
+    "verify_ssl" : {{ formation_verify_ssl }}
   },
   "smtp" : {
     "host" : "{{ portal_smtp_host }}",
