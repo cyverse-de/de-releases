@@ -45,6 +45,11 @@ spec:
                 configMapKeyRef:
                   name: timezone
                   key: timezone
+            - name: SP_LOG_LEVEL
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_LOG_LEVEL
             - name: SP_AUTHORIZE_NET_LOGIN_ID
               valueFrom:
                 secretKeyRef:
@@ -55,16 +60,31 @@ spec:
                 secretKeyRef:
                   name: subscription-portal-configs
                   key: SP_AUTHORIZE_NET_TRANSACTION_KEY
+            - name: SP_AUTHORIZE_NET_SIGNATURE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_AUTHORIZE_NET_SIGNATURE_KEY
             - name: SP_AUTHORIZE_NET_API_ENDPOINT
               valueFrom:
                 secretKeyRef:
                   name: subscription-portal-configs
                   key: SP_AUTHORIZE_NET_API_ENDPOINT
+            - name: SP_AUTHORIZE_NET_HOSTED_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_AUTHORIZE_NET_HOSTED_ENDPOINT
             - name: SP_AUTHORIZE_NET_TEST_REQUESTS
               valueFrom:
                 secretKeyRef:
                   name: subscription-portal-configs
                   key: SP_AUTHORIZE_NET_TEST_REQUESTS
+            - name: SP_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_BASE_URL
             - name: SP_TERRAIN_BASE_URL
               valueFrom:
                 secretKeyRef:
