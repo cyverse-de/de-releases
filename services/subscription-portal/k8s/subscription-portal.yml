@@ -95,6 +95,11 @@ spec:
                 secretKeyRef:
                   name: subscription-portal-configs
                   key: SP_CYVERSE_SUPPORT_EMAIL
+            - name: SP_ADMIN_GROUPS
+              valueFrom:
+                secretKeyRef:
+                  name: subscription-portal-configs
+                  key: SP_ADMIN_GROUPS
             - name: SP_KEYCLOAK_ISSUER
               valueFrom:
                 secretKeyRef:
