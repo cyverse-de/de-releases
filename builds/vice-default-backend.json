@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/vice-default-backend","tag":"harbor.cyverse.org/de/vice-default-backend:v2025.08.05@sha256:d38583cdfd5d63080b97d026074f0b18f7fea4b7a5d5a165a24bda1649d80dbc"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/vice-default-backend","tag":"harbor.cyverse.org/de/vice-default-backend:v2026.02.03-rc01@sha256:8e9d789454f7bd5e88ff0e5ea3a7c835a5b302d0e23e1b78f9951630dc1a91e5"}]}
