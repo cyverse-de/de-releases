@@ -25,6 +25,10 @@ spec:
                       - unleash
               topologyKey: kubernetes.io/hostname
       restartPolicy: Always
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "2"
       containers:
         - name: unleash
           image: unleashorg/unleash-server:7
