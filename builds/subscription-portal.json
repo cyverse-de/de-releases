@@ -1,1 +1,1 @@
-{"builds":[{"imageName":"harbor.cyverse.org/de/subscription-portal","tag":"harbor.cyverse.org/de/subscription-portal:v2026.02.10-rc03@sha256:3e5b62d1922f327e46bf4fe80e5a5a9067731c1651fe61615bdd0985db00328b"}]}
+{"builds":[{"imageName":"harbor.cyverse.org/de/subscription-portal","tag":"harbor.cyverse.org/de/subscription-portal:v2026.02.13u2@sha256:eba6ad488dd58f502d2c75a1fcf31a4a16bf9bbc4fb403c02a9eaff6f2e876d9"}]}
