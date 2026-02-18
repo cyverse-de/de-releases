@@ -105,6 +105,7 @@ vice:
     base: "{{ baseurls_job_status_listener|string|regex_replace("\/$","") }}"
   image-pull-secret: {{ vice_image_pull_secret }}
   backend-namespace: {{ ns }}
+  gateway_provider: {{ gateway_provider }}
   domain: {{ vice_base_domain }}
   use_csi_driver: {{ vice_use_csi_driver }}
   default_backend:
