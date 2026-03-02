@@ -61,6 +61,11 @@ spec:
             - "$(VICE_LOCAL_STORAGE_CLASS)"
             - --log-level
             - debug
+            - --enable-legacy-vice-proxy-auth
+            - --check-resource-access-service
+            - http://check-resource-access
+            - --cluster-config-secret
+            - "$(CLUSTER_CONFIG_SECRET)"
           env:
             - name: TZ
               valueFrom:
@@ -98,6 +103,11 @@ spec:
                 secretKeyRef:
                   name: configs
                   key: VICE_LOCAL_STORAGE_CLASS
+            - name: CLUSTER_CONFIG_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: configs
+                  key: CLUSTER_CONFIG_SECRET
           ports:
             - name: listen-port
               containerPort: 60000
