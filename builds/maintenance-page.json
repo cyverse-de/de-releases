@@ -1,0 +1,8 @@
+{
+  "builds": [
+    {
+      "imageName": "harbor.cyverse.org/de/maintenance-page",
+      "tag": "harbor.cyverse.org/de/maintenance-page@sha256:49b88745ca32d2cb130906215d85cae27e0001ee886bdbe0ae9b9366fd970ccd"
+    }
+  ]
+}

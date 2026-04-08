@@ -32,14 +32,14 @@ spec:
           secret:
             secretName: service-configs
             items:
-              - key: analyses.properties
-                path: analyses.properties
+              - key: analyses.yml
+                path: analyses.yml
       containers:
         - name: analyses
           image: harbor.cyverse.org/de/analyses
           args:
             - --config
-            - /etc/iplant/de/analyses.properties
+            - /etc/iplant/de/analyses.yml
           volumeMounts:
             - name: service-configs
               mountPath: /etc/iplant/de
@@ -47,23 +47,18 @@ spec:
           resources:
             requests:
               cpu: "100m"
-              memory: "1Gi"
-              ephemeral-storage: "1Gi"
+              memory: "128Mi"
+              ephemeral-storage: "100Mi"
             limits:
-              cpu: "3000m"
-              memory: "3Gi"
-              ephemeral-storage: "1Gi"
+              cpu: "1000m"
+              memory: "512Mi"
+              ephemeral-storage: "100Mi"
           env:
             - name: TZ
               valueFrom:
                 configMapKeyRef:
                   name: timezone
                   key: timezone
-            - name: JAVA_TOOL_OPTIONS
-              valueFrom:
-                configMapKeyRef:
-                  name: java-tool-options
-                  key: high
             - name: OTEL_TRACES_EXPORTER
               valueFrom:
                 secretKeyRef:

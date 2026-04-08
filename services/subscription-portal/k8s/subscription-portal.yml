@@ -27,6 +27,10 @@ spec:
                       - subscription-portal
               topologyKey: kubernetes.io/hostname
       restartPolicy: Always
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
       containers:
         - name: subscription-portal
           image: harbor.cyverse.org/de/subscription-portal

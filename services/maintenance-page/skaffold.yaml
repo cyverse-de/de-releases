@@ -1,17 +1,17 @@
 apiVersion: skaffold/v3
 kind: Config
 metadata:
-  name: analyses
+  name: maintenance-page
 build:
   artifacts:
-    - image: harbor.cyverse.org/de/analyses
+    - image: harbor.cyverse.org/de/maintenance-page
+  platforms:
+    - "linux/amd64"
   tagPolicy:
     gitCommit: {}
   local: {}
-  platforms:
-    - "linux/amd64"
 manifests:
   rawYaml:
-    - k8s/analyses.yml
+    - k8s/maintenance-page.yml
 deploy:
   kubectl: {}

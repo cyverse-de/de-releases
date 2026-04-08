@@ -1,0 +1,94 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: ai-sandboxes-ui
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            de-app: ai-sandboxes-ui
+    strategy:
+        rollingUpdate:
+            maxSurge: 200%
+    template:
+        metadata:
+            labels:
+                de-app: ai-sandboxes-ui
+                app: de
+        spec:
+            affinity:
+                podAntiAffinity:
+                    requiredDuringSchedulingIgnoredDuringExecution:
+                        - labelSelector:
+                              matchExpressions:
+                                  - key: de-app
+                                    operator: In
+                                    values:
+                                        - ai-sandboxes-ui
+                          topologyKey: kubernetes.io/hostname
+            restartPolicy: Always
+            containers:
+                - name: ai-sandboxes-ui
+                  image: harbor.cyverse.org/de/ai-sandboxes-ui
+                  resources:
+                      requests:
+                          cpu: "100m"
+                          memory: "1Gi"
+                          ephemeral-storage: "1Gi"
+                      limits:
+                          cpu: "3000m"
+                          memory: "3Gi"
+                          ephemeral-storage: "1Gi"
+                  env:
+                      - name: TZ
+                        valueFrom:
+                            configMapKeyRef:
+                                name: timezone
+                                key: timezone
+                      - name: AI2S_LOG_LEVEL
+                        valueFrom:
+                            secretKeyRef:
+                                name: ai-sandboxes-ui-configs
+                                key: AI2S_LOG_LEVEL
+                      - name: AI2S_TERRAIN_BASE_URL
+                        valueFrom:
+                            secretKeyRef:
+                                name: ai-sandboxes-ui-configs
+                                key: AI2S_TERRAIN_BASE_URL
+                  ports:
+                      - name: listen-port
+                        containerPort: 3000
+                  livenessProbe:
+                      httpGet:
+                          path: /
+                          port: 3000
+                      initialDelaySeconds: 60
+                      periodSeconds: 20
+                      timeoutSeconds: 10
+                  startupProbe:
+                      httpGet:
+                          path: /
+                          port: 3000
+                      initialDelaySeconds: 60
+                      periodSeconds: 20
+                      timeoutSeconds: 10
+                      failureThreshold: 100
+                  readinessProbe:
+                      httpGet:
+                          path: /
+                          port: 3000
+                      initialDelaySeconds: 60
+                      periodSeconds: 20
+                      timeoutSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: ai-sandboxes-ui
+spec:
+    selector:
+        de-app: ai-sandboxes-ui
+    ports:
+        - protocol: TCP
+          port: 80
+          targetPort: listen-port
