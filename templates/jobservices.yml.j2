@@ -96,16 +96,13 @@ users:
   domain: "{{ uid_domain }}"
 
 vice:
+  keycloak:
+    base_url: "{{ vice_operator_keycloak_base_url }}"
+    realm: "{{ vice_operator_keycloak_realm }}"
+    client_id: "{{ vice_operator_keycloak_client_id }}"
+    client_secret: "{{ vice_operator_keycloak_client_secret }}"
   db:
     uri: "postgresql://{{ dbms_connection_user }}:{{ dbms_connection_pass | urlencode }}@{{ groups['dbms'][0] }}:{{ pg_listen_port }}/{{ de_db_name }}?sslmode=disable"
-  operators:
-{% for vice_operator in vice_operators_values %}
-    - name: {{ vice_operator.name }}
-      url: {{ vice_operator.url }}
-      insecure: {{ vice_operator.insecure }}
-      username: {{ vice_operator.username }}
-      password: {{ vice_operator.password }}
-{% endfor %}
   file-transfers:
     image: "{{ vice_file_transfers_image }}"
     tag: "{{ vice_file_transfers_tag }}"
