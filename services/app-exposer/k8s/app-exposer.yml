@@ -59,7 +59,6 @@ spec:
             - "$(VICE_LOCAL_STORAGE_CLASS)"
             - --log-level
             - debug
-            - --enable-legacy-vice-proxy-auth
             - --cluster-config-secret
             - "$(CLUSTER_CONFIG_SECRET)"
           env:
