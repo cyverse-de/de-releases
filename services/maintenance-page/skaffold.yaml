@@ -12,6 +12,6 @@ build:
   local: {}
 manifests:
   rawYaml:
-    - k8s/maintenance-page.yml
+    - k8s/maintenance-page.yaml
 deploy:
   kubectl: {}

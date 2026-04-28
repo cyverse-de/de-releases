@@ -29,8 +29,6 @@ spec:
               ephemeral-storage: "100Mi"
           args:
             - --namespace=$(DE_ENV)
-            - --basic-auth-username=$(BASIC_AUTH_USERNAME)
-            - --basic-auth-password=$(BASIC_AUTH_PASSWORD)
           env:
             - name: DE_ENV
               valueFrom:
@@ -54,13 +52,13 @@ spec:
               containerPort: 8081
           livenessProbe:
             httpGet:
-              path: /index.html
+              path: /
               port: 8080
             initialDelaySeconds: 2
             periodSeconds: 2
           readinessProbe:
             httpGet:
-              path: /index.html
+              path: /
               port: 8080
             initialDelaySeconds: 2
             periodSeconds: 2

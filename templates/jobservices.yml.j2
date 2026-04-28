@@ -96,6 +96,11 @@ users:
   domain: "{{ uid_domain }}"
 
 vice:
+  keycloak:
+    base_url: "{{ vice_operator_keycloak_base_url }}"
+    realm: "{{ vice_operator_keycloak_realm }}"
+    client_id: "{{ vice_operator_keycloak_client_id }}"
+    client_secret: "{{ vice_operator_keycloak_client_secret }}"
   db:
     uri: "postgresql://{{ dbms_connection_user }}:{{ dbms_connection_pass | urlencode }}@{{ groups['dbms'][0] }}:{{ pg_listen_port }}/{{ de_db_name }}?sslmode=disable"
   file-transfers:
