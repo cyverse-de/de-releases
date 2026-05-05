@@ -24,13 +24,6 @@ spec:
                       - vice-default-backend
               topologyKey: kubernetes.io/hostname
       restartPolicy: Always
-      volumes:
-        - name: service-configs
-          secret:
-            secretName: service-configs
-            items:
-              - key: jobservices.yml
-                path: jobservices.yml
       containers:
         - name: vice-default-backend
           image: harbor.cyverse.org/de/vice-default-backend
@@ -43,22 +36,9 @@ spec:
               cpu: "100m"
               memory: "256Mi"
               ephemeral-storage: "1Gi"
-          args:
-            - --config
-            - /etc/iplant/de/jobservices.yml
-          env:
-            - name: TZ
-              valueFrom:
-                configMapKeyRef:
-                  name: timezone
-                  key: timezone
           ports:
             - name: listen-port
               containerPort: 60000
-          volumeMounts:
-            - name: service-configs
-              mountPath: /etc/iplant/de
-              readOnly: true
           livenessProbe:
             httpGet:
               path: /healthz
