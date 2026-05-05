@@ -54,6 +54,7 @@ tools:
     max_cpu_limit: {{ de_tools_admin_max_cpu_limit }}
     max_memory_limit: {{ de_tools_admin_max_memory_limit }}
     max_disk_limit: {{ de_tools_admin_max_disk_limit }}
+    max_gpu_limit: {{ de_tools_admin_max_gpu_limit }}
 unleash:
   api_url: {{ unleash_base_url|string|regex_replace("\/$","") }}{{ unleash_api_path }}
   client_secret: "{{ unleash_api_token }}"
