@@ -107,6 +107,8 @@ apps.interactive-apps.base-url = {{ vice_base_uri.rstrip("/")}}
 
 # Tools settings.
 apps.tools.trusted-registries = {{ docker_trusted_registries | join(",") }}
+apps.tools.valid-gpu-models = {{ de_tools_valid_gpu_models | join(",") }}
+apps.tools.default.gpu-models = {{ de_tools_default_gpu_models | join(",") }}
 
 # AMQP
 apps.amqp.uri = amqp://{{ de_amqp_user }}:{{ de_amqp_password | urlencode }}@{{ de_amqp_host }}:{{ de_amqp_port }}/{{ de_amqp_vhost | urlencode | regex_replace('/', '%2F') }}
