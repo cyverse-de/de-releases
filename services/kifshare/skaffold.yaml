@@ -5,6 +5,9 @@ metadata:
 build:
   artifacts:
     - image: harbor.cyverse.org/de/kifshare
+      docker:
+        cacheFrom:
+          - harbor.cyverse.org/de/kifshare
   tagPolicy:
     gitCommit: {}
   local: {}
