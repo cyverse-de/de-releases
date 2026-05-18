@@ -7,7 +7,7 @@ build:
     - image: harbor.cyverse.org/de/kifshare
       docker:
         cacheFrom:
-          - harbor.cyverse.org/de/kifshare
+          - harbor.cyverse.org/de/kifshare:cache
   tagPolicy:
     gitCommit: {}
   local: {}
