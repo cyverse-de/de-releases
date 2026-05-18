@@ -55,8 +55,6 @@ spec:
             - "$(APP_EXPOSER_NAMESPACE)"
             - --user-suffix
             - "$(USER_SUFFIX)"
-            - --local-storage-class
-            - "$(VICE_LOCAL_STORAGE_CLASS)"
             - --log-level
             - debug
             - --cluster-config-secret
