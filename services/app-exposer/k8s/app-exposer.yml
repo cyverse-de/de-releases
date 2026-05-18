@@ -91,11 +91,6 @@ spec:
                 secretKeyRef:
                   name: configs
                   key: NATS_URLS
-            - name: VICE_LOCAL_STORAGE_CLASS
-              valueFrom:
-                secretKeyRef:
-                  name: configs
-                  key: VICE_LOCAL_STORAGE_CLASS
             - name: CLUSTER_CONFIG_SECRET
               valueFrom:
                 secretKeyRef:
