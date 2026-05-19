@@ -27,6 +27,15 @@ spec:
       containers:
         - name: vice-default-backend
           image: harbor.cyverse.org/de/vice-default-backend
+          # VICE_DOMAIN and APP_EXPOSER_URL together enable cross-cluster
+          # redirect: when an unrecognized subdomain hits the wildcard
+          # HTTPRoute, the default backend asks app-exposer which operator
+          # owns it and 302s the browser to that operator's base_url.
+          # Both must be set together, or both omitted to disable.
+          # VICE_DOMAIN must match the wildcard suffix vice-default-route
+          # catches on this cluster (e.g. *.cyverse.run -> cyverse.run).
+          # LOOKUP_TIMEOUT and LOOKUP_CACHE_TTL are optional (see main.go
+          # defaultLookup* constants).
           env:
             - name: VICE_DOMAIN
               valueFrom:
