@@ -1,5 +1,5 @@
 {
   "repository": "https://github.com/cyverse-de/vice-proxy",
-  "release": "v2026.06.02-rc01",
-  "image": "harbor.cyverse.org/de/vice-proxy:v2026.06.02-rc01"
+  "release": "v2026.06.02",
+  "image": "harbor.cyverse.org/de/vice-proxy:v2026.06.02"
 }
