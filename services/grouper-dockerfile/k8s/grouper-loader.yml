@@ -95,6 +95,6 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: java-tool-options
-                  key: high
+                  key: grouper
             - name: GROUPER_USE_SSL
               value: "false"
