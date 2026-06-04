@@ -1,0 +1,17 @@
+apiVersion: skaffold/v3
+kind: Config
+metadata:
+  name: openldap
+build:
+  artifacts:
+    - image: harbor.cyverse.org/de/openldap
+  tagPolicy:
+    gitCommit: {}
+  local: {}
+  platforms:
+    - "linux/amd64"
+manifests:
+  rawYaml:
+    - k8s/openldap.yml
+deploy:
+  kubectl: {}
