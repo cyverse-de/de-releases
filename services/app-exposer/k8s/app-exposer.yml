@@ -133,23 +133,3 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: listen-port
-# ---
-# apiVersion: batch/v1beta1
-# kind: CronJob
-# metadata:
-#   name: app-exposer-curl
-# spec:
-#   schedule: "*/1 * * * *"
-#   jobTemplate:
-#     spec:
-#       template:
-#         spec:
-#           containers:
-#           - name: app-exposer-curl
-#             image: curlimages/curl:7.69.1
-#             args:
-#             - -L
-#             - -X
-#             - POST
-#             - http://app-exposer/vice/apply-labels
-#           restartPolicy: OnFailure
