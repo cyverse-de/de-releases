@@ -1,5 +1,5 @@
 {
   "repository": "https://github.com/cyverse-de/porklock",
-  "release": "v2026.08.04-rc01",
-  "image": "harbor.cyverse.org/de/porklock:v2026.08.04-rc01"
+  "release": "v2026.08.04-rc02",
+  "image": "harbor.cyverse.org/de/porklock:v2026.08.04-rc02"
 }
